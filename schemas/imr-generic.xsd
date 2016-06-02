@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema targetNamespace="http://schema.bipm.org/xml/imres/gen/1.0wd" 
+           xmlns="http://www.w3.org/2001/XMLSchema" 
+           xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+           xmlns:imr="http://schema.bipm.org/xml/imres/1.0wd" 
+           xmlns:img="http://schema.bipm.org/xml/imres/gen/1.0wd/" 
+           xmlns:am="http://schema.nist.gov/xml/nmrr.schema.annot" 
+           elementFormDefault="unqualified" 
+           attributeFormDefault="unqualified" version="0.1">
+
+   <xs:annotation>
+      <xs:documentation>
+        An IMRR metadata extension to define generic resource document.
+      </xs:documentation>
+      <xs:documentation>
+        This schema draws on concepts and patterns used in the
+        DataCite metadata Schema for the Publication and Citation
+        of Research Data (https://schema.datacite.org/meta/kernel-3/).
+      </xs:documentation>
+   </xs:annotation>
+
+   <xs:import namespace="http://schema.bipm.org/xml/imres/1.0wd"
+              schemaLocation="imresource.xml"/>
+
+   <xs:element name="Resource" type="imr:Resource">
+      <xs:annotation>
+         <xs:documentation>
+           a root element for describing a registered resource 
+         </xs:documentation>
+      </xs:annotation>
+   </xs:element>
+
+</xs:schema>
+   
