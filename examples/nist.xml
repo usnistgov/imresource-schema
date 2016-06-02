@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<imo:Resource xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xmlns:imo="http://schema.bipm.org/xml/imres/org/1.0wd">
+          
+   <resourceType>Other: Organization</resourceType>
+   <title>US National Institute of Standards and Technology</title>
+   <altTitle type="AlternativeTitle">NIST</altTitle>
+   <contact>
+     <name>Robert Hanisch</name>
+     <emailAddress>robert.hanisch@nist.gov</emailAddress>
+   </contact>
+
+   <subject>standards</subject>
+   <subject>standard reference data</subject>
+   <subject>metrology</subject>
+   <subject>materials</subject>
+   <subject>physics</subject>
+   <subject>computing</subject>
+   <subject>cybersecurity</subject>
+
+   <description>
+     Founded in 1901, NIST is a non-regulatory federal agency within
+     the U.S. Department of Commerce. NIST's mission is to promote
+     U.S. innovation and industrial competitiveness by advancing
+     measurement science, standards, and technology in ways that
+     enhance economic security and improve our quality of life.  NIST
+     carries out its mission through the following programs: (1) the
+     NIST Laboratories, conducting world-class research, often in
+     close collaboration with industry, that advances the nation's
+     technology infrastructure and helps U.S. companies continually
+     improve products and services; (2) the Hollings Manufacturing
+     Extension Partnership, a nationwide network of local centers
+     offering technical and business assistance to smaller
+     manufacturers to help them create and retain jobs, increase
+     profits, and save time and money; and (3) the Baldrige
+     Performance Excellence Program, which promotes performance
+     excellence among U.S. manufacturers, service companies,
+     educational institutions, health care providers, and nonprofit
+     organizations; conducts outreach programs; and manages the annual
+     Malcolm Baldrige National Quality Award which recognizes
+     performance excellence and quality achievement.  It also curates and
+     publishes a number of standard reference and metrology data
+     collections.  
+   </description>
+
+   <referenceURL>https://www.nist.gov/</referenceURL>
+
+   <date type="Created">1901</date>
+
+</imo:Resource>
