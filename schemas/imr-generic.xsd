@@ -3,7 +3,7 @@
            xmlns="http://www.w3.org/2001/XMLSchema" 
            xmlns:xs="http://www.w3.org/2001/XMLSchema" 
            xmlns:imr="http://schema.bipm.org/xml/imres/1.0wd" 
-           xmlns:img="http://schema.bipm.org/xml/imres/gen/1.0wd/" 
+           xmlns:img="http://schema.bipm.org/xml/imres/gen/1.0wd" 
            xmlns:am="http://schema.nist.gov/xml/nmrr.schema.annot" 
            elementFormDefault="unqualified" 
            attributeFormDefault="unqualified" version="0.1">
