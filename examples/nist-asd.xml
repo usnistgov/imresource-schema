@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Resource xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xmlns="http://schema.bipm.org/xml/imres/1.0wd">
+          
+   <title>NIST Atomic Spectra Database</title>
+   <altTitle type="Subtitle">NIST Standard Reference Database #78</altTitle>
+   <creator>
+     <name>Alexander Kramida</name>
+     <affiliation>NIST</affiliation>
+   </creator>
+   <creator>
+     <name>Yuri Ralchenko</name>
+     <affiliation>NIST</affiliation>
+   </creator>
+   <creator>
+     <name>Joseph Reader</name>
+     <affiliation>NIST</affiliation>
+   </creator>
+   <contributor type="DataManager">
+     <name>Alexander Kramida</name>
+     <affiliation>NIST</affiliation>
+   </contributor>
+   <contributor type="DataManager">
+     <name>Yuri Ralchenko</name>
+     <affiliation>NIST</affiliation>
+   </contributor>
+   <contributor type="DataManager">
+     <name>Karen Olsen</name>
+     <affiliation>NIST</affiliation>
+   </contributor>
+   <contributor type="DataCollector">
+     <name>Alexander Kramida</name>
+     <affiliation>NIST</affiliation>
+   </contributor>
+   <contributor type="DataCollector">
+     <name>Edward B. Saloman</name>
+     <affiliation>NIST</affiliation>
+   </contributor>
+   <contact>
+     <name>Yuri Ralchenko</name>
+     <emailAddress>yuri.ralchenko@nist.gov</emailAddress>
+   </contact>
+
+   <subject>atomic spectra</subject>
+   <subject>spectral lines</subject>
+   <subject>energy levels</subject>
+   <subject>ground state energy</subject>
+   <subject>ionization energy</subject>
+
+   <description>
+     This database provides access and search capability for NIST
+     critically evaluated data on atomic energy levels, wavelengths,
+     and transition probabilities that are kept reasonably up-to-date
+     by the Atomic Spectroscopy Data Center at NIST.  The
+     spectroscopic data may be selected and displayed according to
+     wavelengths or energy levels by choosing one of the following
+     options.  (1) Spectral lines and associated energy levels
+     displayed in wavelength order with all selected spectra
+     intermixed or in multiplet order. Transition probabilities for
+     the lines are also displayed where available.  (2) Energy levels
+     of a particular atom or ion displayed in order of energy above
+     the ground state. (3) Ground states and ionization energies of
+     atoms and atomic ions. 
+   </description>
+
+   <resourceType> Dataset: Database </resourceType>
+
+   <publisher>US National Institute of Standards and Technology (NIST)</publisher>
+   <publicationYear> 2014 </publicationYear>
+</Resource>
