@@ -1,0 +1,3 @@
+http://schema.bipm.org/xml/imres/1.0wd ../../schemas/imresource.xsd
+http://schema.bipm.org/xml/imres/gen/1.0wd ../../schemas/nmrr/imr-generic.xsd
+http://schema.bipm.org/xml/imres/org/1.0wd ../../schemas/nmrr/imr-organization.xsd

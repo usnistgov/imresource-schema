@@ -19,8 +19,7 @@
       </xs:documentation>
    </xs:annotation>
 
-   <xs:import namespace="http://schema.bipm.org/xml/imres/1.0wd"
-              schemaLocation="imresource.xml"/>
+   <xs:import namespace="http://schema.bipm.org/xml/imres/1.0wd"/>
 
    <xs:element name="Resource" type="imo:Organization">
       <xs:annotation>

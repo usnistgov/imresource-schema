@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema targetNamespace="http://schema.bipm.org/xml/imres/1.0wd" 
+<xs:schema targetNamespace="http://schema.bipm.org/xml/imres/gen/1.0wd" 
            xmlns="http://www.w3.org/2001/XMLSchema" 
            xmlns:xs="http://www.w3.org/2001/XMLSchema" 
-           xmlns:imr="http://schema.bipm.org/xml/imres/1.0wd" 
+           xmlns:img="http://schema.bipm.org/xml/imres/gen/1.0wd" 
            xmlns:am="http://schema.nist.gov/xml/nmrr.schema.annot" 
            elementFormDefault="unqualified" 
            attributeFormDefault="unqualified" version="0.1">
 
    <xs:annotation>
       <xs:documentation>
-        A metadata schema for describing resources in the 
+        An IMRR metadata extension to define generic resource document.
       </xs:documentation>
       <xs:documentation>
         This schema draws on concepts and patterns used in the
@@ -21,6 +21,14 @@
    <xs:import namespace="http://www.w3.org/XML/1998/namespace"
               schemaLocation="http://www.w3.org/2009/01/xml.xsd"/>
    
+   <xs:element name="Resource" type="img:Resource">
+      <xs:annotation>
+         <xs:documentation>
+           a root element for describing a registered resource 
+         </xs:documentation>
+      </xs:annotation>
+   </xs:element>
+
    <xs:complexType name="Resource">
       <xs:annotation>
          <xs:documentation>
@@ -30,7 +38,7 @@
       </xs:annotation>
 
       <xs:sequence>
-         <xs:element name="resourceType" type="imr:nonemptycontentStringType">
+         <xs:element name="resourceType" type="xs:token">
             <xs:annotation>
                <xs:appinfo>
                  <am:dcterm>Type</am:dcterm>
@@ -42,7 +50,7 @@
             </xs:annotation>
          </xs:element>
 
-         <xs:element name="title" type="imr:nonemptycontentStringType">
+         <xs:element name="title" type="xs:token">
             <xs:annotation>
                <xs:appinfo>
                  <am:dcterm>Title</am:dcterm>
@@ -54,7 +62,7 @@
             </xs:annotation>
          </xs:element>
 
-         <xs:element name="altTitle" type="imr:AltTitle"
+         <xs:element name="altTitle" type="img:AltTitle"
                      minOccurs="0" maxOccurs="unbounded">
             <xs:annotation>
                <xs:appinfo>
@@ -93,7 +101,7 @@
             </xs:annotation>
          </xs:element>
 
-         <xs:element name="creator" type="imr:Entity"
+         <xs:element name="creator" type="img:Entity"
                      minOccurs="0" maxOccurs="unbounded">
             <xs:annotation>
                <xs:appinfo>
@@ -107,7 +115,7 @@
             </xs:annotation>
          </xs:element>
 
-         <xs:element name="contributor" type="imr:Contributor" 
+         <xs:element name="contributor" type="img:Contributor" 
                      minOccurs="0" maxOccurs="unbounded">
             <xs:annotation>
                <xs:appinfo>
@@ -121,7 +129,7 @@
             </xs:annotation>
          </xs:element>
 
-         <xs:element name="contact" type="imr:Contact" maxOccurs="unbounded">
+         <xs:element name="contact" type="img:Contact" maxOccurs="unbounded">
             <xs:annotation>
                <xs:documentation>
                  Information that can be used for contacting someone with
@@ -130,7 +138,7 @@
             </xs:annotation>
          </xs:element>
 
-         <xs:element name="subject" type="imr:Subject" maxOccurs="unbounded">
+         <xs:element name="subject" type="img:Subject" maxOccurs="unbounded">
             <xs:annotation>
                <xs:appinfo>
                  <am:dcterm>Subject</am:dcterm>
@@ -173,7 +181,7 @@
             </xs:annotation>
          </xs:element>
 
-         <xs:element name="date" type="imr:Date" 
+         <xs:element name="date" type="img:Date" 
                      minOccurs="0" maxOccurs="unbounded">
             <xs:annotation>
                <xs:appinfo>
@@ -185,63 +193,10 @@
                </xs:documentation>
             </xs:annotation>
          </xs:element>
+
+         
+
       </xs:sequence>
-
-      <xs:attribute name="localid">
-        <xs:annotation>
-          <xs:documentation>
-            An unambiguous identifier for this resource description as 
-            assigned by its author or its curating registry.  
-          </xs:documentation>
-          <xs:documentation>
-            This attribute is required on export.
-          </xs:documentation>
-        </xs:annotation>
-        <xs:simpleType>
-          <xs:restriction base="xs:string"/>                      
-        </xs:simpleType>
-      </xs:attribute>
-
-   </xs:complexType>
-
-   <xs:complexType name="PublishedResource">
-     <xs:annotation>
-        <xs:documentation>
-          an identified, described, and discoverable component of the 
-          distributed data environment. 
-        </xs:documentation>
-     </xs:annotation>
-     <xs:complexContent>
-       <xs:extension base="imr:Resource">
-         <xs:sequence>
-           <xs:element name="publisher" type="imr:nonemptycontentStringType">
-              <xs:annotation>
-                 <xs:appinfo>
-                   <am:dcterm>Publisher</am:dcterm>
-                   <am:dataciteproperty>publisher</am:dataciteproperty>
-                 </xs:appinfo>           
-                 <xs:documentation>
-                    Entity (e.g. person or organization) responsible for making 
-                    the resource available.  
-                 </xs:documentation>
-              </xs:annotation>
-           </xs:element>
-
-           <xs:element name="publicationYear" type="imr:Year">
-              <xs:annotation>
-                 <xs:appinfo>
-                   <am:dataciteproperty>publicationYear</am:dataciteproperty>
-                 </xs:appinfo>           
-                 <xs:documentation>
-                   The year that this resource was made available by the 
-                   publisher.
-                 </xs:documentation>
-              </xs:annotation>
-           </xs:element>
-
-         </xs:sequence>
-       </xs:extension>
-     </xs:complexContent>
    </xs:complexType>
 
    <xs:complexType name="AltTitle">
@@ -252,8 +207,8 @@
       </xs:annotation>
 
       <xs:simpleContent>
-         <xs:extension base="imr:nonemptycontentStringType">
- 	    <xs:attribute name="type" type="imr:TitleType" use="required">
+         <xs:extension base="xs:token">
+ 	    <xs:attribute name="type" type="img:TitleType" use="required">
                <xs:annotation>
                   <xs:documentation>
                     The type of title; either "AlternativeTitle",
@@ -265,7 +220,7 @@
                </xs:annotation>
  	    </xs:attribute>      
 
-            <xs:attribute ref="xml:lang" use="optional"/>
+            <xs:attribute ref="xml:lang"/>
          </xs:extension>
       </xs:simpleContent>
 
@@ -317,7 +272,7 @@
       </xs:annotation>
 
       <xs:sequence>
-         <xs:element name="name" type="imr:nonemptycontentStringType">
+         <xs:element name="name" type="xs:token">
             <xs:annotation>
                <xs:documentation>
                   The person or entity's displayable name
@@ -325,7 +280,7 @@
             </xs:annotation>
          </xs:element>
          
-         <xs:element name="identifier" type="imr:EntityID" minOccurs="0">
+         <xs:element name="identifier" type="img:EntityID" minOccurs="0">
             <xs:annotation>
                <xs:documentation>
                   The person or entity's identifier
@@ -352,7 +307,7 @@
       </xs:annotation>
 
       <xs:simpleContent>
-         <xs:extension base="imr:nonemptycontentStringType">
+         <xs:extension base="xs:token">
             <xs:attribute name="identifierScheme" use="required"/>
             <xs:attribute name="schemeURI" type="xs:anyURI" use="optional"/>
          </xs:extension>
@@ -367,7 +322,7 @@
       </xs:annotation>
 
       <xs:sequence>
-         <xs:element name="name" type="imr:nonemptycontentStringType">
+         <xs:element name="name" type="xs:token">
             <xs:annotation>
                <xs:documentation>
                   The person or entity's displayable name
@@ -375,7 +330,7 @@
             </xs:annotation>
          </xs:element>
          
-         <xs:element name="identifier" type="imr:EntityID" minOccurs="0">
+         <xs:element name="identifier" type="img:EntityID" minOccurs="0">
             <xs:annotation>
                <xs:documentation>
                   The person or entity's identifier
@@ -383,7 +338,7 @@
             </xs:annotation>
          </xs:element>
 
-         <xs:element name="emailAddress" type="imr:nonemptycontentStringType"
+         <xs:element name="emailAddress" type="xs:token"
                      minOccurs="0" maxOccurs="unbounded">
             <xs:annotation>
                <xs:documentation>the contact email address</xs:documentation>
@@ -400,10 +355,34 @@
        </xs:documentation>
      </xs:annotation>
 
-     <xs:complexContent>
-       <xs:extension base="imr:Entity">
+      <xs:sequence>
+         <xs:element name="name" type="xs:token">
+            <xs:annotation>
+               <xs:documentation>
+                  The person or entity's displayable name
+               </xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         
+         <xs:element name="identifier" type="img:EntityID" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>
+                  The person or entity's identifier
+               </xs:documentation>
+            </xs:annotation>
+         </xs:element>
 
-          <xs:attribute name="type" type="imr:ContributorType" use="required">
+         <xs:element name="affiliation" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+               <xs:documentation>
+                  The person or entity's institutional affiliation at
+                  the time their contribution was made
+               </xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+
+          <xs:attribute name="type" type="img:ContributorType" use="required">
             <xs:annotation>
               <xs:documentation>
                 a label indicating the contribution that this person
@@ -411,9 +390,6 @@
               </xs:documentation>
             </xs:annotation>
           </xs:attribute>
-
-       </xs:extension>
-     </xs:complexContent>
 
    </xs:complexType>
 
@@ -734,7 +710,7 @@
            </xs:annotation>
          </xs:attribute>
 
-         <xs:attribute name="pid" use="optional" type="xs:anyURI">
+         <xs:attribute name="pid" type="xs:anyURI">
            <xs:annotation>
              <xs:documentation>
                The machine-recognizable URI identifying the specific subject 
@@ -796,8 +772,8 @@
      </xs:annotation>
 
      <xs:simpleContent>
-       <xs:extension base="imr:NoTimeDate">
-         <xs:attribute name="type" type="imr:DateType">
+       <xs:extension base="img:NoTimeDate">
+         <xs:attribute name="type" type="img:DateType">
             <xs:annotation>
               <xs:documentation>
                 A label indicating the role this date plays in the lifecycle
