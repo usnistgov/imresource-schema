@@ -185,10 +185,23 @@
                </xs:documentation>
             </xs:annotation>
          </xs:element>
-
-         
-
       </xs:sequence>
+
+      <xs:attribute name="localid">
+        <xs:annotation>
+          <xs:documentation>
+            An unambiguous identifier for this resource description as 
+            assigned by its author or its curating registry.  
+          </xs:documentation>
+          <xs:documentation>
+            This attribute is required on export.
+          </xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:string"/>                      
+        </xs:simpleType>
+      </xs:attribute>
+
    </xs:complexType>
 
    <xs:complexType name="PublishedResource">
@@ -252,7 +265,7 @@
                </xs:annotation>
  	    </xs:attribute>      
 
-            <xs:attribute ref="xml:lang"/>
+            <xs:attribute ref="xml:lang" use="optional"/>
          </xs:extension>
       </xs:simpleContent>
 
@@ -721,7 +734,7 @@
            </xs:annotation>
          </xs:attribute>
 
-         <xs:attribute name="pid" type="xs:anyURI">
+         <xs:attribute name="pid" use="optional" type="xs:anyURI">
            <xs:annotation>
              <xs:documentation>
                The machine-recognizable URI identifying the specific subject 

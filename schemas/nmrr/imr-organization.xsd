@@ -19,11 +19,11 @@
       </xs:documentation>
    </xs:annotation>
 
-   <xs:import namespace="http://www.w3.org/XML/1998/namespace"
-              schemaLocation="http://www.w3.org/2009/01/xml.xsd"/>
-   
    <xs:element name="Resource" type="imo:Organization">
       <xs:annotation>
+         <xs:appinfo>
+           <label>Resource: Organization</label>
+         </xs:appinfo>
          <xs:documentation>
            a root element for describing a registered resource 
          </xs:documentation>
@@ -42,6 +42,8 @@
                      default="Other: Organization">
             <xs:annotation>
                <xs:appinfo>
+           <label>Resource Type (do not edit)</label>
+           <tooltip>This identifies this record as an Organization resource</tooltip>
                  <am:dcterm>Type</am:dcterm>
                  <am:dataciteproperty>resourceType</am:dataciteproperty>
                </xs:appinfo>           
@@ -54,6 +56,8 @@
          <xs:element name="title" type="xs:string">
             <xs:annotation>
                <xs:appinfo>
+                 <label>Organzation Title</label>
+                 <tooltip>The full name given to the organization</tooltip>
                  <am:dcterm>Title</am:dcterm>
                  <am:dataciteproperty>Title</am:dataciteproperty>
                </xs:appinfo>           
@@ -67,6 +71,8 @@
                      minOccurs="0" maxOccurs="unbounded">
             <xs:annotation>
                <xs:appinfo>
+                 <label>Alternate Title</label>
+                 <tooltip>You can use this to provide an abbreviation for the organization</tooltip>
                  <am:dcterm>Title</am:dcterm>
                  <am:dataciteproperty>Title</am:dataciteproperty>
                </xs:appinfo>           
@@ -76,23 +82,12 @@
             </xs:annotation>
          </xs:element>
 
-         <xs:element name="identifier" type="xs:token" minOccurs="0">
-            <xs:annotation>
-               <xs:appinfo>
-                 <am:dcterm>identifier</am:dcterm>
-                 <am:dataciteproperty>identifier</am:dataciteproperty>
-               </xs:appinfo>           
-               <xs:documentation>
-                  an unambiguous, globally-unique identifier for this 
-                  resource description.
-               </xs:documentation>
-            </xs:annotation>
-         </xs:element>
-
          <xs:element name="alternateIdentifier" type="xs:token"
                      minOccurs="0" maxOccurs="unbounded">
             <xs:annotation>
                <xs:appinfo>
+                 <label>Externally assigned identifier</label>
+                 <tooltip>a global identifier assigned via another system (e.g. ISNI)</tooltip>
                  <am:dataciteproperty>alternateIdentifier</am:dataciteproperty>
                </xs:appinfo>           
                <xs:documentation>
@@ -142,6 +137,8 @@
          <xs:element name="subject" type="imo:Subject" maxOccurs="unbounded">
             <xs:annotation>
                <xs:appinfo>
+                 <label>Subject keyword</label>
+                 <tooltip>Click the + to add additional keywords</tooltip>
                  <am:dcterm>Subject</am:dcterm>
                </xs:appinfo>           
                <xs:documentation>
@@ -151,9 +148,10 @@
             </xs:annotation>
          </xs:element>
 
-         <xs:element name="description" type="xs:token" maxOccurs="unbounded">
+         <xs:element name="description" type="xs:token" maxOccurs="unbounded" xmlns:ns0="http://mdcs.ns" ns0:_mod_mdcs_="/registry/description">
             <xs:annotation>
                <xs:appinfo>
+                 <label>Give a summary of the purpose and activity of the organization</label>
                  <am:dcterm>Description</am:dcterm>
                  <am:datacite>description</am:datacite>
                </xs:appinfo>           
@@ -175,6 +173,9 @@
 
          <xs:element name="referenceURL" type="xs:anyURI">
             <xs:annotation>
+               <xs:appinfo>
+                 <label>Organization home page</label>
+               </xs:appinfo>
                <xs:documentation>
                   URL pointing to a human-readable document describing this 
                   resource.   
@@ -186,6 +187,8 @@
                      minOccurs="0" maxOccurs="unbounded">
             <xs:annotation>
                <xs:appinfo>
+                 <tooltip>Enter a date associated with an event in the life cycle of the organization (see type drop-down menu).</tooltip>
+                 <placeholder>Format: YYYY, YYYY-MM, or YYYY-MM-DD</placeholder>
                  <am:dcterm>Date</am:dcterm>
                </xs:appinfo>
                <xs:documentation>
@@ -198,6 +201,25 @@
          
 
       </xs:sequence>
+
+      <xs:attribute name="localid">
+        <xs:annotation>
+          <xs:appinfo>
+            <label>Local ID (do not change)</label>
+          </xs:appinfo>
+          <xs:documentation>
+            An unambiguous identifier for this resource description as 
+            assigned by its author or its curating registry.  
+          </xs:documentation>
+          <xs:documentation>
+            This attribute is required on export.
+          </xs:documentation>
+        </xs:annotation>
+        <xs:simpleType xmlns:ns0="http://mdcs.ns" ns0:_mod_mdcs_="/registry/local-id">
+          <xs:restriction base="xs:string"/>                      
+        </xs:simpleType>
+      </xs:attribute>
+
    </xs:complexType>
 
    <xs:complexType name="AltTitle">
@@ -221,7 +243,9 @@
                </xs:annotation>
  	    </xs:attribute>      
 
-            <xs:attribute ref="xml:lang"/>
+<!--
+            <xs:attribute ref="xml:lang" use="optional"/>
+  -->
          </xs:extension>
       </xs:simpleContent>
 
@@ -711,8 +735,13 @@
            </xs:annotation>
          </xs:attribute>
 
-         <xs:attribute name="pid" type="xs:anyURI">
+         <xs:attribute name="pid" use="optional" type="xs:anyURI">
            <xs:annotation>
+             <xs:appinfo>
+             <label>Subject URI (optional)</label>
+             <placeholder>http://...</placeholder>
+             <tooltip>If one is known, enter the URI that unambiguously identifies this subject.</tooltip>
+             </xs:appinfo>
              <xs:documentation>
                The machine-recognizable URI identifying the specific subject 
                keyword.
@@ -815,6 +844,19 @@
          </xs:annotation>
        </xs:enumeration>
 
+       <xs:enumeration value="Created">
+         <xs:annotation>
+           <xs:appinfo>
+             <am:dataciteproperty>Created</am:dataciteproperty>
+           </xs:appinfo>
+           <xs:documentation>
+             indicating the date (or date range) that the resource itself was
+             pub together.  A single date indicates when the creation was
+             completed.  
+           </xs:documentation>
+         </xs:annotation>
+       </xs:enumeration>
+
        <xs:enumeration value="Available">
          <xs:annotation>
            <xs:appinfo>
@@ -851,19 +893,6 @@
          </xs:annotation>
        </xs:enumeration>
          
-       <xs:enumeration value="Created">
-         <xs:annotation>
-           <xs:appinfo>
-             <am:dataciteproperty>Created</am:dataciteproperty>
-           </xs:appinfo>
-           <xs:documentation>
-             indicating the date (or date range) that the resource itself was
-             pub together.  A single date indicates when the creation was
-             completed.  
-           </xs:documentation>
-         </xs:annotation>
-       </xs:enumeration>
-
        <xs:enumeration value="Issued">
          <xs:annotation>
            <xs:appinfo>
