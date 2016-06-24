@@ -1,9 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Resource xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-          xmlns="http://schema.bipm.org/xml/imres/1.0wd">
+<imr:Resource xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xmlns:imr="http://schema.bipm.org/xml/imres/1.0wd"
+              xsi:type="imr:MetrologyData" status="active">
           
+   <resourceType> Dataset: Database </resourceType>
+
    <title>NIST Atomic Spectra Database</title>
    <altTitle type="Subtitle">NIST Standard Reference Database #78</altTitle>
+   <altTitle type="Abbreviation">NIST-ASD</altTitle>
+   <altTitle type="Abbreviation">SRD#78</altTitle>
+   <homeURL>http://www.nist.gov/pml/data/asd.cfm</homeURL>
+   <sponsoringCountry abbrev="USA">United States of America</sponsoringCountry>
+
    <creator>
      <name>Alexander Kramida</name>
      <affiliation>NIST</affiliation>
@@ -36,6 +44,7 @@
      <name>Edward B. Saloman</name>
      <affiliation>NIST</affiliation>
    </contributor>
+
    <contact>
      <name>Yuri Ralchenko</name>
      <emailAddress>yuri.ralchenko@nist.gov</emailAddress>
@@ -63,8 +72,12 @@
      atoms and atomic ions. 
    </description>
 
-   <resourceType> Dataset: Database </resourceType>
-
    <publisher>US National Institute of Standards and Technology (NIST)</publisher>
    <publicationYear> 2014 </publicationYear>
-</Resource>
+
+   <access>
+     <rights>public</rights>
+     <termsURL>http://www.nist.gov/open/license.cfm</termsURL>
+   </access>
+
+</imr:Resource>

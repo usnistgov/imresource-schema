@@ -1,10 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<imo:Resource xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-          xmlns:imo="http://schema.bipm.org/xml/imres/org/1.0wd">
+<imr:Resource xsi:type="nmi:MetrologyInstitute"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xmlns:imr="http://schema.bipm.org/xml/imres/1.0wd"
+              xmlns:nmi="http://schema.bipm.org/xml/imres/nmi/1.0wd"
+              status="active" localid="####">
           
-   <resourceType>Other: Organization</resourceType>
+   <resourceType>Organization: Metrology Institute</resourceType>
    <title>US National Institute of Standards and Technology</title>
-   <altTitle type="AlternativeTitle">NIST</altTitle>
+   <altTitle type="Abbreviation">NIST</altTitle>
+   <homeURL>https://www.nist.gov/</homeURL>
+   <sponsoringCountry abbrev="USA">United States of America</sponsoringCountry>
+
    <contact>
      <name>Robert Hanisch</name>
      <emailAddress>robert.hanisch@nist.gov</emailAddress>
@@ -43,8 +49,6 @@
      collections.  
    </description>
 
-   <referenceURL>https://www.nist.gov/</referenceURL>
-
    <date type="Created">1901</date>
 
-</imo:Resource>
+</imr:Resource>
