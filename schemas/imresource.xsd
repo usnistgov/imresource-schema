@@ -1297,34 +1297,122 @@
           </xs:annotation>
         </xs:element>
 
-        <xs:element name="download" type="imr:Download"
-                    minOccurs="0" maxOccurs="1">
+        <xs:element name="via" type="imr:AccessVia"
+                    minOccurs="0" maxOccurs="3">
           <xs:annotation>
             <xs:documentation>
-              a category of property that is sampled by the contained data
+              A description of the access to a resource through some 
+              mechanism.
+            </xs:documentation>
+            <xs:documentation>
+              As the AccessVia type is abstract, all instances must include an
+              xsi:type attribute.
             </xs:documentation>
           </xs:annotation>
         </xs:element>
-         
-        <xs:element name="serviceAPI" type="imr:ServiceAPI"
-                    minOccurs="0" maxOccurs="1">
-          <xs:annotation>
-            <xs:documentation>
-              a category of property that is sampled by the contained data
-            </xs:documentation>
-          </xs:annotation>
-        </xs:element>
-         
-        <xs:element name="media" type="imr:Media"
-                    minOccurs="0" maxOccurs="1">
-          <xs:annotation>
-            <xs:documentation>
-              a category of property that is sampled by the contained data
-            </xs:documentation>
-          </xs:annotation>
-        </xs:element>
-         
+
       </xs:sequence>
+   </xs:complexType>
+
+   <xs:complexType name="AccessVia">
+     <xs:annotation>
+        <xs:documentation>
+          metadata describing how one can access a resource via some mechanism
+        </xs:documentation>
+     </xs:annotation>
+       <xs:sequence>
+
+         <xs:element name="method" type="imr:nonemptycontentStringType">
+            <xs:annotation>
+               <xs:documentation>
+                 A summary of what the service API enables
+               </xs:documentation>
+           </xs:annotation>
+         </xs:element>
+         
+         <xs:element name="description" type="imr:nonemptycontentStringType"
+                     minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>
+                 A summary of how to access the resource by this method.
+               </xs:documentation>
+           </xs:annotation>
+         </xs:element>
+         
+       </xs:sequence>
+   </xs:complexType>
+   
+   <xs:complexType name="_DownloadRestrict" abstract="true">
+      <xs:annotation>
+         <xs:documentation>
+           an AccessVia with method fixed to Download
+         </xs:documentation>
+      </xs:annotation>
+
+      <xs:complexContent>
+        <xs:restriction base="imr:AccessVia">
+          <xs:sequence>
+             <xs:element name="method" type="imr:nonemptycontentStringType"
+                         fixed="download"/>
+             <xs:element name="description" type="imr:nonemptycontentStringType"
+                         minOccurs="0"/>
+          </xs:sequence>
+         </xs:restriction>
+      </xs:complexContent>
+   </xs:complexType>
+
+   <xs:complexType name="Download">
+     <xs:annotation>
+       <xs:documentation>
+         details on how data can be downloaded
+       </xs:documentation>
+     </xs:annotation>
+
+     <xs:complexContent>
+       <xs:extension base="imr:_DownloadRestrict">
+         <xs:sequence>
+
+            <xs:element name="format" type="imr:nonemptycontentStringType"
+                        minOccurs="0">
+               <xs:annotation>
+                  <xs:documentation>
+                    a file format that is supported for download products.
+                  </xs:documentation>
+               </xs:annotation>
+            </xs:element>
+
+            <xs:element name="accessURL" type="imr:AccessURL" minOccurs="0">
+               <xs:annotation>
+                  <xs:documentation>
+                     The URL that, when accessed (via HTTP GET), will deliver the 
+                     data or file associated with this resource.  
+                  </xs:documentation>
+               </xs:annotation>
+            </xs:element>       
+         
+         </xs:sequence>
+       </xs:extension>
+     </xs:complexContent>
+
+   </xs:complexType>
+   
+   <xs:complexType name="_ServiceAPIRestrict" abstract="true">
+      <xs:annotation>
+         <xs:documentation>
+           an AccessVia with method fixed to Download
+         </xs:documentation>
+      </xs:annotation>
+
+      <xs:complexContent>
+        <xs:restriction base="imr:AccessVia">
+          <xs:sequence>
+             <xs:element name="method" type="imr:nonemptycontentStringType"
+                         fixed="service API"/>
+             <xs:element name="description" type="imr:nonemptycontentStringType"
+                         minOccurs="0"/>
+          </xs:sequence>
+         </xs:restriction>
+      </xs:complexContent>
    </xs:complexType>
 
    <xs:complexType name="ServiceAPI">
@@ -1334,25 +1422,41 @@
          </xs:documentation>
       </xs:annotation>
 
-      <xs:sequence>
+     <xs:complexContent>
+       <xs:extension base="imr:_ServiceAPIRestrict">
+         <xs:sequence>
 
-        <xs:element name="description" type="xs:token" minOccurs="0">
-           <xs:annotation>
-              <xs:documentation>
-                A summary of what the service API enables
-              </xs:documentation>
-          </xs:annotation>
-        </xs:element>
-         
-        <xs:element name="documentationURL" type="xs:anyURI" minOccurs="0">
-           <xs:annotation>
-              <xs:documentation>
-                The URL to a web page that describes how to use the service.  
-              </xs:documentation>
-          </xs:annotation>
-        </xs:element>
-         
-      </xs:sequence>
+           <xs:element name="documentationURL" type="xs:anyURI" minOccurs="0">
+              <xs:annotation>
+                 <xs:documentation>
+                   The URL to a web page that describes how to use the service.  
+                 </xs:documentation>
+             </xs:annotation>
+           </xs:element>
+            
+         </xs:sequence>
+       </xs:extension>
+     </xs:complexContent>
+
+   </xs:complexType>
+
+   <xs:complexType name="_MediaRestrict" abstract="true">
+      <xs:annotation>
+         <xs:documentation>
+           an AccessVia with method fixed to media
+         </xs:documentation>
+      </xs:annotation>
+
+      <xs:complexContent>
+        <xs:restriction base="imr:AccessVia">
+          <xs:sequence>
+             <xs:element name="method" type="imr:nonemptycontentStringType"
+                         fixed="media"/>
+             <xs:element name="description" type="imr:nonemptycontentStringType"
+                         minOccurs="0"/>
+          </xs:sequence>
+         </xs:restriction>
+      </xs:complexContent>
    </xs:complexType>
 
    <xs:complexType name="Media">
@@ -1362,77 +1466,30 @@
          </xs:documentation>
       </xs:annotation>
 
-      <xs:sequence>
+     <xs:complexContent>
+       <xs:extension base="imr:_MediaRestrict">
+         <xs:sequence>
 
-        <xs:element name="mediaType" type="xs:token"
-                    minOccurs="1" maxOccurs="unbounded">
-           <xs:annotation>
-              <xs:documentation>
-                The type of media provided
-              </xs:documentation>
-          </xs:annotation>
-        </xs:element>
+           <xs:element name="mediaType" type="xs:token"
+                       minOccurs="1" maxOccurs="unbounded">
+              <xs:annotation>
+                 <xs:documentation>
+                   The type of media provided
+                 </xs:documentation>
+             </xs:annotation>
+           </xs:element>
+            
+           <xs:element name="requestURL" type="xs:anyURI" minOccurs="0">
+              <xs:annotation>
+                 <xs:documentation>
+                   The URL to a web page that describes how to use the service.  
+                 </xs:documentation>
+             </xs:annotation>
+           </xs:element>
          
-        <xs:element name="description" type="xs:token" minOccurs="0">
-           <xs:annotation>
-              <xs:documentation>
-                A summary of what the service API enables
-              </xs:documentation>
-          </xs:annotation>
-        </xs:element>
-         
-        <xs:element name="requestURL" type="xs:anyURI" minOccurs="0">
-           <xs:annotation>
-              <xs:documentation>
-                The URL to a web page that describes how to use the service.  
-              </xs:documentation>
-          </xs:annotation>
-        </xs:element>
-         
-      </xs:sequence>
-   </xs:complexType>
-
-   <xs:complexType name="Download">
-      <xs:annotation>
-         <xs:documentation>
-           a container for metrology-specific metadata
-         </xs:documentation>
-      </xs:annotation>
-
-      <xs:sequence>
-
-        <xs:element name="description" type="xs:token" minOccurs="0">
-           <xs:annotation>
-              <xs:documentation>
-                A summary of what the download URL delivers
-              </xs:documentation>
-              <xs:documentation>
-                Providing a description is recommended if more than one
-                portal is available.  If the accessURL's use attribute is set 
-                to "base", describe what is expected to be appended to the URL
-                to retrieve individual files.  
-              </xs:documentation>
-           </xs:annotation>
-        </xs:element>
-
-        <xs:element name="format" type="xs:token" minOccurs="0">
-           <xs:annotation>
-              <xs:documentation>
-                a file format that is supported for download products.
-              </xs:documentation>
-           </xs:annotation>
-        </xs:element>
-
-        <xs:element name="accessURL" type="imr:AccessURL" minOccurs="0">
-           <xs:annotation>
-              <xs:documentation>
-                 The URL that, when accessed (via HTTP GET), will deliver the 
-                 data or file associated with this resource.  
-              </xs:documentation>
-           </xs:annotation>
-        </xs:element>       
-         
-      </xs:sequence>
+         </xs:sequence>
+       </xs:extension>
+     </xs:complexContent>
    </xs:complexType>
 
    <xs:complexType name="AccessURL">
