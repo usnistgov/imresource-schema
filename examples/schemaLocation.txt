@@ -2,3 +2,4 @@ http://schema.bipm.org/xml/imres/1.0wd ../schemas/imresource.xsd
 http://schema.bipm.org/xml/imres/gen/1.0wd ../schemas/imr-generic.xsd
 http://schema.bipm.org/xml/imres/org/1.0wd ../schemas/imr-organization.xsd
 http://schema.bipm.org/xml/imres/nmi/1.0wd ../schemas/imr-nmi.xsd
+http://schema.bipm.org/xml/imres/data/1.0wd ../schemas/imr-data.xsd

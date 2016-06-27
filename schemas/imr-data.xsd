@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema targetNamespace="http://schema.bipm.org/xml/imres/data/1.0wd" 
+           xmlns="http://www.w3.org/2001/XMLSchema" 
+           xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+           xmlns:imr="http://schema.bipm.org/xml/imres/1.0wd" 
+           xmlns:imi="http://schema.bipm.org/xml/imres/nmi/1.0wd" 
+           xmlns:am="http://schema.nist.gov/xml/nmrr.schema.annot" 
+           elementFormDefault="unqualified" 
+           attributeFormDefault="unqualified" version="0.1">
+
+   <xs:annotation>
+      <xs:documentation>
+        An IMRR metadata extension to define the Data related resource types.
+      </xs:documentation>
+      <xs:documentation>
+        This schema draws on concepts and patterns used in the
+        DataCite metadata Schema for the Publication and Citation
+        of Research Data (https://schema.datacite.org/meta/kernel-3/).
+      </xs:documentation>
+   </xs:annotation>
+
+   <xs:import namespace="http://schema.bipm.org/xml/imres/1.0wd"/>
+
+   <xs:complexType name="Database">
+      <xs:annotation>
+         <xs:documentation>
+           a Resource description with resourceType fixed to Organization
+         </xs:documentation>
+      </xs:annotation>
+
+      <xs:complexContent>
+        <xs:restriction base="imr:MetrologyData">
+          <xs:sequence>
+             <xs:element name="resourceType" type="imr:nonemptycontentStringType"
+                         fixed="Dataset: Database"/>
+
+             <xs:element name="title" type="imr:nonemptycontentStringType"/>
+             <xs:element name="altTitle" type="imr:AltTitle"
+                         minOccurs="0" maxOccurs="unbounded"/>
+             <xs:element name="identifier" type="imr:Identifier" minOccurs="0"/>
+             <xs:element name="alternateIdentifier" type="imr:Identifier"
+                         minOccurs="0" maxOccurs="unbounded"/>
+             <xs:element name="homeURL" type="xs:anyURI"/>
+             <xs:element name="sponsoringCountry" minOccurs="0" 
+                         maxOccurs="unbounded" type="imr:Country"/>
+             <xs:element name="creator" type="imr:Entity"
+                         minOccurs="0" maxOccurs="unbounded"/>
+             <xs:element name="contributor" type="imr:Contributor" 
+                         minOccurs="0" maxOccurs="unbounded"/>
+             <xs:element name="contact" type="imr:Contact" 
+                         maxOccurs="unbounded"/>
+             <xs:element name="subject" type="imr:Subject" 
+                         maxOccurs="unbounded"/>
+             <xs:element name="description" type="xs:token" 
+                         maxOccurs="unbounded"/>
+             <xs:element name="date" type="imr:Date" 
+                         minOccurs="0" maxOccurs="unbounded"/>
+             <xs:element name="publisher" type="imr:nonemptycontentStringType"/>
+             <xs:element name="publicationYear" type="imr:Year"/>
+             <xs:element name="measures" type="imr:Measures" minOccurs="0"/>
+             <xs:element name="access" type="imr:Access"/>
+         </xs:sequence>
+         </xs:restriction>
+      </xs:complexContent>
+   </xs:complexType>
+
+
+</xs:schema>
+   

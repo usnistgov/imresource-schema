@@ -1,3 +1,4 @@
 http://schema.bipm.org/xml/imres/nmrr/nmi/1.0wd ../nmrr-nmi.xsd
+http://schema.bipm.org/xml/imres/nmrr/database/1.0wd ../nmrr-database.xsd
 http://schema.bipm.org/xml/imres/nmrr/org/1.0wd ../imr-organization.xsd
 http://schema.bipm.org/xml/imres/nmrr/gen/1.0wd ../imr-generic.xsd
