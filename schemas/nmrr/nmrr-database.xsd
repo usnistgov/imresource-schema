@@ -1194,7 +1194,7 @@
           </xs:annotation>
         </xs:element>
 
-        <xs:element name="licenseName" type="xs:token" minOccurs="0">
+        <xs:element name="licenseName" type="xs:string" minOccurs="0">
           <xs:annotation>
             <xs:appinfo>
               <label>License Name: </label>

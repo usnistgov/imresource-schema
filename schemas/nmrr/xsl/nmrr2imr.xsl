@@ -4,7 +4,7 @@
                 xmlns:nmrdb="http://schema.bipm.org/xml/imres/nmrr/database/1.0wd"
                 xmlns:imr="http://schema.bipm.org/xml/imres/1.0wd"
                 xmlns:nmi="http://schema.bipm.org/xml/imres/nmi/1.0wd"
-                xmlns:mdb="http://schema.bipm.org/xml/imres/nmi/1.0wd"
+                xmlns:mdb="http://schema.bipm.org/xml/imres/data/1.0wd"
                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                 exclude-result-prefixes="nmrn nmrdb"
                 version="1.0">
@@ -167,6 +167,14 @@
           <xsl:with-param name="sp" select="concat($sp,$step)"/>
           <xsl:with-param name="step" select="$step"/>
         </xsl:apply-templates>
+        <xsl:apply-templates select="measures">
+          <xsl:with-param name="sp" select="concat($sp,$step)"/>
+          <xsl:with-param name="step" select="$step"/>
+        </xsl:apply-templates>
+        <xsl:apply-templates select="access">
+          <xsl:with-param name="sp" select="concat($sp,$step)"/>
+          <xsl:with-param name="step" select="$step"/>
+        </xsl:apply-templates>
 
         <xsl:value-of select="$sp"/>
 
@@ -306,6 +314,110 @@
             <homeURL><xsl:value-of select="url"/></homeURL>
          </xsl:when>
       </xsl:choose>
+   </xsl:template>
+
+   <xsl:template match="via">
+     <xsl:message>Failed to match via</xsl:message>
+   </xsl:template>
+
+   <xsl:template match="via[contains(@xsi:type,':Download')]">
+      <xsl:param name="sp"/>
+      <xsl:param name="step"/>
+      <xsl:variable name="subsp" select="concat($sp,$step)"/>
+
+      <xsl:value-of select="$sp"/>
+
+      <xsl:element name="via">
+        <xsl:for-each select="@*">
+          <xsl:copy/>
+        </xsl:for-each>
+
+        <xsl:value-of select="$subsp"/>
+        <method>download</method>
+
+        <xsl:apply-templates select="description">
+          <xsl:with-param name="sp" select="$subsp"/>
+          <xsl:with-param name="step" select="$step"/>
+        </xsl:apply-templates>
+
+        <xsl:apply-templates select="format">
+          <xsl:with-param name="sp" select="$subsp"/>
+          <xsl:with-param name="step" select="$step"/>
+        </xsl:apply-templates>
+        <xsl:apply-templates select="accessURL">
+          <xsl:with-param name="sp" select="$subsp"/>
+          <xsl:with-param name="step" select="$step"/>
+        </xsl:apply-templates>
+
+        <xsl:value-of select="$sp"/>
+
+      </xsl:element>
+
+   </xsl:template>
+
+   <xsl:template match="via[contains(@xsi:type,':ServiceAPI')]">
+      <xsl:param name="sp"/>
+      <xsl:param name="step"/>
+      <xsl:variable name="subsp" select="concat($sp,$step)"/>
+
+      <xsl:value-of select="$sp"/>
+
+      <xsl:element name="via">
+        <xsl:for-each select="@*">
+          <xsl:copy/>
+        </xsl:for-each>
+
+        <xsl:value-of select="$subsp"/>
+        <method>service API</method>
+
+        <xsl:apply-templates select="description">
+          <xsl:with-param name="sp" select="$subsp"/>
+          <xsl:with-param name="step" select="$step"/>
+        </xsl:apply-templates>
+
+        <xsl:apply-templates select="documentationURL">
+          <xsl:with-param name="sp" select="$subsp"/>
+          <xsl:with-param name="step" select="$step"/>
+        </xsl:apply-templates>
+
+        <xsl:value-of select="$sp"/>
+
+      </xsl:element>
+
+   </xsl:template>
+
+   <xsl:template match="via[contains(@xsi:type,':Media')]">
+      <xsl:param name="sp"/>
+      <xsl:param name="step"/>
+      <xsl:variable name="subsp" select="concat($sp,$step)"/>
+
+      <xsl:value-of select="$sp"/>
+
+      <xsl:element name="via">
+        <xsl:for-each select="@*">
+          <xsl:copy/>
+        </xsl:for-each>
+
+        <xsl:value-of select="$subsp"/>
+        <method>media</method>
+
+        <xsl:apply-templates select="description">
+          <xsl:with-param name="sp" select="$subsp"/>
+          <xsl:with-param name="step" select="$step"/>
+        </xsl:apply-templates>
+
+        <xsl:apply-templates select="mediaType">
+          <xsl:with-param name="sp" select="$subsp"/>
+          <xsl:with-param name="step" select="$step"/>
+        </xsl:apply-templates>
+        <xsl:apply-templates select="requestURL">
+          <xsl:with-param name="sp" select="$subsp"/>
+          <xsl:with-param name="step" select="$step"/>
+        </xsl:apply-templates>
+
+        <xsl:value-of select="$sp"/>
+      </xsl:element>
+
    </xsl:template>
 
    <!-- default template -->
