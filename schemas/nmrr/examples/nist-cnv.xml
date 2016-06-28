@@ -1,30 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<imr:Resource xsi:type="nmi:MetrologyInstitute"
-              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-              xmlns:imr="http://schema.bipm.org/xml/imres/1.0wd"
-              xmlns:nmi="http://schema.bipm.org/xml/imres/nmi/1.0wd"
-              status="active" localid="####">
-          
-   <resourceType>Organization: Metrology Institute</resourceType>
-   <title>US National Institute of Standards and Technology</title>
-   <altTitle type="Abbreviation">NIST</altTitle>
-   <homeURL>https://www.nist.gov/</homeURL>
-   <sponsoringCountry abbrev="USA">United States of America</sponsoringCountry>
-
-   <contact>
-     <name>Robert Hanisch</name>
-     <emailAddress>robert.hanisch@nist.gov</emailAddress>
-   </contact>
-
-   <subject>standards</subject>
-   <subject>standard reference data</subject>
-   <subject>metrology</subject>
-   <subject>materials</subject>
-   <subject>physics</subject>
-   <subject>computing</subject>
-   <subject>cybersecurity</subject>
-
-   <description>
+<imr:Resource xmlns:imr="http://schema.bipm.org/xml/imres/nmrr/nmi/1.0wd" localid="####">
+  <resourceType>Organization: Metrology Institute</resourceType>
+  <title>US National Institute of Standards and Technology</title>
+  <abbreviation>NIST</abbreviation>
+  <sponsoringCountry>
+    <name>United States of America</name>
+    <abbrev>USA</abbrev>
+  </sponsoringCountry>
+  <homeURL>https://www.nist.gov/</homeURL>
+  <contact>
+    <name>Robert Hanisch</name>
+    <emailAddress>robert.hanisch@nist.gov</emailAddress>
+  </contact>
+  <subject>standards</subject>
+  <subject>standard reference data</subject>
+  <subject>metrology</subject>
+  <subject>materials</subject>
+  <subject>physics</subject>
+  <subject>computing</subject>
+  <subject>cybersecurity</subject>
+  <description>
      Founded in 1901, NIST is a non-regulatory federal agency within
      the U.S. Department of Commerce. NIST's mission is to promote
      U.S. innovation and industrial competitiveness by advancing
@@ -48,7 +43,5 @@
      publishes a number of standard reference and metrology data
      collections.  
    </description>
-
-   <date type="Created">1901</date>
-
+  <date>1901</date>
 </imr:Resource>

@@ -1,18 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <imr:Resource xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-              xmlns:imr="http://schema.bipm.org/xml/imres/1.0wd"
-              xmlns:imd="http://schema.bipm.org/xml/imres/data/1.0wd"
-              xsi:type="imd:Database" status="active">
+              xmlns:imr="http://schema.bipm.org/xml/imres/nmrr/database/1.0wd"
+              localid="####.1">
           
    <resourceType>Dataset: Database</resourceType>
 
    <title>NIST Atomic Spectra Database</title>
-   <altTitle type="Subtitle">NIST Standard Reference Database #78</altTitle>
-   <altTitle type="Abbreviation">NIST-ASD</altTitle>
-   <altTitle type="Abbreviation">SRD#78</altTitle>
-   <identifier type="DOI">10.18434/T4W30F</identifier>
-   <homeURL>http://dx.doi.org/10.18434/T4W30F</homeURL>
-   <sponsoringCountry abbrev="USA">United States of America</sponsoringCountry>
+   <subtitle>NIST Standard Reference Database #78</subtitle>
+   <abbreviation>NIST-ASD</abbreviation>
+   <abbreviation>SRD#78</abbreviation>
+   <publisher>US National Institute of Standards and Technology (NIST)</publisher>
+   <sponsoringCountry>
+     <name>United States of America</name>
+     <abbrev>USA</abbrev>
+   </sponsoringCountry>
+   <publicationYear>2014</publicationYear>
+   <homePage xsi:type="imr:DOI">
+     <doi>10.18434/T4W30F</doi>
+   </homePage>
+
+   <contact>
+     <name>Yuri Ralchenko</name>
+     <emailAddress>yuri.ralchenko@nist.gov</emailAddress>
+   </contact>
 
    <creator>
      <name>Alexander Kramida</name>
@@ -47,11 +57,6 @@
      <affiliation>NIST</affiliation>
    </contributor>
 
-   <contact>
-     <name>Yuri Ralchenko</name>
-     <emailAddress>yuri.ralchenko@nist.gov</emailAddress>
-   </contact>
-
    <subject>atomic spectra</subject>
    <subject>spectral lines</subject>
    <subject>energy levels</subject>
@@ -73,9 +78,6 @@
      the ground state. (3) Ground states and ionization energies of
      atoms and atomic ions. 
    </description>
-
-   <publisher>US National Institute of Standards and Technology (NIST)</publisher>
-   <publicationYear> 2014 </publicationYear>
 
    <measures>
      <propertyClass>optical</propertyClass>

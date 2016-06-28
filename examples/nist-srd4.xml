@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<imr:Resource xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xmlns:imr="http://schema.bipm.org/xml/imres/1.0wd"
+              xmlns:imd="http://schema.bipm.org/xml/imres/data/1.0wd"
+              xsi:type="imd:Database" status="active">
+          
+   <resourceType>Dataset: Database</resourceType>
+
+   <title>NIST Thermophysical Properties of Hydrocarbon Mixtures Database</title>
+   <altTitle type="Subtitle">NIST Standard Reference Database #4</altTitle>
+   <altTitle type="Abbreviation">SRD#4</altTitle>
+   <identifier type="DOI">10.18434/T4CC76</identifier>
+   <homeURL>http://dx.doi.org/10.18434/T4CC76</homeURL>
+   <sponsoringCountry abbrev="USA">United States of America</sponsoringCountry>
+
+   <contributor type="Sponsor">
+     <name>The NIST Supercritical Fluid Property Consortium</name>
+   </contributor>
+
+   <contact>
+     <name>Marcia Huber</name>
+     <emailAddress>marcia.huber@nist.gov</emailAddress>
+   </contact>
+
+   <subject>Chemical engineering</subject>
+   <subject>chemical manufacturing</subject>
+   <subject>chemical property</subject>
+   <subject>chemistry</subject>
+   <subject>dielectric constants</subject>
+   <subject>equation of state</subject>
+   <subject>fluids</subject>
+   <subject>heat capacity</subject>
+   <subject>hydrocarbons</subject>
+   <subject>LNG</subject>
+   <subject>mixtures</subject>
+   <subject>natural gas</subject>
+   <subject>petrochemical</subject>
+   <subject>phase equilibria</subject>
+   <subject>thermal conductivity</subject>
+   <subject>thermodynamics</subject>
+   <subject>thermophysics</subject>
+   <subject>transport property</subject>
+   <subject>viscosity</subject>
+
+   <description>
+     This database provides calculated predicted values for thermodynamic and 
+     transport properties of pure fluids and fluid mixtures containing up to 
+     20 components.  The components are selected from a database of 210 
+     components, mostly hydrocarbons.  It provides these values via an 
+     interactive software program called SUPERTRAPP.   SUPERTRAPP performs 
+     phase equilibria calculations and gives the thermophysical properties of 
+     all phases and the feed. These results include the equilibrium properties
+     of density, compressibility factor, enthalpy, entropy, Cp, Cp/Cv, sound 
+     speed, and Joule-Thomson coefficient as well the transport properties of 
+     viscosity and thermal conductivity.  Note that many of the fluids contained 
+     in NIST4 are also available in the REFPROP database (SRD#23).  The REFPROP 
+     database is recommended over NIST4 when REFPROP contains the fluids of 
+     interest.
+   </description>
+
+   <publisher>US National Institute of Standards and Technology (NIST)</publisher>
+   <publicationYear>1990</publicationYear>
+
+   <measures>
+     <propertyClass>transport</propertyClass>
+     <propertyClass>thermal</propertyClass>
+     <propertyClass>mechanical</propertyClass>
+   </measures>
+
+   <access>
+     <rights>fee-required</rights>
+     <termsURL>http://www.nist.gov/open/license.cfm</termsURL>
+     <via xsi:type="imr:Media">
+       <method>media</method>
+       <mediaType>CDROM</mediaType>
+     </via>
+   </access>
+
+</imr:Resource>

@@ -39,7 +39,7 @@
 
       <xs:sequence>
          <xs:element name="resourceType" type="xs:string"
-                     default="Other: Organization">
+                     default="Organization">
             <xs:annotation>
                <xs:appinfo>
            <label>Resource Type (do not edit)</label>
@@ -93,6 +93,23 @@
                <xs:documentation>
                   an additional identifier that refers to this
                   resource (in another identifier scheme)
+               </xs:documentation>
+            </xs:annotation>
+         </xs:element>
+
+         <xs:element name="sponsoringCountry" minOccurs="0" maxOccurs="unbounded"
+                     type="xs:string">
+            <xs:annotation>
+               <xs:appinfo>
+           <label>Home Country</label>
+           <tooltip>Enter the name of the country where the organization primarily operates and/or serves. </tooltip>
+           <tooltip>Country Name </tooltip>
+                 <am:dcterm>Contributor</am:dcterm>
+                 <am:dataciteproperty>Contributor</am:dataciteproperty>
+               </xs:appinfo>           
+               <xs:documentation>
+                  a country that provided for this resource and/or
+                  which this resource represents.
                </xs:documentation>
             </xs:annotation>
          </xs:element>
@@ -171,7 +188,7 @@
             </xs:annotation>
          </xs:element>
 
-         <xs:element name="referenceURL" type="xs:anyURI">
+         <xs:element name="homeURL" type="xs:anyURI">
             <xs:annotation>
                <xs:appinfo>
                  <label>Organization home page</label>
@@ -218,6 +235,41 @@
         <xs:simpleType xmlns:ns0="http://mdcs.ns" ns0:_mod_mdcs_="/registry/local-id">
           <xs:restriction base="xs:string"/>                      
         </xs:simpleType>
+      </xs:attribute>
+
+      <xs:attribute name="status" use="required">
+         <xs:annotation>
+            <xs:documentation>
+              a tag indicating whether this resource is believed to be still
+              actively maintained.
+            </xs:documentation>
+         </xs:annotation>
+         <xs:simpleType>
+            <xs:restriction base="xs:string">
+               <xs:enumeration value="active">
+                 <xs:annotation>
+                   <xs:documentation>
+                      resource is believed to be currently maintained, and its
+                      description is up to date (default). 
+                   </xs:documentation>
+                 </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="inactive">
+                 <xs:annotation>
+                   <xs:documentation>
+                     resource is apparently not being maintained at the present.
+                   </xs:documentation>
+                 </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="deleted">
+                 <xs:annotation>
+                   <xs:documentation>
+                      resource publisher has explicitly deleted the resource.
+                   </xs:documentation>
+                 </xs:annotation>
+               </xs:enumeration>
+            </xs:restriction>
+         </xs:simpleType>
       </xs:attribute>
 
    </xs:complexType>
