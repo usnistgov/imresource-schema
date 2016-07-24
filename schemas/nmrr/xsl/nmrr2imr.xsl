@@ -2,11 +2,12 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:nmrn="http://schema.bipm.org/xml/imres/nmrr/nmi/1.0wd"
                 xmlns:nmrdb="http://schema.bipm.org/xml/imres/nmrr/database/1.0wd"
+                xmlns:nmrds="http://schema.bipm.org/xml/imres/nmrr/dataset/1.0wd"
                 xmlns:imr="http://schema.bipm.org/xml/imres/1.0wd"
                 xmlns:nmi="http://schema.bipm.org/xml/imres/nmi/1.0wd"
-                xmlns:mdb="http://schema.bipm.org/xml/imres/nmi/1.0wd"
+                xmlns:mdt="http://schema.bipm.org/xml/imres/data/1.0wd"
                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-                exclude-result-prefixes="nmrn nmrdb"
+                exclude-result-prefixes="nmrn nmrdb nmrds"
                 version="1.0">
                 
 <!-- Stylesheet for converting mgi-resmd records to datacite records -->
@@ -56,7 +57,7 @@
       <xsl:param name="step"/>
 
       <imr:Resource xsi:type="nmi:MetrologyInstitute"
-                    status="active" localid="{@localid}">
+                    status="{@status}" localid="{@localid}">
 
         <xsl:apply-templates select="resourceType">
           <xsl:with-param name="sp" select="concat($sp,$step)"/>
@@ -104,76 +105,105 @@
       <xsl:param name="sp"/>
       <xsl:param name="step"/>
 
-      <imr:Resource xsi:type="mdb:Database"
+      <imr:Resource xsi:type="mdt:Database"
                     status="active" localid="{@localid}">
-
-        <xsl:apply-templates select="resourceType">
-          <xsl:with-param name="sp" select="concat($sp,$step)"/>
-          <xsl:with-param name="step" select="$step"/>
-        </xsl:apply-templates>
-        <xsl:apply-templates select="title">
-          <xsl:with-param name="sp" select="concat($sp,$step)"/>
-          <xsl:with-param name="step" select="$step"/>
-        </xsl:apply-templates>
-        <xsl:apply-templates select="subtitle">
-          <xsl:with-param name="sp" select="concat($sp,$step)"/>
-          <xsl:with-param name="step" select="$step"/>
-        </xsl:apply-templates>
-        <xsl:apply-templates select="abbreviation">
-          <xsl:with-param name="sp" select="concat($sp,$step)"/>
-          <xsl:with-param name="step" select="$step"/>
-        </xsl:apply-templates>
-        <xsl:apply-templates select="homePage" mode="identifier">
-          <xsl:with-param name="sp" select="concat($sp,$step)"/>
-          <xsl:with-param name="step" select="$step"/>
-        </xsl:apply-templates>
-        <xsl:apply-templates select="homePage" mode="homeURL">
-          <xsl:with-param name="sp" select="concat($sp,$step)"/>
-          <xsl:with-param name="step" select="$step"/>
-        </xsl:apply-templates>
-        <xsl:apply-templates select="sponsoringCountry">
-          <xsl:with-param name="sp" select="concat($sp,$step)"/>
-          <xsl:with-param name="step" select="$step"/>
-        </xsl:apply-templates>
-        <xsl:apply-templates select="creator">
-          <xsl:with-param name="sp" select="concat($sp,$step)"/>
-          <xsl:with-param name="step" select="$step"/>
-        </xsl:apply-templates>
-        <xsl:apply-templates select="contributor">
-          <xsl:with-param name="sp" select="concat($sp,$step)"/>
-          <xsl:with-param name="step" select="$step"/>
-        </xsl:apply-templates>
-        <xsl:apply-templates select="contact">
-          <xsl:with-param name="sp" select="concat($sp,$step)"/>
-          <xsl:with-param name="step" select="$step"/>
-        </xsl:apply-templates>
-        <xsl:apply-templates select="subject">
-          <xsl:with-param name="sp" select="concat($sp,$step)"/>
-          <xsl:with-param name="step" select="$step"/>
-        </xsl:apply-templates>
-        <xsl:apply-templates select="description">
-          <xsl:with-param name="sp" select="concat($sp,$step)"/>
-          <xsl:with-param name="step" select="$step"/>
-        </xsl:apply-templates>
-        <xsl:apply-templates select="date">
-          <xsl:with-param name="sp" select="concat($sp,$step)"/>
-          <xsl:with-param name="step" select="$step"/>
-        </xsl:apply-templates>
-        <xsl:apply-templates select="publisher">
-          <xsl:with-param name="sp" select="concat($sp,$step)"/>
-          <xsl:with-param name="step" select="$step"/>
-        </xsl:apply-templates>
-        <xsl:apply-templates select="publicationYear">
-          <xsl:with-param name="sp" select="concat($sp,$step)"/>
-          <xsl:with-param name="step" select="$step"/>
-        </xsl:apply-templates>
-
-        <xsl:value-of select="$sp"/>
-
-      <!--
-      </xsl:element>
-        -->
+         <xsl:apply-templates select="." mode="dataResource">
+           <xsl:with-param name="sp" select="concat($sp,$step)"/>
+           <xsl:with-param name="step" select="$step"/>
+         </xsl:apply-templates>
+         <xsl:value-of select="$sp"/>
       </imr:Resource>
+   </xsl:template>
+
+   <xsl:template match="nmrds:Resource">
+      <xsl:param name="sp"/>
+      <xsl:param name="step"/>
+
+      <imr:Resource xsi:type="mdt:Dataset"
+                    status="active" localid="{@localid}">
+         <xsl:apply-templates select="." mode="dataResource">
+           <xsl:with-param name="sp" select="concat($sp,$step)"/>
+           <xsl:with-param name="step" select="$step"/>
+         </xsl:apply-templates>
+         <xsl:value-of select="$sp"/>
+      </imr:Resource>
+   </xsl:template>
+
+   <xsl:template match="*[local-name()='Resource']" mode="dataResource">
+      <xsl:param name="sp"/>
+      <xsl:param name="step"/>
+
+      <xsl:apply-templates select="resourceType">
+        <xsl:with-param name="sp" select="$sp"/>
+        <xsl:with-param name="step" select="$step"/>
+      </xsl:apply-templates>
+      <xsl:apply-templates select="title">
+        <xsl:with-param name="sp" select="$sp"/>
+        <xsl:with-param name="step" select="$step"/>
+      </xsl:apply-templates>
+      <xsl:apply-templates select="subtitle">
+        <xsl:with-param name="sp" select="$sp"/>
+        <xsl:with-param name="step" select="$step"/>
+      </xsl:apply-templates>
+      <xsl:apply-templates select="abbreviation">
+        <xsl:with-param name="sp" select="$sp"/>
+        <xsl:with-param name="step" select="$step"/>
+      </xsl:apply-templates>
+      <xsl:apply-templates select="homePage" mode="identifier">
+        <xsl:with-param name="sp" select="$sp"/>
+        <xsl:with-param name="step" select="$step"/>
+      </xsl:apply-templates>
+      <xsl:apply-templates select="homePage" mode="homeURL">
+        <xsl:with-param name="sp" select="$sp"/>
+        <xsl:with-param name="step" select="$step"/>
+      </xsl:apply-templates>
+      <xsl:apply-templates select="sponsoringCountry">
+        <xsl:with-param name="sp" select="$sp"/>
+        <xsl:with-param name="step" select="$step"/>
+      </xsl:apply-templates>
+      <xsl:apply-templates select="creator">
+        <xsl:with-param name="sp" select="$sp"/>
+        <xsl:with-param name="step" select="$step"/>
+      </xsl:apply-templates>
+      <xsl:apply-templates select="contributor">
+        <xsl:with-param name="sp" select="$sp"/>
+        <xsl:with-param name="step" select="$step"/>
+      </xsl:apply-templates>
+      <xsl:apply-templates select="contact">
+        <xsl:with-param name="sp" select="$sp"/>
+        <xsl:with-param name="step" select="$step"/>
+      </xsl:apply-templates>
+      <xsl:apply-templates select="subject">
+        <xsl:with-param name="sp" select="$sp"/>
+        <xsl:with-param name="step" select="$step"/>
+      </xsl:apply-templates>
+      <xsl:apply-templates select="description">
+        <xsl:with-param name="sp" select="$sp"/>
+        <xsl:with-param name="step" select="$step"/>
+      </xsl:apply-templates>
+      <xsl:apply-templates select="date">
+        <xsl:with-param name="sp" select="$sp"/>
+        <xsl:with-param name="step" select="$step"/>
+      </xsl:apply-templates>
+      <xsl:apply-templates select="publisher">
+        <xsl:with-param name="sp" select="$sp"/>
+        <xsl:with-param name="step" select="$step"/>
+      </xsl:apply-templates>
+      <xsl:apply-templates select="publicationYear">
+        <xsl:with-param name="sp" select="$sp"/>
+        <xsl:with-param name="step" select="$step"/>
+      </xsl:apply-templates>
+
+      <xsl:apply-templates select="measures">
+        <xsl:with-param name="sp" select="$sp"/>
+        <xsl:with-param name="step" select="$step"/>
+      </xsl:apply-templates>
+
+      <xsl:apply-templates select="access">
+        <xsl:with-param name="sp" select="$sp"/>
+        <xsl:with-param name="step" select="$step"/>
+      </xsl:apply-templates>
+
    </xsl:template>
 
    <xsl:template match="sponsoringCountry">

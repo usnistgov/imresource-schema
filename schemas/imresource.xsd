@@ -350,6 +350,31 @@
      </xs:complexContent>
    </xs:complexType>
 
+   <xs:complexType name="MetrologyPortal">
+     <xs:annotation>
+        <xs:documentation>
+          an identified, described, and discoverable component of the 
+          distributed data environment. 
+        </xs:documentation>
+     </xs:annotation>
+     <xs:complexContent>
+       <xs:extension base="imr:PublishedResource">
+         <xs:sequence>
+
+           <xs:element name="measures" type="imr:Measures" minOccurs="0">
+              <xs:annotation>
+                 <xs:documentation>
+                   Information describing the variety of measurements 
+                   available in this data
+                 </xs:documentation>
+              </xs:annotation>
+           </xs:element>
+
+         </xs:sequence>
+       </xs:extension>
+     </xs:complexContent>
+   </xs:complexType>
+
    <xs:complexType name="Identifier">
      <xs:annotation>
        <xs:documentation>
