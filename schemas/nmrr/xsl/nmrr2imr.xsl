@@ -338,6 +338,113 @@
       </xsl:choose>
    </xsl:template>
 
+   <xsl:template match="via">
+     <xsl:message>Failed to match via</xsl:message>
+   </xsl:template>
+
+   <xsl:template match="via[contains(@xsi:type,':Download')]">
+      <xsl:param name="sp"/>
+      <xsl:param name="step"/>
+      <xsl:variable name="subsp" select="concat($sp,$step)"/>
+
+      <xsl:value-of select="$sp"/>
+
+      <xsl:element name="via">
+        <xsl:attribute name="xsi:type">imr:Media</xsl:attribute>
+        <xsl:for-each select="@*[name()!='xsi:type']">
+          <xsl:copy/>
+        </xsl:for-each>
+
+        <xsl:value-of select="$subsp"/>
+        <method>download</method>
+
+        <xsl:apply-templates select="description">
+          <xsl:with-param name="sp" select="$subsp"/>
+          <xsl:with-param name="step" select="$step"/>
+        </xsl:apply-templates>
+
+        <xsl:apply-templates select="format">
+          <xsl:with-param name="sp" select="$subsp"/>
+          <xsl:with-param name="step" select="$step"/>
+        </xsl:apply-templates>
+        <xsl:apply-templates select="accessURL">
+          <xsl:with-param name="sp" select="$subsp"/>
+          <xsl:with-param name="step" select="$step"/>
+        </xsl:apply-templates>
+
+        <xsl:value-of select="$sp"/>
+
+      </xsl:element>
+
+   </xsl:template>
+
+   <xsl:template match="via[contains(@xsi:type,':ServiceAPI')]">
+      <xsl:param name="sp"/>
+      <xsl:param name="step"/>
+      <xsl:variable name="subsp" select="concat($sp,$step)"/>
+
+      <xsl:value-of select="$sp"/>
+
+      <xsl:element name="via">
+        <xsl:attribute name="xsi:type">imr:Media</xsl:attribute>
+        <xsl:for-each select="@*[name()!='xsi:type']">
+          <xsl:copy/>
+        </xsl:for-each>
+
+        <xsl:value-of select="$subsp"/>
+        <method>service API</method>
+
+        <xsl:apply-templates select="description">
+          <xsl:with-param name="sp" select="$subsp"/>
+          <xsl:with-param name="step" select="$step"/>
+        </xsl:apply-templates>
+
+        <xsl:apply-templates select="documentationURL">
+          <xsl:with-param name="sp" select="$subsp"/>
+          <xsl:with-param name="step" select="$step"/>
+        </xsl:apply-templates>
+
+        <xsl:value-of select="$sp"/>
+
+      </xsl:element>
+
+   </xsl:template>
+
+   <xsl:template match="via[contains(@xsi:type,':Media')]">
+      <xsl:param name="sp"/>
+      <xsl:param name="step"/>
+      <xsl:variable name="subsp" select="concat($sp,$step)"/>
+
+      <xsl:value-of select="$sp"/>
+
+      <xsl:element name="via">
+        <xsl:attribute name="xsi:type">imr:Media</xsl:attribute>
+        <xsl:for-each select="@*[name()!='xsi:type']">
+          <xsl:copy/>
+        </xsl:for-each>
+
+        <xsl:value-of select="$subsp"/>
+        <method>media</method>
+
+        <xsl:apply-templates select="description">
+          <xsl:with-param name="sp" select="$subsp"/>
+          <xsl:with-param name="step" select="$step"/>
+        </xsl:apply-templates>
+
+        <xsl:apply-templates select="mediaType">
+          <xsl:with-param name="sp" select="$subsp"/>
+          <xsl:with-param name="step" select="$step"/>
+        </xsl:apply-templates>
+        <xsl:apply-templates select="requestURL">
+          <xsl:with-param name="sp" select="$subsp"/>
+          <xsl:with-param name="step" select="$step"/>
+        </xsl:apply-templates>
+
+        <xsl:value-of select="$sp"/>
+      </xsl:element>
+
+   </xsl:template>
+
    <!-- default template -->
    <xsl:template match="*" priority="-1">
       <xsl:param name="sp"/>
