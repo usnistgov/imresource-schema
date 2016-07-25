@@ -1,0 +1,1403 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema targetNamespace="http://schema.bipm.org/xml/imres/nmrr/portal/1.0wd" 
+           xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+           xmlns:imr="http://schema.bipm.org/xml/imres/nmrr/portal/1.0wd" 
+           xmlns:am="http://schema.nist.gov/xml/nmrr.schema.annot" 
+           elementFormDefault="unqualified" 
+           attributeFormDefault="unqualified" version="0.1">
+
+   <xs:annotation>
+      <xs:documentation>
+        An IMRR metadata extension to define the Portal resource type.
+      </xs:documentation>
+      <xs:documentation>
+        This schema draws on concepts and patterns used in the
+        DataCite metadata Schema for the Publication and Citation
+        of Research Data (https://schema.datacite.org/meta/kernel-3/).
+      </xs:documentation>
+   </xs:annotation>
+
+   <xs:element name="Resource" type="imr:Portal">
+      <xs:annotation>
+         <xs:appinfo>
+           <label>Resource: a Dataset</label>
+         </xs:appinfo>
+         <xs:documentation>
+           a root element for describing a registered resource 
+         </xs:documentation>
+      </xs:annotation>
+   </xs:element>
+
+   <xs:complexType name="Portal">
+      <xs:annotation>
+         <xs:documentation>
+           a Resource description with resourceType fixed to
+           InteractiveResource: Portal
+         </xs:documentation>
+      </xs:annotation>
+
+      <xs:sequence>
+         <xs:element name="resourceType" type="xs:string"
+                     default="InteractiveResource: Portal">
+            <xs:annotation>
+               <xs:appinfo>
+           <label>Resource Type (do not edit): </label>
+           <tooltip>This identifies this record as a Data Portal resource</tooltip>
+                 <am:dcterm>Type</am:dcterm>
+                 <am:dataciteproperty>resourceType</am:dataciteproperty>
+               </xs:appinfo>           
+               <xs:documentation>
+                  a label that indicates the kind of resource it is.
+               </xs:documentation>
+            </xs:annotation>
+         </xs:element>
+
+         <xs:element name="title" type="xs:string">
+            <xs:annotation>
+               <xs:appinfo>
+                 <label>Portal's Full Name: </label>
+                 <tooltip>The full name given to the portal</tooltip>
+                 <am:dcterm>Title</am:dcterm>
+                 <am:dataciteproperty>Title</am:dataciteproperty>
+               </xs:appinfo>           
+               <xs:documentation>
+                  the full name given to the resource
+               </xs:documentation>
+            </xs:annotation>
+         </xs:element>
+
+         <xs:element name="subtitle" type="xs:string"
+                     minOccurs="0">
+            <xs:annotation>
+               <xs:appinfo>
+                 <label>Subtitle: </label>
+                 <tooltip>A secondary title for the portal (e.g. Standard Reference Data #27)</tooltip>
+                 <am:dcterm>Title</am:dcterm>
+                 <am:dataciteproperty>Title</am:dataciteproperty>
+               </xs:appinfo>           
+               <xs:documentation>
+                  An abbreviation the the resource is known as
+               </xs:documentation>
+            </xs:annotation>
+         </xs:element>
+
+         <xs:element name="abbreviation" type="xs:string"
+                     minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+               <xs:appinfo>
+                 <label>Portal's Abbreviation: </label>
+                 <tooltip>The initials, acronym, or other abbreviation that the portal is commonly known as</tooltip>
+                 <placeholder>e.g. initials, acronym, etc.</placeholder>
+                 <am:dcterm>Title</am:dcterm>
+                 <am:dataciteproperty>Title</am:dataciteproperty>
+               </xs:appinfo>           
+               <xs:documentation>
+                  An abbreviation the the resource is known as
+               </xs:documentation>
+            </xs:annotation>
+         </xs:element>
+
+         <xs:element name="publisher" type="xs:string">
+            <xs:annotation>
+              <xs:appinfo>
+                <label>Publishing Institution: </label>
+                <tooltip>Enter the name of the metrology institute that provides this portal</tooltip>
+                <placholder>Metrology institute name</placholder>
+                 <am:dcterm>Publisher</am:dcterm>
+                 <am:dataciteproperty>publisher</am:dataciteproperty>
+               </xs:appinfo>           
+               <xs:documentation>
+                  Entity (e.g. person or organization) responsible for making 
+                  the resource available.  
+               </xs:documentation>
+            </xs:annotation>
+         </xs:element>
+           
+         <xs:element name="sponsoringCountry" minOccurs="0" maxOccurs="unbounded"
+                     type="imr:Country">
+            <xs:annotation>
+               <xs:appinfo>
+           <label>Home Country: </label>
+           <tooltip>Enter the name of the country where the NMI primarily operates and/or serves. </tooltip>
+           <tooltip>Country Name </tooltip>
+                 <am:dcterm>Contributor</am:dcterm>
+                 <am:dataciteproperty>Contributor</am:dataciteproperty>
+               </xs:appinfo>           
+               <xs:documentation>
+                  a country that provided for this resource and/or
+                  which this resource represents.
+               </xs:documentation>
+            </xs:annotation>
+         </xs:element>
+
+         <xs:element name="publicationYear" type="xs:string">
+            <xs:annotation>
+               <xs:appinfo>
+                 <label>Publication Year: </label>
+                 <tooltip>The year the portal was first released.</tooltip>
+                 <placeholder>Format: YYYY</placeholder>
+                 <am:dataciteproperty>publicationYear</am:dataciteproperty>
+               </xs:appinfo>           
+               <xs:documentation>
+                 The year that this resource was made available by the 
+                 publisher.
+               </xs:documentation>
+            </xs:annotation>
+            <!--
+   <xs:simpleType>
+     <xs:restriction base="xs:string">
+        <xs:pattern value="[\d]{4}"/>
+     </xs:restriction>
+   </xs:simpleType>
+-->
+         </xs:element>
+
+         <xs:element name="homePage" type="imr:IDorURL" minOccurs="1">
+            <xs:annotation>
+               <xs:appinfo>
+                 <label>Primary Identifier or Location: </label>
+                 <am:dcterm>identifier</am:dcterm>
+                 <am:dataciteproperty>identifier</am:dataciteproperty>
+               </xs:appinfo>           
+               <xs:documentation>
+                  an unambiguous, globally-unique identifier for this 
+                  resource description.
+               </xs:documentation>
+            </xs:annotation>
+         </xs:element>
+
+         <xs:element name="contact" type="imr:Contact" maxOccurs="unbounded">
+            <xs:annotation>
+               <xs:documentation>
+                 Information that can be used for contacting someone with
+                 regard to this resource.
+               </xs:documentation>
+            </xs:annotation>
+         </xs:element>
+
+         <xs:element name="creator" type="imr:Entity"
+                     minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+               <xs:appinfo>
+                 <am:dcterm>Creator</am:dcterm>
+                 <am:dataciteproperty>creator</am:dataciteproperty>
+               </xs:appinfo>           
+               <xs:documentation>
+                 The entity (e.g. person or organization) primarily responsible 
+                 for creating the content or constitution of the resource.
+               </xs:documentation>
+            </xs:annotation>
+         </xs:element>
+
+         <xs:element name="contributor" type="imr:Contributor" 
+                     minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+               <xs:appinfo>
+                 <am:dcterm>Contributor</am:dcterm>
+                 <am:dataciteproperty>contributor</am:dataciteproperty>
+               </xs:appinfo>
+               <xs:documentation>
+                 Entity responsible for contributions made to the development of
+                 the resource
+               </xs:documentation>
+            </xs:annotation>
+         </xs:element>
+
+         <xs:element name="subject" type="xs:string" maxOccurs="unbounded">
+            <xs:annotation>
+               <xs:appinfo>
+                 <label>Subject keyword: </label>
+                 <placeholder>Enter a descriptive term; click the + to add additional keywords</placeholder>
+                 <tooltip>a descriptive term that this portal relates to.  Choose terms that describe what measurements this portal provides access to or interacts with.</tooltip>
+                 <am:dcterm>Subject</am:dcterm>
+               </xs:appinfo>           
+               <xs:documentation>
+                 a topic, object type, or other descriptive keywords 
+                 about the resource.  
+               </xs:documentation>
+            </xs:annotation>
+         </xs:element>
+
+         <xs:element name="description" type="xs:token" maxOccurs="unbounded" xmlns:ns0="http://mdcs.ns" ns0:_mod_mdcs_="/registry/description">
+            <xs:annotation>
+               <xs:appinfo>
+                 <label>Give a summary of the purpose and features of the portal and how users may access it: </label>
+                 <am:dcterm>Description</am:dcterm>
+                 <am:datacite>description</am:datacite>
+               </xs:appinfo>           
+               <xs:documentation>
+                 An account of the nature of the resource
+               </xs:documentation>
+               <xs:documentation>
+                 The description may include but is not limited to an abstract, 
+                 table of contents, reference to a graphical representation of
+                 content or a free-text account of the content.
+               </xs:documentation>
+               <xs:documentation>
+                 Each description element represents a separate paragraph; thus,
+                 order is significant (i.e. the first occurance is the first
+                 paragraph).  The first occurance should give an overall summary.
+               </xs:documentation>
+            </xs:annotation>
+         </xs:element>
+
+           <xs:element name="measures" type="imr:Measures" minOccurs="0">
+              <xs:annotation>
+               <xs:appinfo>
+                 <label>Metrology Information</label>
+               </xs:appinfo>
+                 <xs:documentation>
+                   Information describing the variety of measurements 
+                   available in this data
+                 </xs:documentation>
+              </xs:annotation>
+           </xs:element>
+
+           <xs:element name="access" type="imr:Access">
+             <xs:annotation>
+               <xs:appinfo>
+                 <label>Access Information</label>
+               </xs:appinfo>
+               <xs:documentation>
+                 Information describing how to access the resource and its 
+                 features and capabilities.  
+               </xs:documentation>
+             </xs:annotation>
+           </xs:element>
+
+
+
+         
+
+      </xs:sequence>
+
+      <xs:attribute name="localid">
+        <xs:annotation>
+          <xs:appinfo>
+            <label>Local ID (do not change)</label>
+          </xs:appinfo>
+          <xs:documentation>
+            An unambiguous identifier for this resource description as 
+            assigned by its author or its curating registry.  
+          </xs:documentation>
+          <xs:documentation>
+            This attribute is required on export.
+          </xs:documentation>
+        </xs:annotation>
+        <xs:simpleType xmlns:ns0="http://mdcs.ns" ns0:_mod_mdcs_="/registry/local-id">
+          <xs:restriction base="xs:string"/>                      
+        </xs:simpleType>
+      </xs:attribute>
+
+      <xs:attribute name="status" use="required">
+         <xs:annotation>
+            <xs:documentation>
+              a tag indicating whether this resource is believed to be still
+              actively maintained.
+            </xs:documentation>
+         </xs:annotation>
+         <xs:simpleType>
+            <xs:restriction base="xs:string">
+               <xs:enumeration value="active">
+                 <xs:annotation>
+                   <xs:documentation>
+                      resource is believed to be currently maintained, and its
+                      description is up to date (default). 
+                   </xs:documentation>
+                 </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="inactive">
+                 <xs:annotation>
+                   <xs:documentation>
+                     resource is apparently not being maintained at the present.
+                   </xs:documentation>
+                 </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="deleted">
+                 <xs:annotation>
+                   <xs:documentation>
+                      resource publisher has explicitly deleted the resource.
+                   </xs:documentation>
+                 </xs:annotation>
+               </xs:enumeration>
+            </xs:restriction>
+         </xs:simpleType>
+      </xs:attribute>
+
+   </xs:complexType>
+
+   <xs:complexType name="AltTitle">
+      <xs:annotation>
+         <xs:documentation>
+           A name or title by which a resource is known.
+         </xs:documentation>
+      </xs:annotation>
+
+      <xs:simpleContent>
+         <xs:extension base="xs:string">
+ 	    <xs:attribute name="type" type="imr:TitleType" use="required">
+               <xs:annotation>
+                  <xs:documentation>
+                    The type of title; either "AlternativeTitle",
+                    "Subtitle", or "TranslatedTitle"
+                  </xs:documentation>
+                  <xs:documentation>
+                    Use xml:lang if type is "TranslatedTitle"
+                  </xs:documentation>
+               </xs:annotation>
+ 	    </xs:attribute>      
+
+<!--
+            <xs:attribute ref="xml:lang" use="optional"/>
+  -->
+         </xs:extension>
+      </xs:simpleContent>
+
+   </xs:complexType>
+
+   <xs:simpleType name="TitleType">
+     <xs:annotation>
+       <xs:documentation>
+         Allowed values for the AltTitle's type attribute
+       </xs:documentation>
+     </xs:annotation>
+
+     <xs:restriction base="xs:string">
+       <xs:enumeration value="AlternativeTitle">
+         <xs:annotation>
+           <xs:documentation>
+             title value represents an alternate or often used title for the
+             resource, but which is not its official or preferred title.
+           </xs:documentation>
+         </xs:annotation>
+       </xs:enumeration>
+
+       <xs:enumeration value="Subtitle">
+         <xs:annotation>
+           <xs:documentation>
+             title value represents a secondary or subtitle for the resource
+           </xs:documentation>
+         </xs:annotation>
+       </xs:enumeration>
+
+       <xs:enumeration value="TranslatedTitle">
+         <xs:annotation>
+           <xs:documentation>
+             title value represents a title in an alternate language as given
+             by the xml:lang attribute.  
+           </xs:documentation>
+         </xs:annotation>
+       </xs:enumeration>
+         
+     </xs:restriction>
+   </xs:simpleType>
+
+   <xs:complexType name="Country">
+      <xs:annotation>
+         <xs:documentation>
+           A country's name
+         </xs:documentation>
+      </xs:annotation>
+
+      <xs:sequence>
+         <xs:element name="name" type="xs:string">
+            <xs:annotation>
+               <xs:appinfo>
+                 <label>Country's Full name: </label>
+               </xs:appinfo>
+               <xs:documentation>
+                  The person or entity's displayable name
+               </xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         
+         <xs:element name="abbrev" type="xs:string" minOccurs="0">
+            <xs:annotation>
+               <xs:appinfo>
+                 <label>Abbreviation: </label>
+                 <use>recommended</use>
+                 <placeholder>e.g. USA, UK, South Korea, ...</placeholder>
+               </xs:appinfo>
+            </xs:annotation>
+         </xs:element>
+         
+      </xs:sequence>
+   </xs:complexType>
+
+   <xs:complexType name="Entity">
+      <xs:annotation>
+        <xs:documentation>
+          a person or other entity (e.g. team or people) responsible
+          for something.
+        </xs:documentation>
+      </xs:annotation>
+
+      <xs:sequence>
+         <xs:element name="name" type="xs:string">
+            <xs:annotation>
+               <xs:appinfo>
+                 <label>Name: </label>
+                 <tooltip>The name of a person or group</tooltip>
+               </xs:appinfo>
+               <xs:documentation>
+                  The person or entity's displayable name
+               </xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         
+         <xs:element name="affiliation" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+               <xs:appinfo>
+                 <label>Institutional affiliation: </label>
+                 <tooltip>Add if different from the portal's publisher</tooltip>
+               </xs:appinfo>
+               <xs:documentation>
+                  The person or entity's institutional affiliation at
+                  the time their contribution was made
+               </xs:documentation>
+            </xs:annotation>
+         </xs:element>
+
+         <xs:element name="identifier" type="xs:string" minOccurs="0">
+            <xs:annotation>
+               <xs:appinfo>
+                 <label>ORCID identifier: http://orcid.org/</label>
+                 <placeholder>Format: xxxx-xxxx-xxxx-xxxx</placeholder>
+                 <tooltip>Add if different from the portal's publisher</tooltip>
+               </xs:appinfo>
+               <xs:documentation>
+                  The person or entity's identifier
+               </xs:documentation>
+            </xs:annotation>
+         </xs:element>
+
+      </xs:sequence>
+   </xs:complexType>
+   
+   <xs:complexType name="EntityID">
+      <xs:annotation>
+        <xs:documentation>
+          an identifier identifying a person, organization, or other entity
+        </xs:documentation>
+      </xs:annotation>
+
+      <xs:simpleContent>
+         <xs:extension base="xs:string">
+            <xs:attribute name="identifierScheme" use="required"/>
+            <xs:attribute name="schemeURI" type="xs:anyURI" use="optional"/>
+         </xs:extension>
+      </xs:simpleContent>
+   </xs:complexType>
+
+   <xs:complexType name="Contact">
+      <xs:annotation>
+        <xs:documentation>
+          information that can be used to contact someone
+        </xs:documentation>
+      </xs:annotation>
+
+      <xs:sequence>
+         <xs:element name="name" type="xs:string">
+            <xs:annotation>
+               <xs:documentation>
+                  The person or entity's displayable name
+               </xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         
+         <xs:element name="emailAddress" type="xs:string"
+                     minOccurs="1" maxOccurs="unbounded">
+            <xs:annotation>
+               <xs:documentation>the contact email address</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+   </xs:complexType>
+   
+   <xs:complexType name="Contributor">
+     <xs:annotation>
+       <xs:documentation>
+         a contributor that plays one of the roles defined by the
+         datacite metadata schema.  
+       </xs:documentation>
+     </xs:annotation>
+
+      <xs:sequence>
+         <xs:element name="name" type="xs:token">
+            <xs:annotation>
+               <xs:documentation>
+                  The person or entity's displayable name
+               </xs:documentation>
+            </xs:annotation>
+         </xs:element>
+
+         <xs:element name="affiliation" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+               <xs:documentation>
+                  The person or entity's institutional affiliation at
+                  the time their contribution was made
+               </xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         
+         <xs:element name="identifier" type="xs:string" minOccurs="0">
+            <xs:annotation>
+               <xs:appinfo>
+                 <label>ORCID identifier: http://orcid.org/</label>
+                 <placeholder>Format: xxxx-xxxx-xxxx-xxxx</placeholder>
+                 <tooltip>Add if different from the portal's publisher</tooltip>
+               </xs:appinfo>
+               <xs:documentation>
+                  The person or entity's identifier
+               </xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+
+          <xs:attribute name="type" type="imr:ContributorType" use="required">
+            <xs:annotation>
+              <xs:documentation>
+                a label indicating the contribution that this person
+                or organization made to the resource.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:attribute>
+
+   </xs:complexType>
+
+   <xs:simpleType name="ContributorType">
+     <xs:annotation>
+       <xs:appinfo>
+         <am:dataciteproperty>ContributorType</am:dataciteproperty>
+       </xs:appinfo>
+       <xs:documentation>
+         Controlled labels that indicate the type of contribution
+         made which correspond to those defined by the Datacite
+         Metadata schema (v3.1)
+       </xs:documentation>
+       <xs:documentation>
+         Note that ContactPerson is not defined; the &lt;contact&gt; element
+         should be used instead.  
+       </xs:documentation>
+     </xs:annotation>
+
+     <xs:restriction base="xs:string">
+
+       <xs:enumeration value="DataCollector">
+         <xs:annotation>
+           <xs:appinfo>
+             <am:dataciteproperty>DataCollector</am:dataciteproperty>
+           </xs:appinfo>
+           <xs:documentation>
+             indicating a person or institution responsible for
+             finding, gathering/collecting data under the guidelines
+             of the author(s) or principal investigator.  
+           </xs:documentation>
+         </xs:annotation>
+       </xs:enumeration>
+
+       <xs:enumeration value="DataCurator">
+         <xs:annotation>
+           <xs:appinfo>
+             <am:dataciteproperty>DataCurator</am:dataciteproperty>
+           </xs:appinfo>
+           <xs:documentation>
+             indicating a person or institution tasked with reviewing,
+             enhancing, cleaning, or standardizing metadata and the
+             associated data submitted for storage, use, and
+             mainteneance witin a data cetner or repository
+           </xs:documentation>
+         </xs:annotation>
+       </xs:enumeration>
+
+       <xs:enumeration value="DataManager">
+         <xs:annotation>
+           <xs:appinfo>
+             <am:dataciteproperty>DataManager</am:dataciteproperty>
+           </xs:appinfo>
+           <xs:documentation>
+             indicating a person or organization responsible for maintaining
+             the finished resource 
+           </xs:documentation>
+         </xs:annotation>
+       </xs:enumeration>
+
+       <xs:enumeration value="Distributor">
+         <xs:annotation>
+           <xs:appinfo>
+             <am:dataciteproperty>Distributor</am:dataciteproperty>
+           </xs:appinfo>
+           <xs:documentation>
+             indicating the institution tasked with responsibility to
+             generate/disseminate copies of the resource in either electronic
+             or print form.  
+           </xs:documentation>
+         </xs:annotation>
+       </xs:enumeration>
+
+       <xs:enumeration value="Editor">
+         <xs:annotation>
+           <xs:appinfo>
+             <am:dataciteproperty>Editor</am:dataciteproperty>
+           </xs:appinfo>
+           <xs:documentation>
+             indicating a person who oversees the details related to the
+             publication format of the resource
+           </xs:documentation>
+         </xs:annotation>
+       </xs:enumeration>
+
+       <xs:enumeration value="Funder">
+         <xs:annotation>
+           <xs:appinfo>
+             <am:dataciteproperty>Funder</am:dataciteproperty>
+           </xs:appinfo>
+           <xs:documentation>
+             indicating an institution that provided financial support for the
+             development of the resource 
+           </xs:documentation>
+         </xs:annotation>
+       </xs:enumeration>
+
+       <xs:enumeration value="HostingInstitution">
+         <xs:annotation>
+           <xs:appinfo>
+             <am:dataciteproperty>HostingInstitution</am:dataciteproperty>
+           </xs:appinfo>
+           <xs:documentation>
+             indicating the organization allowing the resource to be available
+             on the internet through the provision of its
+             hardware/software/operating support
+           </xs:documentation>
+         </xs:annotation>
+       </xs:enumeration>
+
+       <xs:enumeration value="Producer">
+         <xs:annotation>
+           <xs:appinfo>
+             <am:dataciteproperty>Producer</am:dataciteproperty>
+           </xs:appinfo>
+           <xs:documentation>
+             indicating a person or organization responsible for the artistry
+             and form of a media product
+           </xs:documentation>
+         </xs:annotation>
+       </xs:enumeration>
+
+       <xs:enumeration value="ProjectLeader">
+         <xs:annotation>
+           <xs:appinfo>
+             <am:dataciteproperty>ProjectLeader</am:dataciteproperty>
+           </xs:appinfo>
+           <xs:documentation>
+             indicating a person officially designated as head of a project
+             team instrumental in the work necessary to the development of
+             the resource 
+           </xs:documentation>
+         </xs:annotation>
+       </xs:enumeration>
+
+       <xs:enumeration value="ProjectManager">
+         <xs:annotation>
+           <xs:appinfo>
+             <am:dataciteproperty>ProjectManager</am:dataciteproperty>
+           </xs:appinfo>
+           <xs:documentation>
+             indicating a person officially designated as manager of a project
+             which was instrumental in the work necessary to the development of
+             the resource
+           </xs:documentation>
+         </xs:annotation>
+       </xs:enumeration>
+
+       <xs:enumeration value="ProjectMember">
+         <xs:annotation>
+           <xs:appinfo>
+             <am:dataciteproperty>ProjectMember</am:dataciteproperty>
+           </xs:appinfo>
+           <xs:documentation>
+             indicating a person on the membership list of a designated project
+             or project team which was instrumental in the work necessary to
+             the development of the resource
+           </xs:documentation>
+         </xs:annotation>
+       </xs:enumeration>
+
+       <xs:enumeration value="RegistrationAgency">
+         <xs:annotation>
+           <xs:appinfo>
+             <am:dataciteproperty>RegistrationAgency</am:dataciteproperty>
+           </xs:appinfo>
+           <xs:documentation>
+             indicating an institution/organization officially appointed by
+             a registration authority to handle specific tasks within a
+             defined area of responsibility
+           </xs:documentation>
+         </xs:annotation>
+       </xs:enumeration>
+
+       <xs:enumeration value="RegistrationAuthority">
+         <xs:annotation>
+           <xs:appinfo>
+             <am:dataciteproperty>RegistrationAuthority</am:dataciteproperty>
+           </xs:appinfo>
+           <xs:documentation>
+             indicating a standards-setting body from which registration
+             agencies obtain official recognition and guidance
+           </xs:documentation>
+         </xs:annotation>
+       </xs:enumeration>
+
+       <xs:enumeration value="RelatedPerson">
+         <xs:annotation>
+           <xs:appinfo>
+             <am:dataciteproperty>RelatedPerson</am:dataciteproperty>
+           </xs:appinfo>
+           <xs:documentation>
+             indicating a person without a specifically defined role in the
+             development of the resource, but who is someone a creator wishes
+             to recognize.
+           </xs:documentation>
+         </xs:annotation>
+       </xs:enumeration>
+
+       <xs:enumeration value="Researcher">
+         <xs:annotation>
+           <xs:appinfo>
+             <am:dataciteproperty>Researcher</am:dataciteproperty>
+           </xs:appinfo>
+           <xs:documentation>
+             indicating a person involved in analyzing data or the results of
+             an experiment or formal study.
+           </xs:documentation>
+         </xs:annotation>
+       </xs:enumeration>
+
+       <xs:enumeration value="ResearchGroup">
+         <xs:annotation>
+           <xs:appinfo>
+             <am:dataciteproperty>ResearchGroup</am:dataciteproperty>
+           </xs:appinfo>
+           <xs:documentation>
+             indicating a group of individuals with a lab, department, or
+             division with a particular, defined focus of activity
+           </xs:documentation>
+         </xs:annotation>
+       </xs:enumeration>
+
+       <xs:enumeration value="RightsHolder">
+         <xs:annotation>
+           <xs:appinfo>
+             <am:dataciteproperty>RightsHolder</am:dataciteproperty>
+           </xs:appinfo>
+           <xs:documentation>
+             indicating a person or institution owning or managing property
+             rights, including intellectual property rights, over the resource
+           </xs:documentation>
+         </xs:annotation>
+       </xs:enumeration>
+
+       <xs:enumeration value="Sponsor">
+         <xs:annotation>
+           <xs:appinfo>
+             <am:dataciteproperty>Sponsor</am:dataciteproperty>
+           </xs:appinfo>
+           <xs:documentation>
+             indicating a person or organization that issued a contract or
+             under the auspices of which a work has been written, printed,
+             published, developed, etc. 
+           </xs:documentation>
+         </xs:annotation>
+       </xs:enumeration>
+
+       <xs:enumeration value="Supervisor">
+         <xs:annotation>
+           <xs:appinfo>
+             <am:dataciteproperty>Supervisor</am:dataciteproperty>
+           </xs:appinfo>
+           <xs:documentation>
+             indicating a designated administrator over one or more groups/teams
+             working to produce the resource or over one or more streps of the 
+             development process
+           </xs:documentation>
+         </xs:annotation>
+       </xs:enumeration>
+
+       <xs:enumeration value="WorkPackageLeader">
+         <xs:annotation>
+           <xs:appinfo>
+             <am:dataciteproperty>WorkPackageLeader</am:dataciteproperty>
+           </xs:appinfo>
+           <xs:documentation>
+             indicating a person responsible for ensuring the comprehensive
+             contents, versioning, and availability of a work package (i.e.
+             a recognized data product, not all of which may be included in the
+             resource) during the development of the resource.
+           </xs:documentation>
+         </xs:annotation>
+       </xs:enumeration>
+
+       <xs:enumeration value="Other">
+         <xs:annotation>
+           <xs:appinfo>
+             <am:dataciteproperty>Other</am:dataciteproperty>
+           </xs:appinfo>
+           <xs:documentation>
+             indicating a person or organization making a significant
+             contribution to the development and/or maintenance of the
+             resource, but whose contribution does not fit the definitions
+             of the other defined contributor types.  
+           </xs:documentation>
+         </xs:annotation>
+       </xs:enumeration>
+
+     </xs:restriction>
+   </xs:simpleType>
+
+   <xs:complexType name="Subject">
+     <xs:annotation>
+       <xs:documentation>
+         a type for expressing a subject keyword that may be drawn from
+         a standard set of keywords
+       </xs:documentation>
+     </xs:annotation>
+
+     <xs:simpleContent>
+       <xs:extension base="xs:token">
+         <xs:attribute name="scheme" use="optional" type="xs:string">
+           <xs:annotation>
+             <xs:documentation>
+               a label or classification code indicating the vocabulary that
+               this subject keyword was drawn from
+             </xs:documentation>
+           </xs:annotation>
+         </xs:attribute>
+
+         <xs:attribute name="schemeURI" use="optional" type="xs:anyURI">
+           <xs:annotation>
+             <xs:documentation>
+               The URI identifying or describing the vocabulary that
+               the subject keyword was drawn from
+             </xs:documentation>
+           </xs:annotation>
+         </xs:attribute>
+
+         <xs:attribute name="pid" use="optional" type="xs:anyURI">
+           <xs:annotation>
+             <xs:appinfo>
+             <label>Subject URI (optional)</label>
+             <placeholder>http://...</placeholder>
+             <tooltip>If one is known, enter the URI that unambiguously identifies this subject.</tooltip>
+             </xs:appinfo>
+             <xs:documentation>
+               The machine-recognizable URI identifying the specific subject 
+               keyword.
+             </xs:documentation>
+             <xs:documentation>
+               Use this attribute if the keyword corresponds to a subject from
+               an RDF vocabulary.
+             </xs:documentation>
+           </xs:annotation>
+         </xs:attribute>
+
+       </xs:extension>
+     </xs:simpleContent>
+
+   </xs:complexType>
+
+   <xs:simpleType name="Year">
+     <xs:annotation>
+       <xs:documentation>
+         An A.D. year date with format YYYY.
+       </xs:documentation>
+     </xs:annotation>
+
+     <xs:restriction base="xs:string">
+        <xs:pattern value="[\d]{4}"/>
+     </xs:restriction>
+   </xs:simpleType>
+
+   <xs:simpleType name="NoTimeDate">
+     <xs:annotation>
+       <xs:documentation>
+         A restricted format for expressing dates compliant with the Datacite
+         date formatting recommendations.  The value is either a single year,
+         month, or day value (compliant with the W3C Note on data formats,
+         http://www.w3.org/TR/NOTE-datetime), or two such values delimited by
+         a slash, indicating a range of values.
+       </xs:documentation>
+       <xs:documentation>
+         Single values are restricted to the following forms:  YYYY, YYYY-MM,
+         or YYYY-MM-DD.  
+       </xs:documentation>
+     </xs:annotation>
+
+     <xs:restriction base="xs:token">
+       <xs:pattern value="\d{4}(-\d{2}(-\d{2}(/\d{4}(-\d{2}(-\d{2})?)?)?)?)?"/>
+     </xs:restriction>
+   </xs:simpleType>
+
+   <xs:complexType name="CreationDate">
+     <xs:annotation>
+       <xs:documentation>
+         An type for encoding dates
+       </xs:documentation>
+       <xs:documentation>
+         Single values are restricted to the following forms:  YYYY, YYYY-MM,
+         or YYYY-MM-DD.  
+       </xs:documentation>
+     </xs:annotation>
+
+     <xs:simpleContent>
+       <xs:extension base="imr:Year">
+         <xs:attribute name="type" type="imr:DateType">
+            <xs:annotation>
+              <xs:documentation>
+                A label indicating the role this date plays in the lifecycle
+                of a resource.  
+              </xs:documentation>
+              <xs:documentation>
+                This is restricted to be one of the Datacite defined values.
+              </xs:documentation>
+            </xs:annotation>
+         </xs:attribute>
+       </xs:extension>
+     </xs:simpleContent>
+   </xs:complexType>
+
+   <xs:simpleType name="DateType">
+     <xs:annotation>
+       <xs:appinfo>
+         <am:dataciteproperty>dateType</am:dataciteproperty>
+       </xs:appinfo>
+       <xs:documentation>
+         A type of date (i.e. a role) important to the publishing of
+         a resource which corresponds to those defined by the Datacite
+         Metadata schema (v3.1)
+       </xs:documentation>
+     </xs:annotation>
+
+     <xs:restriction base="xs:string">
+
+       <xs:enumeration value="Accepted">
+         <xs:annotation>
+           <xs:appinfo>
+             <am:dataciteproperty>Accepted</am:dataciteproperty>
+           </xs:appinfo>
+           <xs:documentation>
+             indicating the date that the publisher accepted the resource
+             into their system
+           </xs:documentation>
+         </xs:annotation>
+       </xs:enumeration>
+
+       <xs:enumeration value="Created">
+         <xs:annotation>
+           <xs:appinfo>
+             <am:dataciteproperty>Created</am:dataciteproperty>
+           </xs:appinfo>
+           <xs:documentation>
+             indicating the date (or date range) that the resource itself was
+             pub together.  A single date indicates when the creation was
+             completed.  
+           </xs:documentation>
+         </xs:annotation>
+       </xs:enumeration>
+
+       <xs:enumeration value="Available">
+         <xs:annotation>
+           <xs:appinfo>
+             <am:dataciteproperty>Available</am:dataciteproperty>
+           </xs:appinfo>
+           <xs:documentation>
+             indicating the date (or date range) that the resource is made
+             publicly available
+           </xs:documentation>
+         </xs:annotation>
+       </xs:enumeration>
+
+       <xs:enumeration value="Collected">
+         <xs:annotation>
+           <xs:appinfo>
+             <am:dataciteproperty>Collected</am:dataciteproperty>
+           </xs:appinfo>
+           <xs:documentation>
+             indicating the date (or date range) in which the resource content
+             was collected
+           </xs:documentation>
+         </xs:annotation>
+       </xs:enumeration>
+
+       <xs:enumeration value="Copyrighted">
+         <xs:annotation>
+           <xs:appinfo>
+             <am:dataciteproperty>Copyrighted</am:dataciteproperty>
+           </xs:appinfo>
+           <xs:documentation>
+             indicating the specific, documented date at which the resource
+             receives a copyrighted status, if applicable.  
+           </xs:documentation>
+         </xs:annotation>
+       </xs:enumeration>
+         
+       <xs:enumeration value="Issued">
+         <xs:annotation>
+           <xs:appinfo>
+             <am:dataciteproperty>Issued</am:dataciteproperty>
+           </xs:appinfo>
+           <xs:documentation>
+             indicating the date (or date range) that the resource is published
+             or distributed
+           </xs:documentation>
+         </xs:annotation>
+       </xs:enumeration>
+
+       <xs:enumeration value="Submitted">
+         <xs:annotation>
+           <xs:appinfo>
+             <am:dataciteproperty>Submitted</am:dataciteproperty>
+           </xs:appinfo>
+           <xs:documentation>
+             indicating the date that the creator submits the resource to the
+             publisher.  
+           </xs:documentation>
+         </xs:annotation>
+       </xs:enumeration>
+
+       <xs:enumeration value="Updated">
+         <xs:annotation>
+           <xs:appinfo>
+             <am:dataciteproperty>Updated</am:dataciteproperty>
+           </xs:appinfo>
+           <xs:documentation>
+             indicating the date (or date range) of the last update to the 
+             resource.  
+           </xs:documentation>
+         </xs:annotation>
+       </xs:enumeration>
+
+       <xs:enumeration value="Valid">
+         <xs:annotation>
+           <xs:appinfo>
+             <am:dataciteproperty>Valid</am:dataciteproperty>
+           </xs:appinfo>
+           <xs:documentation>
+             indicating the date (or date range) during which the resource 
+             is accurate.  
+           </xs:documentation>
+         </xs:annotation>
+       </xs:enumeration>
+
+     </xs:restriction>
+   </xs:simpleType>
+
+   <xs:complexType name="Measures">
+      <xs:annotation>
+         <xs:documentation>
+           a container for metrology-specific metadata
+         </xs:documentation>
+      </xs:annotation>
+
+      <xs:sequence>
+
+        <xs:element name="propertyClass" type="imr:PropertyClass"
+                    minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+               <xs:appinfo>
+                 <label>Class of properties measured: </label>
+               </xs:appinfo>
+               <xs:documentation>
+                  a category of property that is sampled by the contained data
+               </xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         
+         <xs:element name="substance" type="xs:string"
+                     minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+               <xs:appinfo>
+                 <label>Substance (or constituent) sampled or addressed: </label>
+                 <tooltip>Provide </tooltip>
+               </xs:appinfo>
+               <xs:documentation>
+                 a substance or substance constituent that was sampled,
+                 measured, or addressed in this data.
+               </xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         
+      </xs:sequence>
+   </xs:complexType>
+
+   <xs:simpleType name="PropertyClass">
+     <xs:annotation>
+       <xs:documentation>
+         allowed values representing categories of material physical properties
+       </xs:documentation>
+     </xs:annotation>
+     <xs:restriction base="xs:token">
+       <xs:enumeration value="optical">
+         <xs:annotation>
+           <xs:documentation>
+             property describes out a material interacts with electromagnetic 
+             radiation.
+           </xs:documentation>
+         </xs:annotation>
+       </xs:enumeration>
+
+       <xs:enumeration value="mechanical">
+         <xs:annotation>
+           <xs:documentation>
+             property describes a sample material's response to an external 
+             influence causing plastic deformation or destruction.
+           </xs:documentation>
+         </xs:annotation>
+       </xs:enumeration>
+
+       <xs:enumeration value="thermal">
+         <xs:annotation>
+           <xs:documentation>
+             property describing a materials response to heat, including the 
+             transfer of heat through the material and thermophysical properties
+             (those that vary with temperature without changing the material's 
+             identity. 
+           </xs:documentation>
+         </xs:annotation>
+       </xs:enumeration>
+
+       <xs:enumeration value="structural">
+         <xs:annotation>
+           <xs:documentation>
+             properties describing the relative locations of a material's 
+             constituent atoms or molecules. 
+           </xs:documentation>
+         </xs:annotation>
+       </xs:enumeration>
+
+       <xs:enumeration value="simulated">
+         <xs:annotation>
+           <xs:documentation>
+             a property or parameter describing a material's state as calculated
+             in a computational simulation.
+           </xs:documentation>
+         </xs:annotation>
+       </xs:enumeration>
+
+       <xs:enumeration value="transport">
+         <xs:annotation>
+           <xs:documentation>
+             a property describing the transport of mass through a material.
+           </xs:documentation>
+         </xs:annotation>
+       </xs:enumeration>
+
+       <xs:enumeration value="deteriorative">
+         <xs:annotation>
+           <xs:documentation>
+             a property related to material deterioration
+           </xs:documentation>
+         </xs:annotation>
+       </xs:enumeration>
+
+       <xs:enumeration value="chemical">
+         <xs:annotation>
+           <xs:documentation>
+             a property describing the chemical behavior or structure, including
+             related to its electronic states.  
+           </xs:documentation>
+         </xs:annotation>
+       </xs:enumeration>
+     </xs:restriction>
+   </xs:simpleType>
+
+   <xs:complexType name="Access">
+      <xs:annotation>
+         <xs:documentation>
+           a container for metrology-specific metadata
+         </xs:documentation>
+      </xs:annotation>
+
+      <xs:sequence>
+
+        <xs:element name="rights" type="imr:Rights"
+                    minOccurs="1" maxOccurs="unbounded">
+          <xs:annotation>
+            <xs:appinfo>
+              <label>Availability: </label>
+              <am:dcterm>Rights</am:dcterm>
+            </xs:appinfo>           
+            <xs:documentation>
+              Information about the held in and over the resource.
+            </xs:documentation>
+            <xs:documentation>
+              This should be repeated for all Rights values that apply.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:element>
+
+        <xs:element name="licenseName" type="xs:token" minOccurs="0">
+          <xs:annotation>
+            <xs:appinfo>
+              <label>License Name: </label>
+              <placeholder>e.g. Creative Commons BY-NC, public domain</placeholder>
+              <tooltip>Name of license that allows use of this data.  If this is a community license (e.g. Creative Commons), then give its name here.</tooltip>
+              <am:dcterm>License</am:dcterm>
+            </xs:appinfo>           
+            <xs:documentation>
+              The common name for the license that covers access to this
+              data resource.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        
+        <xs:element name="termsURL" type="xs:anyURI" minOccurs="0" maxOccurs="1">
+          <xs:annotation>
+            <xs:appinfo>
+              <label>URL for Terms of Use: </label>
+              <placeholder>http://...</placeholder>
+              <tooltip>URL that provides full statement of the license or terms of use.</tooltip>
+              <am:dcterm>Rights</am:dcterm>
+            </xs:appinfo>           
+            <xs:documentation>
+              A public URL to a document describing the terms of access
+              for the resource.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:element>
+
+      </xs:sequence>
+   </xs:complexType>
+
+   <xs:simpleType name="Rights">
+      <xs:restriction base="xs:token">
+         <xs:enumeration value="public">
+            <xs:annotation>
+               <xs:documentation>
+                  unrestricted, anonymous access is allowed without 
+                  authentication.
+               </xs:documentation>
+            </xs:annotation>
+         </xs:enumeration>
+         <xs:enumeration value="open-login">
+            <xs:annotation>
+               <xs:documentation>
+                  unrestricted access requires a login (or other 
+                  authentication mechanism).  
+               </xs:documentation>
+            </xs:annotation>
+         </xs:enumeration>
+         <xs:enumeration value="proprietary">
+            <xs:annotation>
+               <xs:documentation>
+                  requires authentication and users only have access 
+                  to the parts of the portal that they have been given
+                  rights to.  Generally, there is no charge to use this
+                  resource.
+               </xs:documentation>
+            </xs:annotation>
+         </xs:enumeration>
+         <xs:enumeration value="fee-required">
+            <xs:annotation>
+               <xs:documentation>
+                  requires user to pay a one-time or subscription fee in 
+                  order to access the resource.  On-line resources typically
+                  will require authentication.
+               </xs:documentation>
+            </xs:annotation>
+         </xs:enumeration>
+      </xs:restriction>
+   </xs:simpleType>
+
+
+   <xs:simpleType name="MediaTypeNames">
+      <xs:restriction base="xs:string">
+         <xs:enumeration value="CD/CDROM">
+            <xs:annotation>
+               <xs:documentation>
+               </xs:documentation>
+            </xs:annotation>
+         </xs:enumeration>
+         <xs:enumeration value="DVD/DVDROM">
+            <xs:annotation>
+               <xs:documentation>
+               </xs:documentation>
+            </xs:annotation>
+         </xs:enumeration>
+         <xs:enumeration value="flash drive">
+            <xs:annotation>
+               <xs:documentation>
+               </xs:documentation>
+            </xs:annotation>
+         </xs:enumeration>
+         <xs:enumeration value="floppy disc">
+            <xs:annotation>
+               <xs:documentation>
+               </xs:documentation>
+            </xs:annotation>
+         </xs:enumeration>
+         <xs:enumeration value="other">
+            <xs:annotation>
+               <xs:documentation>
+               </xs:documentation>
+            </xs:annotation>
+         </xs:enumeration>
+      </xs:restriction>
+   </xs:simpleType>
+
+   <xs:simpleType name="nonemptycontentStringType">
+      <xs:annotation>
+         <xs:documentation>
+           a simple type that disallows empty values
+         </xs:documentation>
+      </xs:annotation>
+
+      <xs:restriction base="xs:string">
+         <xs:minLength value="1"/>
+      </xs:restriction>
+   </xs:simpleType>
+
+   <xs:complexType name="IDorURL" abstract="true">
+     <xs:sequence>
+     </xs:sequence>
+   </xs:complexType>
+
+   <xs:complexType name="DOI">
+     <xs:complexContent>
+       <xs:extension base="imr:IDorURL">
+         <xs:sequence>
+           <xs:element name="doi" type="xs:string">
+             <xs:annotation>
+                <xs:appinfo>
+                  <label>Digital Object Identifier (DOI): http://dx.doi.org/</label>
+                  <placeholder>10....</placeholder>
+                  <tooltip>the DOI starting with its numeric prefix (e.g. "10.")</tooltip>
+                </xs:appinfo>
+             </xs:annotation>
+           </xs:element>
+         </xs:sequence>
+       </xs:extension>
+     </xs:complexContent>
+   </xs:complexType>
+
+   <xs:complexType name="HomePageURL">
+     <xs:complexContent>
+       <xs:extension base="imr:IDorURL">
+         <xs:sequence>
+           <xs:element name="url" type="xs:string">
+             <xs:annotation>
+                <xs:appinfo>
+                  <label>Portal home page URL: </label>
+                  <placeholder>http://...</placeholder>
+                  <tooltip>the primary URL where the portal can be accessed.</tooltip>
+                </xs:appinfo>
+             </xs:annotation>
+           </xs:element>
+         </xs:sequence>
+       </xs:extension>
+     </xs:complexContent>
+   </xs:complexType>
+
+   
+
+</xs:schema>
+
