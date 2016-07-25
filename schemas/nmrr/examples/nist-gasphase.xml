@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<imdb:Resource xmlns:imdb="http://schema.bipm.org/xml/imres/nmrr/database/1.0wd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" status="active" localid="">
+<imds:Resource xmlns:imds="http://schema.bipm.org/xml/imres/nmrr/dataset/1.0wd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" status="active" localid="">
   <resourceType>Dataset</resourceType>
   <title>NIST/EPA Gas Phase Infrared Library</title>
   <subtitle>NIST Standard Reference Database #35</subtitle>
@@ -11,13 +11,33 @@
     <abbrev>USA</abbrev>
   </sponsoringCountry>
   <publicationYear> 2014 </publicationYear>
-  <homePage xsi:type="imdb:DOI">
+  <homePage xsi:type="imds:DOI">
     <doi>10.18434/T45K5N</doi>
   </homePage>
   <contact>
     <name>Stephen Stein</name>
     <emailAddress>steve.stein@nist.gov</emailAddress>
   </contact>
+  <creator>
+    <name>Carol Clifton</name>
+    <affiliation>NIST</affiliation>
+  </creator>
+  <creator>
+    <name>Jean Gallagher</name>
+    <affiliation>NIST</affiliation>
+  </creator>
+  <creator>
+    <name>Abdullah Shamin</name>
+    <affiliation>NIST</affiliation>
+  </creator>
+  <creator>
+    <name>Stephen Stein</name>
+    <affiliation>NIST</affiliation>
+  </creator>
+  <creator>
+    <name>Hussein Zohdi</name>
+    <affiliation>NIST</affiliation>
+  </creator>
   <subject>infrared spectra</subject>
   <subject>vapor phase</subject>
   <description>
@@ -51,10 +71,10 @@
   <access>
     <rights>fee-required</rights>
     <termsURL>http://www.nist.gov/open/license.cfm</termsURL>
-    <via xsi:type="imdb:Media">
+    <via xsi:type="imds:Media">
       <mediaType>CD/CDROM</mediaType>
       <requestURL>http://dx.doi.org/10.18434/T45K5N</requestURL>
       <description>CDROM contains 5228 spectra in JCAMP-DX format</description>
     </via>
   </access>
-</imdb:Resource>
+</imds:Resource>
