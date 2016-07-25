@@ -446,7 +446,7 @@
           <xsl:with-param name="sp" select="$subsp"/>
           <xsl:with-param name="step" select="$step"/>
         </xsl:apply-templates>
-        <xsl:apply-templates select="identifier">
+        <xsl:apply-templates select="identifier[@identifierScheme='ORCID']">
           <xsl:with-param name="sp" select="$subsp"/>
           <xsl:with-param name="step" select="$step"/>
         </xsl:apply-templates>

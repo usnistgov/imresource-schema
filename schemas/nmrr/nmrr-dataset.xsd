@@ -529,20 +529,25 @@
                </xs:documentation>
             </xs:annotation>
          </xs:element>
-         
-         <xs:element name="identifier" type="imr:EntityID" minOccurs="0">
-            <xs:annotation>
-               <xs:documentation>
-                  The person or entity's identifier
-               </xs:documentation>
-            </xs:annotation>
-         </xs:element>
 
          <xs:element name="affiliation" minOccurs="0" maxOccurs="unbounded">
             <xs:annotation>
                <xs:documentation>
                   The person or entity's institutional affiliation at
                   the time their contribution was made
+               </xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         
+         <xs:element name="identifier" type="xs:string" minOccurs="0">
+            <xs:annotation>
+               <xs:appinfo>
+                 <label>ORCID identifier: http://orcid.org/</label>
+                 <placeholder>Format: xxxx-xxxx-xxxx-xxxx</placeholder>
+                 <tooltip>Add if different from the dataset's publisher</tooltip>
+               </xs:appinfo>
+               <xs:documentation>
+                  The person or entity's identifier
                </xs:documentation>
             </xs:annotation>
          </xs:element>

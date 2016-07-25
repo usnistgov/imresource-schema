@@ -319,7 +319,16 @@
 
          <xsl:value-of select="$sp"/>
 
-      </contributor>      
+      </contributor>
+   </xsl:template>
+
+   <xsl:template match="creator/identifier|contributor/identifier">
+      <xsl:param name="sp"/>
+      <xsl:param name="step"/>
+
+      <identifier identifierScheme="ORCID">
+      <xsl:value-of select="."/>
+      </identifier>
    </xsl:template>
 
    <xsl:template match="homePage" mode="homeURL">
