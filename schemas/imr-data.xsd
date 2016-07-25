@@ -110,15 +110,58 @@
    <xs:complexType name="Portal">
       <xs:annotation>
          <xs:documentation>
-           a Resource description with resourceType fixed to Organization
+           a website featuring an integrated set of tools for calculation
+           and/or interacting with metrology data.
          </xs:documentation>
       </xs:annotation>
 
       <xs:complexContent>
-        <xs:restriction base="imr:MetrologyPortal">
+        <xs:restriction base="imr:MetrologyData">
           <xs:sequence>
              <xs:element name="resourceType" type="imr:nonemptycontentStringType"
                          fixed="InteractiveResource: DataPortal"/>
+
+             <xs:element name="title" type="imr:nonemptycontentStringType"/>
+             <xs:element name="altTitle" type="imr:AltTitle"
+                         minOccurs="0" maxOccurs="unbounded"/>
+             <xs:element name="identifier" type="imr:Identifier" minOccurs="0"/>
+             <xs:element name="alternateIdentifier" type="imr:Identifier"
+                         minOccurs="0" maxOccurs="unbounded"/>
+             <xs:element name="homeURL" type="xs:anyURI"/>
+             <xs:element name="sponsoringCountry" minOccurs="0" 
+                         maxOccurs="unbounded" type="imr:Country"/>
+             <xs:element name="creator" type="imr:Entity"
+                         minOccurs="0" maxOccurs="unbounded"/>
+             <xs:element name="contributor" type="imr:Contributor" 
+                         minOccurs="0" maxOccurs="unbounded"/>
+             <xs:element name="contact" type="imr:Contact" 
+                         maxOccurs="unbounded"/>
+             <xs:element name="subject" type="imr:Subject" 
+                         maxOccurs="unbounded"/>
+             <xs:element name="description" type="xs:token" 
+                         maxOccurs="unbounded"/>
+             <xs:element name="date" type="imr:Date" 
+                         minOccurs="0" maxOccurs="unbounded"/>
+             <xs:element name="publisher" type="imr:nonemptycontentStringType"/>
+             <xs:element name="publicationYear" type="imr:Year"/>
+             <xs:element name="measures" type="imr:Measures" minOccurs="0"/>
+         </xs:sequence>
+         </xs:restriction>
+      </xs:complexContent>
+   </xs:complexType>
+
+   <xs:complexType name="DataService">
+      <xs:annotation>
+         <xs:documentation>
+           a web-based service that provides or interacts with metrology data
+         </xs:documentation>
+      </xs:annotation>
+
+      <xs:complexContent>
+        <xs:restriction base="imr:MetrologyData">
+          <xs:sequence>
+             <xs:element name="resourceType" type="imr:nonemptycontentStringType"
+                         fixed="Service"/>
 
              <xs:element name="title" type="imr:nonemptycontentStringType"/>
              <xs:element name="altTitle" type="imr:AltTitle"

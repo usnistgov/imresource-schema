@@ -319,8 +319,7 @@
    <xs:complexType name="MetrologyData">
      <xs:annotation>
         <xs:documentation>
-          an identified, described, and discoverable component of the 
-          distributed data environment. 
+          a resource that represents or provides metrology-related data
         </xs:documentation>
      </xs:annotation>
      <xs:complexContent>
@@ -350,22 +349,74 @@
      </xs:complexContent>
    </xs:complexType>
 
-   <xs:complexType name="MetrologyPortal">
+   <xs:complexType name="_Software">
+      <xs:annotation>
+         <xs:documentation>
+           a Resource description with resourceType fixed to Software
+         </xs:documentation>
+      </xs:annotation>
+
+      <xs:complexContent>
+        <xs:restriction base="imr:MetrologyData">
+          <xs:sequence>
+             <xs:element name="resourceType" type="imr:nonemptycontentStringType"
+                         fixed="Software"/>
+
+             <xs:element name="title" type="imr:nonemptycontentStringType"/>
+             <xs:element name="altTitle" type="imr:AltTitle"
+                         minOccurs="0" maxOccurs="unbounded"/>
+             <xs:element name="identifier" type="imr:Identifier" minOccurs="0"/>
+             <xs:element name="alternateIdentifier" type="imr:Identifier"
+                         minOccurs="0" maxOccurs="unbounded"/>
+             <xs:element name="homeURL" type="xs:anyURI"/>
+             <xs:element name="sponsoringCountry" minOccurs="0" 
+                         maxOccurs="unbounded" type="imr:Country"/>
+             <xs:element name="creator" type="imr:Entity"
+                         minOccurs="0" maxOccurs="unbounded"/>
+             <xs:element name="contributor" type="imr:Contributor" 
+                         minOccurs="0" maxOccurs="unbounded"/>
+             <xs:element name="contact" type="imr:Contact" 
+                         maxOccurs="unbounded"/>
+             <xs:element name="subject" type="imr:Subject" 
+                         maxOccurs="unbounded"/>
+             <xs:element name="description" type="xs:token" 
+                         maxOccurs="unbounded"/>
+             <xs:element name="date" type="imr:Date" 
+                         minOccurs="0" maxOccurs="unbounded"/>
+             <xs:element name="publisher" type="imr:nonemptycontentStringType"/>
+             <xs:element name="publicationYear" type="imr:Year"/>
+             <xs:element name="measures" type="imr:Measures" minOccurs="0"/>
+             <xs:element name="access" type="imr:Access"/>
+         </xs:sequence>
+         </xs:restriction>
+      </xs:complexContent>
+   </xs:complexType>
+
+   <xs:complexType name="Software">
      <xs:annotation>
         <xs:documentation>
-          an identified, described, and discoverable component of the 
-          distributed data environment. 
+          A software package or tool can be used to calculate, analyze, or
+          interpret metrology data.
         </xs:documentation>
      </xs:annotation>
      <xs:complexContent>
-       <xs:extension base="imr:PublishedResource">
+       <xs:extension base="imr:_Software">
          <xs:sequence>
 
-           <xs:element name="measures" type="imr:Measures" minOccurs="0">
+           <xs:element name="supportedOS" type="xs:token"
+                       minOccurs="0" maxOccurs="unbounded">
               <xs:annotation>
                  <xs:documentation>
-                   Information describing the variety of measurements 
-                   available in this data
+                   The operating system or platform that software is capable
+                   of running on.  
+                 </xs:documentation>
+              </xs:annotation>
+           </xs:element>
+
+           <xs:element name="sourceAvailable" type="xs:boolean" minOccurs="0">
+              <xs:annotation>
+                 <xs:documentation>
+                   A flag indicating whether the source code is available.
                  </xs:documentation>
               </xs:annotation>
            </xs:element>
@@ -1274,7 +1325,7 @@
      </xs:restriction>
    </xs:simpleType>
 
-   <xs:complexType name="Access">
+   <xs:complexType name="AccessTerms">
       <xs:annotation>
          <xs:documentation>
            a container for metrology-specific metadata
@@ -1322,21 +1373,37 @@
           </xs:annotation>
         </xs:element>
 
-        <xs:element name="via" type="imr:AccessVia"
-                    minOccurs="0" maxOccurs="3">
-          <xs:annotation>
-            <xs:documentation>
-              A description of the access to a resource through some 
-              mechanism.
-            </xs:documentation>
-            <xs:documentation>
-              As the AccessVia type is abstract, all instances must include an
-              xsi:type attribute.
-            </xs:documentation>
-          </xs:annotation>
-        </xs:element>
-
       </xs:sequence>
+   </xs:complexType>
+
+   <xs:complexType name="Access">
+     <xs:annotation>
+        <xs:documentation>
+          a container for metrology-specific metadata
+        </xs:documentation>
+     </xs:annotation>
+
+     <xs:complexContent>
+       <xs:extension base="imr:AccessTerms">
+         <xs:sequence>
+
+           <xs:element name="via" type="imr:AccessVia"
+                       minOccurs="0" maxOccurs="3">
+             <xs:annotation>
+               <xs:documentation>
+                 A description of the access to a resource through some 
+                 mechanism.
+               </xs:documentation>
+               <xs:documentation>
+                 As the AccessVia type is abstract, all instances must include an
+                 xsi:type attribute.
+               </xs:documentation>
+             </xs:annotation>
+           </xs:element>
+
+         </xs:sequence>
+       </xs:extension>
+     </xs:complexContent>
    </xs:complexType>
 
    <xs:complexType name="AccessVia">
@@ -1459,6 +1526,15 @@
              </xs:annotation>
            </xs:element>
             
+           <xs:element name="format" type="imr:nonemptycontentStringType"
+                       minOccurs="0">
+              <xs:annotation>
+                 <xs:documentation>
+                   a file format that is supported for by the service
+                 </xs:documentation>
+              </xs:annotation>
+           </xs:element>
+
          </xs:sequence>
        </xs:extension>
      </xs:complexContent>
