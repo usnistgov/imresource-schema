@@ -1268,7 +1268,7 @@
                     minOccurs="0" maxOccurs="3">
           <xs:annotation>
             <xs:appinfo>
-              <label>Available data access method: </label>
+              <label>How to access the service... </label>
               <am:dcterm>Rights</am:dcterm>
             </xs:appinfo>           
             <xs:documentation>
@@ -1299,6 +1299,10 @@
    
    <xs:complexType name="ServiceAPI">
       <xs:annotation>
+            <xs:appinfo>
+              <label>Service API: </label>
+              <am:dcterm>Rights</am:dcterm>
+            </xs:appinfo>           
          <xs:documentation>
            a container for information on accessing the data via a service API
          </xs:documentation>

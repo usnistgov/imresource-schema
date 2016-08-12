@@ -3,10 +3,13 @@
                 xmlns:immi="http://schema.bipm.org/xml/imres/nmrr/nmi/1.0wd"
                 xmlns:imdb="http://schema.bipm.org/xml/imres/nmrr/database/1.0wd"
                 xmlns:imds="http://schema.bipm.org/xml/imres/nmrr/dataset/1.0wd"
+                xmlns:imdp="http://schema.bipm.org/xml/imres/nmrr/portal/1.0wd"
+                xmlns:imsv="http://schema.bipm.org/xml/imres/nmrr/service/1.0wd"
+                xmlns:imsw="http://schema.bipm.org/xml/imres/nmrr/software/1.0wd"
                 xmlns:IMR="http://schema.bipm.org/xml/imres/1.0wd"
                 xmlns:NMI="http://schema.bipm.org/xml/imres/nmi/1.0wd"
                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-                exclude-result-prefixes="IMR NMI immi imdb imds"
+                exclude-result-prefixes="IMR NMI immi imdb imds imdp imsv imsw"
                 version="1.0">
                 
 <!-- Stylesheet for converting mgi-resmd records to datacite records -->
@@ -51,6 +54,21 @@
                                   (contains(@xsi:type,':MetrologyData') and 
                                    normalize-space(resourceType)='Dataset')]">
          <xsl:text>imds</xsl:text>
+       </xsl:when>
+       <xsl:when test="IMR:Resource[contains(@xsi:type,':Portal') or
+                                  (contains(@xsi:type,':MetrologyData') and 
+                                   normalize-space(resourceType)='InteractiveResource: DataPortal')]">
+         <xsl:text>imdp</xsl:text>
+       </xsl:when>
+       <xsl:when test="IMR:Resource[contains(@xsi:type,':Service') or
+                                  (contains(@xsi:type,':MetrologyData') and 
+                                   normalize-space(resourceType)='Service')]">
+         <xsl:text>imsv</xsl:text>
+       </xsl:when>
+       <xsl:when test="IMR:Resource[contains(@xsi:type,':Software') or
+                                  (contains(@xsi:type,':MetrologyData') and 
+                                   normalize-space(resourceType)='Software')]">
+         <xsl:text>imsw</xsl:text>
        </xsl:when>
      </xsl:choose>
    </xsl:variable>
@@ -271,6 +289,316 @@
       </imds:Resource>
    </xsl:template>
 
+   <xsl:template match="IMR:Resource[contains(@xsi:type,':Service')]|
+                        IMR:Resource[contains(@xsi:type,':MetrologyData') and 
+                                    contains(resourceType,'Service')]">
+      <xsl:param name="sp"/>
+      <xsl:param name="step"/>
+
+      <imsv:Resource status="{@status}" localid="{@localid}">
+        
+        <xsl:apply-templates select="resourceType">
+          <xsl:with-param name="sp" select="concat($sp,$step)"/>
+          <xsl:with-param name="step" select="$step"/>
+        </xsl:apply-templates>
+        <xsl:apply-templates select="title">
+          <xsl:with-param name="sp" select="concat($sp,$step)"/>
+          <xsl:with-param name="step" select="$step"/>
+        </xsl:apply-templates>
+        <xsl:apply-templates select="altTitle[@type='Subtitle']">
+          <xsl:with-param name="sp" select="concat($sp,$step)"/>
+          <xsl:with-param name="step" select="$step"/>
+        </xsl:apply-templates>
+        <xsl:apply-templates select="altTitle[@type='Abbreviation']">
+          <xsl:with-param name="sp" select="concat($sp,$step)"/>
+          <xsl:with-param name="step" select="$step"/>
+        </xsl:apply-templates>
+        <xsl:apply-templates select="publisher">
+          <xsl:with-param name="sp" select="concat($sp,$step)"/>
+          <xsl:with-param name="step" select="$step"/>
+        </xsl:apply-templates>
+        <xsl:apply-templates select="sponsoringCountry">
+          <xsl:with-param name="sp" select="concat($sp,$step)"/>
+          <xsl:with-param name="step" select="$step"/>
+        </xsl:apply-templates>
+        <xsl:apply-templates select="publicationYear">
+          <xsl:with-param name="sp" select="concat($sp,$step)"/>
+          <xsl:with-param name="step" select="$step"/>
+        </xsl:apply-templates>
+        <xsl:apply-templates select="." mode="IDorURL">
+          <xsl:with-param name="sp" select="concat($sp,$step)"/>
+          <xsl:with-param name="step" select="$step"/>
+        </xsl:apply-templates>
+        <xsl:apply-templates select="contact">
+          <xsl:with-param name="sp" select="concat($sp,$step)"/>
+          <xsl:with-param name="step" select="$step"/>
+        </xsl:apply-templates>
+        <xsl:apply-templates select="subject">
+          <xsl:with-param name="sp" select="concat($sp,$step)"/>
+          <xsl:with-param name="step" select="$step"/>
+        </xsl:apply-templates>
+        <xsl:apply-templates select="description">
+          <xsl:with-param name="sp" select="concat($sp,$step)"/>
+          <xsl:with-param name="step" select="$step"/>
+        </xsl:apply-templates>
+        <xsl:apply-templates select="date">
+          <xsl:with-param name="sp" select="concat($sp,$step)"/>
+          <xsl:with-param name="step" select="$step"/>
+        </xsl:apply-templates>
+
+        <xsl:apply-templates select="measures">
+          <xsl:with-param name="sp" select="concat($sp,$step)"/>
+          <xsl:with-param name="step" select="$step"/>
+        </xsl:apply-templates>
+
+        <xsl:apply-templates select="access" mode="service">
+          <xsl:with-param name="sp" select="concat($sp,$step)"/>
+          <xsl:with-param name="step" select="$step"/>
+        </xsl:apply-templates>
+
+        <xsl:value-of select="$sp"/>
+
+      </imsv:Resource>
+   </xsl:template>
+
+   <xsl:template match="access" mode="service">
+      <xsl:param name="sp"/>
+      <xsl:param name="step"/>
+
+      <xsl:value-of select="$sp"/>
+
+      <access>
+
+        <xsl:apply-templates select="." mode="terms">
+          <xsl:with-param name="sp" select="concat($sp,$step)"/>
+          <xsl:with-param name="step" select="$step"/>
+        </xsl:apply-templates>
+
+        <xsl:apply-templates select="via[contains(@xsi:type,':ServiceAPI')]">
+          <xsl:with-param name="sp" select="concat($sp,$step)"/>
+          <xsl:with-param name="step" select="$step"/>
+        </xsl:apply-templates>
+
+        <xsl:value-of select="$sp"/>
+
+      </access>
+      
+   </xsl:template>
+
+   <xsl:template match="access" mode="terms">
+      <xsl:param name="sp"/>
+      <xsl:param name="step"/>
+
+      <xsl:apply-templates select="*[local-name()!='via']">
+         <xsl:with-param name="sp" select="$sp"/>
+         <xsl:with-param name="step" select="$step"/>
+      </xsl:apply-templates>
+   </xsl:template>
+
+   <xsl:template match="IMR:Resource[contains(@xsi:type,':Software')]|
+                        IMR:Resource[contains(@xsi:type,':MetrologyData') and 
+                                     normalize-space(resourceType)='Software']">
+      <xsl:param name="sp"/>
+      <xsl:param name="step"/>
+
+      <imsw:Resource status="{@status}" localid="{@localid}">
+
+        <xsl:apply-templates select="resourceType">
+          <xsl:with-param name="sp" select="concat($sp,$step)"/>
+          <xsl:with-param name="step" select="$step"/>
+        </xsl:apply-templates>
+        <xsl:apply-templates select="title">
+          <xsl:with-param name="sp" select="concat($sp,$step)"/>
+          <xsl:with-param name="step" select="$step"/>
+        </xsl:apply-templates>
+        <xsl:apply-templates select="altTitle[@type='Subtitle']">
+          <xsl:with-param name="sp" select="concat($sp,$step)"/>
+          <xsl:with-param name="step" select="$step"/>
+        </xsl:apply-templates>
+        <xsl:apply-templates select="altTitle[@type='Abbreviation']">
+          <xsl:with-param name="sp" select="concat($sp,$step)"/>
+          <xsl:with-param name="step" select="$step"/>
+        </xsl:apply-templates>
+        <xsl:apply-templates select="publisher">
+          <xsl:with-param name="sp" select="concat($sp,$step)"/>
+          <xsl:with-param name="step" select="$step"/>
+        </xsl:apply-templates>
+        <xsl:apply-templates select="sponsoringCountry">
+          <xsl:with-param name="sp" select="concat($sp,$step)"/>
+          <xsl:with-param name="step" select="$step"/>
+        </xsl:apply-templates>
+        <xsl:apply-templates select="publicationYear">
+          <xsl:with-param name="sp" select="concat($sp,$step)"/>
+          <xsl:with-param name="step" select="$step"/>
+        </xsl:apply-templates>
+        <xsl:apply-templates select="." mode="IDorURL">
+          <xsl:with-param name="sp" select="concat($sp,$step)"/>
+          <xsl:with-param name="step" select="$step"/>
+        </xsl:apply-templates>
+        <xsl:apply-templates select="contact">
+          <xsl:with-param name="sp" select="concat($sp,$step)"/>
+          <xsl:with-param name="step" select="$step"/>
+        </xsl:apply-templates>
+        <xsl:apply-templates select="creator">
+          <xsl:with-param name="sp" select="concat($sp,$step)"/>
+          <xsl:with-param name="step" select="$step"/>
+        </xsl:apply-templates>
+        <xsl:apply-templates select="contributor">
+          <xsl:with-param name="sp" select="concat($sp,$step)"/>
+          <xsl:with-param name="step" select="$step"/>
+        </xsl:apply-templates>
+        <xsl:apply-templates select="subject">
+          <xsl:with-param name="sp" select="concat($sp,$step)"/>
+          <xsl:with-param name="step" select="$step"/>
+        </xsl:apply-templates>
+        <xsl:apply-templates select="description">
+          <xsl:with-param name="sp" select="concat($sp,$step)"/>
+          <xsl:with-param name="step" select="$step"/>
+        </xsl:apply-templates>
+        <xsl:apply-templates select="date">
+          <xsl:with-param name="sp" select="concat($sp,$step)"/>
+          <xsl:with-param name="step" select="$step"/>
+        </xsl:apply-templates>
+
+        <xsl:apply-templates select="measures">
+          <xsl:with-param name="sp" select="concat($sp,$step)"/>
+          <xsl:with-param name="step" select="$step"/>
+        </xsl:apply-templates>
+
+        <xsl:apply-templates select="access" mode="software">
+          <xsl:with-param name="sp" select="concat($sp,$step)"/>
+          <xsl:with-param name="step" select="$step"/>
+        </xsl:apply-templates>
+
+        <xsl:value-of select="$sp"/>
+
+      </imsw:Resource>
+   </xsl:template>
+
+   <xsl:template match="access" mode="software">
+      <xsl:param name="sp"/>
+      <xsl:param name="step"/>
+
+      <xsl:value-of select="$sp"/>
+
+      <access>
+
+        <xsl:apply-templates select="." mode="terms">
+          <xsl:with-param name="sp" select="concat($sp,$step)"/>
+          <xsl:with-param name="step" select="$step"/>
+        </xsl:apply-templates>
+
+        <xsl:apply-templates select="via[contains(@xsi:type,':Media') or
+                                         contains(@xsi:type,':Download')]">
+          <xsl:with-param name="sp" select="concat($sp,$step)"/>
+          <xsl:with-param name="step" select="$step"/>
+        </xsl:apply-templates>
+
+        <xsl:value-of select="$sp"/>
+
+      </access>
+      
+   </xsl:template>
+
+   <xsl:template match="IMR:Resource[contains(@xsi:type,':Portal')]|
+                        IMR:Resource[contains(@xsi:type,':MetrologyData') and 
+              normalize-space(resourceType)='InteractiveResource: Portal']">
+      <xsl:param name="sp"/>
+      <xsl:param name="step"/>
+
+      <imdp:Resource status="{@status}" localid="{@localid}">
+
+        <xsl:apply-templates select="resourceType">
+          <xsl:with-param name="sp" select="concat($sp,$step)"/>
+          <xsl:with-param name="step" select="$step"/>
+        </xsl:apply-templates>
+        <xsl:apply-templates select="title">
+          <xsl:with-param name="sp" select="concat($sp,$step)"/>
+          <xsl:with-param name="step" select="$step"/>
+        </xsl:apply-templates>
+        <xsl:apply-templates select="altTitle[@type='Subtitle']">
+          <xsl:with-param name="sp" select="concat($sp,$step)"/>
+          <xsl:with-param name="step" select="$step"/>
+        </xsl:apply-templates>
+        <xsl:apply-templates select="altTitle[@type='Abbreviation']">
+          <xsl:with-param name="sp" select="concat($sp,$step)"/>
+          <xsl:with-param name="step" select="$step"/>
+        </xsl:apply-templates>
+        <xsl:apply-templates select="publisher">
+          <xsl:with-param name="sp" select="concat($sp,$step)"/>
+          <xsl:with-param name="step" select="$step"/>
+        </xsl:apply-templates>
+        <xsl:apply-templates select="sponsoringCountry">
+          <xsl:with-param name="sp" select="concat($sp,$step)"/>
+          <xsl:with-param name="step" select="$step"/>
+        </xsl:apply-templates>
+        <xsl:apply-templates select="publicationYear">
+          <xsl:with-param name="sp" select="concat($sp,$step)"/>
+          <xsl:with-param name="step" select="$step"/>
+        </xsl:apply-templates>
+        <xsl:apply-templates select="." mode="IDorURL">
+          <xsl:with-param name="sp" select="concat($sp,$step)"/>
+          <xsl:with-param name="step" select="$step"/>
+        </xsl:apply-templates>
+        <xsl:apply-templates select="contact">
+          <xsl:with-param name="sp" select="concat($sp,$step)"/>
+          <xsl:with-param name="step" select="$step"/>
+        </xsl:apply-templates>
+        <xsl:apply-templates select="creator">
+          <xsl:with-param name="sp" select="concat($sp,$step)"/>
+          <xsl:with-param name="step" select="$step"/>
+        </xsl:apply-templates>
+        <xsl:apply-templates select="contributor">
+          <xsl:with-param name="sp" select="concat($sp,$step)"/>
+          <xsl:with-param name="step" select="$step"/>
+        </xsl:apply-templates>
+        <xsl:apply-templates select="subject">
+          <xsl:with-param name="sp" select="concat($sp,$step)"/>
+          <xsl:with-param name="step" select="$step"/>
+        </xsl:apply-templates>
+        <xsl:apply-templates select="description">
+          <xsl:with-param name="sp" select="concat($sp,$step)"/>
+          <xsl:with-param name="step" select="$step"/>
+        </xsl:apply-templates>
+        <xsl:apply-templates select="date">
+          <xsl:with-param name="sp" select="concat($sp,$step)"/>
+          <xsl:with-param name="step" select="$step"/>
+        </xsl:apply-templates>
+
+        <xsl:apply-templates select="measures">
+          <xsl:with-param name="sp" select="concat($sp,$step)"/>
+          <xsl:with-param name="step" select="$step"/>
+        </xsl:apply-templates>
+
+        <xsl:apply-templates select="access" mode="portal">
+          <xsl:with-param name="sp" select="concat($sp,$step)"/>
+          <xsl:with-param name="step" select="$step"/>
+        </xsl:apply-templates>
+
+        <xsl:value-of select="$sp"/>
+
+      </imdp:Resource>
+   </xsl:template>
+
+   <xsl:template match="access" mode="portal">
+      <xsl:param name="sp"/>
+      <xsl:param name="step"/>
+
+      <xsl:value-of select="$sp"/>
+
+      <access>
+
+        <xsl:apply-templates select="." mode="terms">
+          <xsl:with-param name="sp" select="concat($sp,$step)"/>
+          <xsl:with-param name="step" select="$step"/>
+        </xsl:apply-templates>
+
+        <xsl:value-of select="$sp"/>
+
+      </access>
+      
+   </xsl:template>
+
    <xsl:template match="sponsoringCountry">
       <xsl:param name="sp"/>
       <xsl:param name="step"/>
@@ -322,7 +650,7 @@
          </xsl:when>
          <xsl:when test="homeURL">
             <xsl:value-of select="$sp"/>
-            <homePage xsi:type="{$rns}:DOI">
+            <homePage xsi:type="{$rns}:HomePageURL">
                <xsl:value-of select="$subsp"/>
                <url><xsl:value-of select="homeURL"/></url>
                <xsl:value-of select="$sp"/>

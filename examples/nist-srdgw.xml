@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<imr:Resource xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xmlns:imr="http://schema.bipm.org/xml/imres/1.0wd"
+              xmlns:imd="http://schema.bipm.org/xml/imres/data/1.0wd"
+              xsi:type="imd:Portal" status="active">
+          
+   <resourceType>InteractiveResource: Portal</resourceType>
+
+   <title>NIST Standard Reference Data Gateway</title>
+   <homeURL>http://srdata.nist.gov/gateway/</homeURL>
+   <sponsoringCountry abbrev="USA">United States of America</sponsoringCountry>
+
+   <contact>
+     <name>Robert Hanisch</name>
+     <emailAddress>robert.hanisch@nist.gov</emailAddress>
+   </contact>
+
+   <subject>standards</subject>
+   <subject>standard reference data</subject>
+   <subject>metrology</subject>
+   <subject>materials</subject>
+   <subject>physics</subject>
+   <subject>computing</subject>
+   <subject>cybersecurity</subject>
+   <subject>law enforcement</subject>
+   <subject>forensics</subject>
+
+   <description>
+     The NIST Data Gateway is an online system designed to provide users with
+     easy access to NIST scientific and technical data. The Gateway provides
+     (1) direct links to free NIST online systems and full text online versions
+     of many Journal of Physical and Chemical Reference Data (JPCRD) articles,
+     (2) links to descriptions and ordering information for PC products and
+     JPCRD reprints available for purchase, (3) a search tool for finding
+     standard reference data based on keyword, property, and substance name,
+     and (4) a JPCRD search menu with options based on title, author, year
+     published, keyword, and substance name.  It brings together access to 63
+     on-line databases, 50 PC products, and 866 JPCRD articles.  The search
+     tool identifies relevant datasets based on over 1000 keywords and 140,000
+     substance names and synonyms.  
+   </description>
+
+   <publisher>US National Institute of Standards and Technology (NIST)</publisher>
+   <publicationYear>2001</publicationYear>
+   <measures>
+     <propertyClass>optical</propertyClass>
+     <propertyClass>mechanical</propertyClass>
+     <propertyClass>structural</propertyClass>
+     <propertyClass>thermal</propertyClass>
+     <propertyClass>structural</propertyClass>
+     <propertyClass>simulated</propertyClass>
+     <propertyClass>chemical</propertyClass>
+   </measures>
+   
+   <access>
+     <rights>public</rights>
+     <termsURL>http://www.nist.gov/open/license.cfm</termsURL>
+   </access>
+
+</imr:Resource>
+   

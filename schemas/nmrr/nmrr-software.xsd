@@ -264,7 +264,7 @@
              </xs:annotation>
            </xs:element>
 
-           <xs:element name="supportedOS" type="xs:OSNames"
+           <xs:element name="supportedOS" type="imr:OSNames"
                        minOccurs="0" maxOccurs="unbounded">
               <xs:annotation>
                  <xs:appinfo>
@@ -277,8 +277,12 @@
               </xs:annotation>
            </xs:element>
 
-           <xs:element name="sourceAvailable" type="xs:boolean" minOccurs="0">
+           <xs:element name="sourceAvailable" type="imr:Boolean" minOccurs="0">
               <xs:annotation>
+                 <xs:appinfo>
+                   <label>Is the source code available? </label>
+                   <tooltip>Select "true" if the software's source code is available</tooltip>
+                 </xs:appinfo>
                  <xs:documentation>
                    A flag indicating whether the source code is available.
                  </xs:documentation>
@@ -1285,7 +1289,7 @@
                     minOccurs="0" maxOccurs="3">
           <xs:annotation>
             <xs:appinfo>
-              <label>Available data access method: </label>
+              <label>Method for obtaining the software: </label>
               <am:dcterm>Rights</am:dcterm>
             </xs:appinfo>           
             <xs:documentation>
@@ -1365,44 +1369,6 @@
 
    </xs:complexType>
    
-   <xs:complexType name="ServiceAPI">
-      <xs:annotation>
-         <xs:documentation>
-           a container for information on accessing the data via a service API
-         </xs:documentation>
-      </xs:annotation>
-
-     <xs:complexContent>
-       <xs:extension base="imr:AccessVia">
-         <xs:sequence>
-
-            <xs:element name="description" type="xs:string" minOccurs="0">
-              <xs:annotation>
-                <xs:appinfo>
-                  <label>Summary: </label>
-                  <tooltip>Enter a brief summary of what the API provides.</tooltip>
-                </xs:appinfo>
-              </xs:annotation>
-            </xs:element>
-            
-           <xs:element name="documentationURL" type="xs:anyURI" minOccurs="0">
-              <xs:annotation>
-                <xs:appinfo>
-                  <label>URL to service documentation: </label>
-                  <tooltip>Enter a URL of a human-readable description of how to use the service.</tooltip>
-                  <placeholder>http://...</placeholder>
-                </xs:appinfo>
-                 <xs:documentation>
-                   The URL to a web page that describes how to use the service.  
-                 </xs:documentation>
-             </xs:annotation>
-           </xs:element>
-         </xs:sequence>
-       </xs:extension>
-     </xs:complexContent>
-
-   </xs:complexType>
-
    <xs:complexType name="Media">
       <xs:annotation>
          <xs:documentation>
@@ -1628,7 +1594,28 @@
       </xs:restriction>
    </xs:simpleType>
 
-   
+   <xs:simpleType name="Boolean">
+      <xs:restriction base="xs:string">
+         <xs:enumeration value="true">
+            <xs:annotation>
+               <xs:documentation>
+               </xs:documentation>
+            </xs:annotation>
+         </xs:enumeration>
+         <xs:enumeration value="false">
+            <xs:annotation>
+               <xs:documentation>
+               </xs:documentation>
+            </xs:annotation>
+         </xs:enumeration>
+         <xs:enumeration value="MacOS">
+            <xs:annotation>
+               <xs:documentation>
+               </xs:documentation>
+            </xs:annotation>
+         </xs:enumeration>
+      </xs:restriction>
+   </xs:simpleType>
 
 </xs:schema>
 

@@ -119,7 +119,7 @@
         <xs:restriction base="imr:MetrologyData">
           <xs:sequence>
              <xs:element name="resourceType" type="imr:nonemptycontentStringType"
-                         fixed="InteractiveResource: DataPortal"/>
+                         fixed="InteractiveResource: Portal"/>
 
              <xs:element name="title" type="imr:nonemptycontentStringType"/>
              <xs:element name="altTitle" type="imr:AltTitle"
@@ -145,6 +145,7 @@
              <xs:element name="publisher" type="imr:nonemptycontentStringType"/>
              <xs:element name="publicationYear" type="imr:Year"/>
              <xs:element name="measures" type="imr:Measures" minOccurs="0"/>
+             <xs:element name="access" type="imr:Access"/>
          </xs:sequence>
          </xs:restriction>
       </xs:complexContent>
