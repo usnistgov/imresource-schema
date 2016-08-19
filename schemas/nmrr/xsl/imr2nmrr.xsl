@@ -115,6 +115,10 @@
           <xsl:with-param name="sp" select="concat($sp,$step)"/>
           <xsl:with-param name="step" select="$step"/>
         </xsl:apply-templates>
+        <xsl:apply-templates select="homeURL">
+          <xsl:with-param name="sp" select="concat($sp,$step)"/>
+          <xsl:with-param name="step" select="$step"/>
+        </xsl:apply-templates>
         <xsl:apply-templates select="contact">
           <xsl:with-param name="sp" select="concat($sp,$step)"/>
           <xsl:with-param name="step" select="$step"/>
@@ -123,7 +127,7 @@
           <xsl:with-param name="sp" select="concat($sp,$step)"/>
           <xsl:with-param name="step" select="$step"/>
         </xsl:apply-templates>
-        <xsl:apply-templates select="description">
+        <xsl:apply-templates select="." mode="description">
           <xsl:with-param name="sp" select="concat($sp,$step)"/>
           <xsl:with-param name="step" select="$step"/>
         </xsl:apply-templates>
@@ -185,7 +189,7 @@
           <xsl:with-param name="sp" select="concat($sp,$step)"/>
           <xsl:with-param name="step" select="$step"/>
         </xsl:apply-templates>
-        <xsl:apply-templates select="description">
+        <xsl:apply-templates select="." mode="description">
           <xsl:with-param name="sp" select="concat($sp,$step)"/>
           <xsl:with-param name="step" select="$step"/>
         </xsl:apply-templates>
@@ -265,7 +269,7 @@
           <xsl:with-param name="sp" select="concat($sp,$step)"/>
           <xsl:with-param name="step" select="$step"/>
         </xsl:apply-templates>
-        <xsl:apply-templates select="description">
+        <xsl:apply-templates select="." mode="description">
           <xsl:with-param name="sp" select="concat($sp,$step)"/>
           <xsl:with-param name="step" select="$step"/>
         </xsl:apply-templates>
@@ -337,7 +341,7 @@
           <xsl:with-param name="sp" select="concat($sp,$step)"/>
           <xsl:with-param name="step" select="$step"/>
         </xsl:apply-templates>
-        <xsl:apply-templates select="description">
+        <xsl:apply-templates select="." mode="description">
           <xsl:with-param name="sp" select="concat($sp,$step)"/>
           <xsl:with-param name="step" select="$step"/>
         </xsl:apply-templates>
@@ -451,7 +455,7 @@
           <xsl:with-param name="sp" select="concat($sp,$step)"/>
           <xsl:with-param name="step" select="$step"/>
         </xsl:apply-templates>
-        <xsl:apply-templates select="description">
+        <xsl:apply-templates select="." mode="description">
           <xsl:with-param name="sp" select="concat($sp,$step)"/>
           <xsl:with-param name="step" select="$step"/>
         </xsl:apply-templates>
@@ -632,6 +636,23 @@
       <xsl:value-of select="$sp"/>
 
       <subtitle><xsl:value-of select="."/></subtitle>
+   </xsl:template>
+
+   <xsl:template match="*" mode="description">
+      <xsl:param name="sp"/>
+      <xsl:param name="step"/>
+
+      <xsl:value-of select="$sp"/>
+      <description>
+        <xsl:for-each select="description">
+          <xsl:if test="position()!=1">
+            <xsl:text>
+
+</xsl:text>
+          </xsl:if>
+          <xsl:value-of select="."/>
+        </xsl:for-each>
+      </description>
    </xsl:template>
 
    <xsl:template match="*" mode="IDorURL">

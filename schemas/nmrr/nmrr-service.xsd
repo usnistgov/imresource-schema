@@ -129,7 +129,7 @@
             </xs:annotation>
          </xs:element>
 
-         <xs:element name="publicationYear" type="xs:string">
+         <xs:element name="publicationYear" type="xs:string" minOccurs="0">
             <xs:annotation>
                <xs:appinfo>
                  <label>Publication Year: </label>
@@ -217,7 +217,9 @@
             </xs:annotation>
          </xs:element>
 
-         <xs:element name="description" type="xs:token" maxOccurs="unbounded" xmlns:ns0="http://mdcs.ns" ns0:_mod_mdcs_="/registry/description">
+         <xs:element name="description" type="xs:token" maxOccurs="1" 
+                     xmlns:ns0="http://mdcs.ns" 
+                     ns0:_mod_mdcs_="/registry/description">
             <xs:annotation>
                <xs:appinfo>
                  <label>Give a summary of the purpose of this service and how users may access it: </label>

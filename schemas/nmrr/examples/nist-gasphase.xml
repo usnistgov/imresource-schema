@@ -52,8 +52,7 @@
      individual files where each spectrum and structure is provided in a
      separate JCAMP and MOL file, using file names containing the CAS registry
      number of the compound. 
-   </description>
-  <description>
+
      The data originally derived from the EPA Vapor-Phase IR Library itself
      (3,108 spectra) and the spectra measured at NIST (2,120 spectra) are
      provided in separate directories. All spectra are given as normalized
