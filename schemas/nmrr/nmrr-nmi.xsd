@@ -136,7 +136,9 @@
             </xs:annotation>
          </xs:element>
 
-         <xs:element name="description" type="xs:token" maxOccurs="unbounded" xmlns:ns0="http://mdcs.ns" ns0:_mod_mdcs_="/registry/description">
+         <xs:element name="description" type="xs:token" maxOccurs="1" 
+                     xmlns:ns0="http://mdcs.ns" 
+                     ns0:_mod_mdcs_="/registry/description">
             <xs:annotation>
                <xs:appinfo>
                  <label>Give a summary of the purpose and activity of the organization: </label>
@@ -201,6 +203,41 @@
         <xs:simpleType xmlns:ns0="http://mdcs.ns" ns0:_mod_mdcs_="/registry/local-id">
           <xs:restriction base="xs:string"/>                      
         </xs:simpleType>
+      </xs:attribute>
+
+      <xs:attribute name="status" use="required">
+         <xs:annotation>
+            <xs:documentation>
+              a tag indicating whether this resource is believed to be still
+              actively maintained.
+            </xs:documentation>
+         </xs:annotation>
+         <xs:simpleType>
+            <xs:restriction base="xs:string">
+               <xs:enumeration value="active">
+                 <xs:annotation>
+                   <xs:documentation>
+                      resource is believed to be currently maintained, and its
+                      description is up to date (default). 
+                   </xs:documentation>
+                 </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="inactive">
+                 <xs:annotation>
+                   <xs:documentation>
+                     resource is apparently not being maintained at the present.
+                   </xs:documentation>
+                 </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="deleted">
+                 <xs:annotation>
+                   <xs:documentation>
+                      resource publisher has explicitly deleted the resource.
+                   </xs:documentation>
+                 </xs:annotation>
+               </xs:enumeration>
+            </xs:restriction>
+         </xs:simpleType>
       </xs:attribute>
 
    </xs:complexType>

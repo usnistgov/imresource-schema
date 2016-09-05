@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema targetNamespace="http://schema.bipm.org/xml/imres/nmrr/database/1.0wd" 
+<xs:schema targetNamespace="http://schema.bipm.org/xml/imres/nmrr/dataset/1.0wd" 
            xmlns:xs="http://www.w3.org/2001/XMLSchema" 
-           xmlns:imr="http://schema.bipm.org/xml/imres/nmrr/database/1.0wd" 
+           xmlns:imr="http://schema.bipm.org/xml/imres/nmrr/dataset/1.0wd" 
            xmlns:am="http://schema.nist.gov/xml/nmrr.schema.annot" 
            elementFormDefault="unqualified" 
            attributeFormDefault="unqualified" version="0.1">
@@ -17,10 +17,10 @@
       </xs:documentation>
    </xs:annotation>
 
-   <xs:element name="Resource" type="imr:Database">
+   <xs:element name="Resource" type="imr:Dataset">
       <xs:annotation>
          <xs:appinfo>
-           <label>Resource: a Database</label>
+           <label>Resource: a Dataset</label>
          </xs:appinfo>
          <xs:documentation>
            a root element for describing a registered resource 
@@ -28,7 +28,7 @@
       </xs:annotation>
    </xs:element>
 
-   <xs:complexType name="Database">
+   <xs:complexType name="Dataset">
       <xs:annotation>
          <xs:documentation>
            a Resource description with resourceType fixed to Other: Organization
@@ -37,11 +37,11 @@
 
       <xs:sequence>
          <xs:element name="resourceType" type="xs:string"
-                     default="Dataset: Database">
+                     default="Dataset">
             <xs:annotation>
                <xs:appinfo>
            <label>Resource Type (do not edit): </label>
-           <tooltip>This identifies this record as a Database resource</tooltip>
+           <tooltip>This identifies this record as a Dataset resource</tooltip>
                  <am:dcterm>Type</am:dcterm>
                  <am:dataciteproperty>resourceType</am:dataciteproperty>
                </xs:appinfo>           
@@ -54,8 +54,8 @@
          <xs:element name="title" type="xs:string">
             <xs:annotation>
                <xs:appinfo>
-                 <label>Database's Full Name: </label>
-                 <tooltip>The full name given to the database</tooltip>
+                 <label>Dataset's Full Name: </label>
+                 <tooltip>The full name given to the dataset</tooltip>
                  <am:dcterm>Title</am:dcterm>
                  <am:dataciteproperty>Title</am:dataciteproperty>
                </xs:appinfo>           
@@ -70,7 +70,7 @@
             <xs:annotation>
                <xs:appinfo>
                  <label>Subtitle: </label>
-                 <tooltip>A secondary title for the database (e.g. Standard Reference Data #27)</tooltip>
+                 <tooltip>A secondary title for the dataset (e.g. Standard Reference Data #27)</tooltip>
                  <am:dcterm>Title</am:dcterm>
                  <am:dataciteproperty>Title</am:dataciteproperty>
                </xs:appinfo>           
@@ -84,8 +84,8 @@
                      minOccurs="0" maxOccurs="unbounded">
             <xs:annotation>
                <xs:appinfo>
-                 <label>Database's Abbreviation: </label>
-                 <tooltip>The initials, acronym, or other abbreviation that the database is commonly known as</tooltip>
+                 <label>Dataset's Abbreviation: </label>
+                 <tooltip>The initials, acronym, or other abbreviation that the dataset is commonly known as</tooltip>
                  <placeholder>e.g. initials, acronym, etc.</placeholder>
                  <am:dcterm>Title</am:dcterm>
                  <am:dataciteproperty>Title</am:dataciteproperty>
@@ -100,7 +100,7 @@
             <xs:annotation>
               <xs:appinfo>
                 <label>Publishing Institution: </label>
-                <tooltip>Enter the name of the metrology institute that provides this database</tooltip>
+                <tooltip>Enter the name of the metrology institute that provides this dataset</tooltip>
                 <placholder>Metrology institute name</placholder>
                  <am:dcterm>Publisher</am:dcterm>
                  <am:dataciteproperty>publisher</am:dataciteproperty>
@@ -133,7 +133,7 @@
             <xs:annotation>
                <xs:appinfo>
                  <label>Publication Year: </label>
-                 <tooltip>The year the database first released.</tooltip>
+                 <tooltip>The year the dataset was first released.</tooltip>
                  <placeholder>Format: YYYY</placeholder>
                  <am:dataciteproperty>publicationYear</am:dataciteproperty>
                </xs:appinfo>           
@@ -207,7 +207,7 @@
                <xs:appinfo>
                  <label>Subject keyword: </label>
                  <placeholder>Enter a descriptive term; click the + to add additional keywords</placeholder>
-                 <tooltip>a descriptive term that this database relates to.  Choose terms that describe what measurements this database includes.</tooltip>
+                 <tooltip>a descriptive term that this dataset relates to.  Choose terms that describe what measurements this dataset includes.</tooltip>
                  <am:dcterm>Subject</am:dcterm>
                </xs:appinfo>           
                <xs:documentation>
@@ -222,7 +222,7 @@
                      ns0:_mod_mdcs_="/registry/description">
             <xs:annotation>
                <xs:appinfo>
-                 <label>Give a summary of the contents of the database and how users may access it: </label>
+                 <label>Give a summary of the contents of the dataset and how users may access it: </label>
                  <am:dcterm>Description</am:dcterm>
                  <am:datacite>description</am:datacite>
                </xs:appinfo>           
@@ -450,7 +450,7 @@
             <xs:annotation>
                <xs:appinfo>
                  <label>Institutional affiliation: </label>
-                 <tooltip>Add if different from the database's publisher</tooltip>
+                 <tooltip>Add if different from the dataset's publisher</tooltip>
                </xs:appinfo>
                <xs:documentation>
                   The person or entity's institutional affiliation at
@@ -464,7 +464,7 @@
                <xs:appinfo>
                  <label>ORCID identifier: http://orcid.org/</label>
                  <placeholder>Format: xxxx-xxxx-xxxx-xxxx</placeholder>
-                 <tooltip>Add if different from the database's publisher</tooltip>
+                 <tooltip>Add if different from the dataset's publisher</tooltip>
                </xs:appinfo>
                <xs:documentation>
                   The person or entity's identifier
@@ -531,7 +531,7 @@
                </xs:documentation>
             </xs:annotation>
          </xs:element>
-         
+
          <xs:element name="affiliation" minOccurs="0" maxOccurs="unbounded">
             <xs:annotation>
                <xs:documentation>
@@ -540,7 +540,7 @@
                </xs:documentation>
             </xs:annotation>
          </xs:element>
-
+         
          <xs:element name="identifier" type="xs:string" minOccurs="0">
             <xs:annotation>
                <xs:appinfo>
@@ -1236,7 +1236,7 @@
           </xs:annotation>
         </xs:element>
 
-        <xs:element name="licenseName" type="xs:string" minOccurs="0">
+        <xs:element name="licenseName" type="xs:token" minOccurs="0">
           <xs:annotation>
             <xs:appinfo>
               <label>License Name: </label>
@@ -1579,9 +1579,9 @@
            <xs:element name="url" type="xs:string">
              <xs:annotation>
                 <xs:appinfo>
-                  <label>Database home page URL: </label>
+                  <label>Dataset home page URL: </label>
                   <placeholder>http://...</placeholder>
-                  <tooltip>the primary URL where the database can be accessed.</tooltip>
+                  <tooltip>the primary URL where the dataset can be accessed.</tooltip>
                 </xs:appinfo>
              </xs:annotation>
            </xs:element>

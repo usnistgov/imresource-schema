@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <imr:Resource xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
               xmlns:imr="http://schema.bipm.org/xml/imres/nmrr/database/1.0wd"
-              localid="####.1">
+              localid="####.1" status="active">
           
    <resourceType>Dataset: Database</resourceType>
 

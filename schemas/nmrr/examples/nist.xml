@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <imr:Resource xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
               xmlns:imr="http://schema.bipm.org/xml/imres/nmrr/nmi/1.0wd"
-              localid="####">
+              localid="####" status="active">
           
    <resourceType>Organization: Metrology Institute</resourceType>
    <title>US National Institute of Standards and Technology</title>

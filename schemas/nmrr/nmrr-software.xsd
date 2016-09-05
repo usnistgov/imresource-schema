@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema targetNamespace="http://schema.bipm.org/xml/imres/nmrr/database/1.0wd" 
+<xs:schema targetNamespace="http://schema.bipm.org/xml/imres/nmrr/software/1.0wd" 
            xmlns:xs="http://www.w3.org/2001/XMLSchema" 
-           xmlns:imr="http://schema.bipm.org/xml/imres/nmrr/database/1.0wd" 
+           xmlns:imr="http://schema.bipm.org/xml/imres/nmrr/software/1.0wd" 
            xmlns:am="http://schema.nist.gov/xml/nmrr.schema.annot" 
            elementFormDefault="unqualified" 
            attributeFormDefault="unqualified" version="0.1">
@@ -17,10 +17,10 @@
       </xs:documentation>
    </xs:annotation>
 
-   <xs:element name="Resource" type="imr:Database">
+   <xs:element name="Resource" type="imr:Software">
       <xs:annotation>
          <xs:appinfo>
-           <label>Resource: a Database</label>
+           <label>Software</label>
          </xs:appinfo>
          <xs:documentation>
            a root element for describing a registered resource 
@@ -28,20 +28,20 @@
       </xs:annotation>
    </xs:element>
 
-   <xs:complexType name="Database">
+   <xs:complexType name="Software">
       <xs:annotation>
          <xs:documentation>
-           a Resource description with resourceType fixed to Other: Organization
+           a Resource description with resourceType fixed to Software
          </xs:documentation>
       </xs:annotation>
 
       <xs:sequence>
          <xs:element name="resourceType" type="xs:string"
-                     default="Dataset: Database">
+                     default="Software">
             <xs:annotation>
                <xs:appinfo>
            <label>Resource Type (do not edit): </label>
-           <tooltip>This identifies this record as a Database resource</tooltip>
+           <tooltip>This identifies this record as a Software resource</tooltip>
                  <am:dcterm>Type</am:dcterm>
                  <am:dataciteproperty>resourceType</am:dataciteproperty>
                </xs:appinfo>           
@@ -54,8 +54,8 @@
          <xs:element name="title" type="xs:string">
             <xs:annotation>
                <xs:appinfo>
-                 <label>Database's Full Name: </label>
-                 <tooltip>The full name given to the database</tooltip>
+                 <label>Software's Full Name: </label>
+                 <tooltip>The full name given to the software</tooltip>
                  <am:dcterm>Title</am:dcterm>
                  <am:dataciteproperty>Title</am:dataciteproperty>
                </xs:appinfo>           
@@ -70,7 +70,7 @@
             <xs:annotation>
                <xs:appinfo>
                  <label>Subtitle: </label>
-                 <tooltip>A secondary title for the database (e.g. Standard Reference Data #27)</tooltip>
+                 <tooltip>A secondary title for the software</tooltip>
                  <am:dcterm>Title</am:dcterm>
                  <am:dataciteproperty>Title</am:dataciteproperty>
                </xs:appinfo>           
@@ -84,8 +84,8 @@
                      minOccurs="0" maxOccurs="unbounded">
             <xs:annotation>
                <xs:appinfo>
-                 <label>Database's Abbreviation: </label>
-                 <tooltip>The initials, acronym, or other abbreviation that the database is commonly known as</tooltip>
+                 <label>Software's Abbreviation: </label>
+                 <tooltip>The initials, acronym, or other abbreviation that the software is commonly known as</tooltip>
                  <placeholder>e.g. initials, acronym, etc.</placeholder>
                  <am:dcterm>Title</am:dcterm>
                  <am:dataciteproperty>Title</am:dataciteproperty>
@@ -100,7 +100,7 @@
             <xs:annotation>
               <xs:appinfo>
                 <label>Publishing Institution: </label>
-                <tooltip>Enter the name of the metrology institute that provides this database</tooltip>
+                <tooltip>Enter the name of the metrology institute that provides this software</tooltip>
                 <placholder>Metrology institute name</placholder>
                  <am:dcterm>Publisher</am:dcterm>
                  <am:dataciteproperty>publisher</am:dataciteproperty>
@@ -129,11 +129,11 @@
             </xs:annotation>
          </xs:element>
 
-         <xs:element name="publicationYear" type="xs:string" minOccurs="0">
+         <xs:element name="publicationYear" type="xs:string">
             <xs:annotation>
                <xs:appinfo>
                  <label>Publication Year: </label>
-                 <tooltip>The year the database first released.</tooltip>
+                 <tooltip>The year the software first released.</tooltip>
                  <placeholder>Format: YYYY</placeholder>
                  <am:dataciteproperty>publicationYear</am:dataciteproperty>
                </xs:appinfo>           
@@ -207,7 +207,7 @@
                <xs:appinfo>
                  <label>Subject keyword: </label>
                  <placeholder>Enter a descriptive term; click the + to add additional keywords</placeholder>
-                 <tooltip>a descriptive term that this database relates to.  Choose terms that describe what measurements this database includes.</tooltip>
+                 <tooltip>a descriptive term that this software relates to.  Choose terms that describe what calculations this software produces.</tooltip>
                  <am:dcterm>Subject</am:dcterm>
                </xs:appinfo>           
                <xs:documentation>
@@ -222,7 +222,7 @@
                      ns0:_mod_mdcs_="/registry/description">
             <xs:annotation>
                <xs:appinfo>
-                 <label>Give a summary of the contents of the database and how users may access it: </label>
+                 <label>Give a summary of what the software does and how users may access it: </label>
                  <am:dcterm>Description</am:dcterm>
                  <am:datacite>description</am:datacite>
                </xs:appinfo>           
@@ -266,9 +266,30 @@
              </xs:annotation>
            </xs:element>
 
+           <xs:element name="supportedOS" type="imr:OSNames"
+                       minOccurs="0" maxOccurs="unbounded">
+              <xs:annotation>
+                 <xs:appinfo>
+                   <label>Supported Operating Systems</label>
+                 </xs:appinfo>
+                 <xs:documentation>
+                   The operating system or platform that software is capable
+                   of running on.  
+                 </xs:documentation>
+              </xs:annotation>
+           </xs:element>
 
-
-         
+           <xs:element name="sourceAvailable" type="imr:Boolean" minOccurs="0">
+              <xs:annotation>
+                 <xs:appinfo>
+                   <label>Is the source code available? </label>
+                   <tooltip>Select "true" if the software's source code is available</tooltip>
+                 </xs:appinfo>
+                 <xs:documentation>
+                   A flag indicating whether the source code is available.
+                 </xs:documentation>
+              </xs:annotation>
+           </xs:element>
 
       </xs:sequence>
 
@@ -450,7 +471,7 @@
             <xs:annotation>
                <xs:appinfo>
                  <label>Institutional affiliation: </label>
-                 <tooltip>Add if different from the database's publisher</tooltip>
+                 <tooltip>Add if different from the software's publisher</tooltip>
                </xs:appinfo>
                <xs:documentation>
                   The person or entity's institutional affiliation at
@@ -464,7 +485,7 @@
                <xs:appinfo>
                  <label>ORCID identifier: http://orcid.org/</label>
                  <placeholder>Format: xxxx-xxxx-xxxx-xxxx</placeholder>
-                 <tooltip>Add if different from the database's publisher</tooltip>
+                 <tooltip>Add if different from the software's publisher</tooltip>
                </xs:appinfo>
                <xs:documentation>
                   The person or entity's identifier
@@ -1270,7 +1291,7 @@
                     minOccurs="0" maxOccurs="3">
           <xs:annotation>
             <xs:appinfo>
-              <label>Available data access method: </label>
+              <label>Method for obtaining the software: </label>
               <am:dcterm>Rights</am:dcterm>
             </xs:appinfo>           
             <xs:documentation>
@@ -1350,44 +1371,6 @@
 
    </xs:complexType>
    
-   <xs:complexType name="ServiceAPI">
-      <xs:annotation>
-         <xs:documentation>
-           a container for information on accessing the data via a service API
-         </xs:documentation>
-      </xs:annotation>
-
-     <xs:complexContent>
-       <xs:extension base="imr:AccessVia">
-         <xs:sequence>
-
-            <xs:element name="description" type="xs:string" minOccurs="0">
-              <xs:annotation>
-                <xs:appinfo>
-                  <label>Summary: </label>
-                  <tooltip>Enter a brief summary of what the API provides.</tooltip>
-                </xs:appinfo>
-              </xs:annotation>
-            </xs:element>
-            
-           <xs:element name="documentationURL" type="xs:anyURI" minOccurs="0">
-              <xs:annotation>
-                <xs:appinfo>
-                  <label>URL to service documentation: </label>
-                  <tooltip>Enter a URL of a human-readable description of how to use the service.</tooltip>
-                  <placeholder>http://...</placeholder>
-                </xs:appinfo>
-                 <xs:documentation>
-                   The URL to a web page that describes how to use the service.  
-                 </xs:documentation>
-             </xs:annotation>
-           </xs:element>
-         </xs:sequence>
-       </xs:extension>
-     </xs:complexContent>
-
-   </xs:complexType>
-
    <xs:complexType name="Media">
       <xs:annotation>
          <xs:documentation>
@@ -1579,9 +1562,9 @@
            <xs:element name="url" type="xs:string">
              <xs:annotation>
                 <xs:appinfo>
-                  <label>Database home page URL: </label>
+                  <label>Software home page URL: </label>
                   <placeholder>http://...</placeholder>
-                  <tooltip>the primary URL where the database can be accessed.</tooltip>
+                  <tooltip>the primary URL where the software is described and accessed.</tooltip>
                 </xs:appinfo>
              </xs:annotation>
            </xs:element>
@@ -1590,7 +1573,51 @@
      </xs:complexContent>
    </xs:complexType>
 
-   
+   <xs:simpleType name="OSNames">
+      <xs:restriction base="xs:string">
+         <xs:enumeration value="Windows">
+            <xs:annotation>
+               <xs:documentation>
+               </xs:documentation>
+            </xs:annotation>
+         </xs:enumeration>
+         <xs:enumeration value="Linux">
+            <xs:annotation>
+               <xs:documentation>
+               </xs:documentation>
+            </xs:annotation>
+         </xs:enumeration>
+         <xs:enumeration value="MacOS">
+            <xs:annotation>
+               <xs:documentation>
+               </xs:documentation>
+            </xs:annotation>
+         </xs:enumeration>
+      </xs:restriction>
+   </xs:simpleType>
+
+   <xs:simpleType name="Boolean">
+      <xs:restriction base="xs:string">
+         <xs:enumeration value="true">
+            <xs:annotation>
+               <xs:documentation>
+               </xs:documentation>
+            </xs:annotation>
+         </xs:enumeration>
+         <xs:enumeration value="false">
+            <xs:annotation>
+               <xs:documentation>
+               </xs:documentation>
+            </xs:annotation>
+         </xs:enumeration>
+         <xs:enumeration value="MacOS">
+            <xs:annotation>
+               <xs:documentation>
+               </xs:documentation>
+            </xs:annotation>
+         </xs:enumeration>
+      </xs:restriction>
+   </xs:simpleType>
 
 </xs:schema>
 
