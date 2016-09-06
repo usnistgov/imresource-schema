@@ -1215,7 +1215,17 @@
 
       <xs:sequence>
 
-        <xs:element name="propertyClass" type="imr:PropertyClass"
+         <xs:element name="applicationArea" type="imr:AppArea" 
+                     minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+               <xs:documentation>
+                 primary field or discipline that these measurements
+                 are intended to support.
+               </xs:documentation>
+            </xs:annotation>
+         </xs:element>
+
+         <xs:element name="propertyClass" type="imr:PropertyClass"
                     minOccurs="0" maxOccurs="unbounded">
             <xs:annotation>
                <xs:appinfo>
@@ -1227,22 +1237,148 @@
             </xs:annotation>
          </xs:element>
          
-         <xs:element name="substance" type="xs:string"
+         <xs:element name="propertyName" type="xs:token"
                      minOccurs="0" maxOccurs="unbounded">
             <xs:annotation>
-               <xs:appinfo>
-                 <label>Substance (or constituent) sampled or addressed: </label>
-                 <tooltip>Provide </tooltip>
-               </xs:appinfo>
                <xs:documentation>
-                 a substance or substance constituent that was sampled,
-                 measured, or addressed in this data.
+                  the name of a property measured or calculated
+               </xs:documentation>
+               <xs:documentation>
+                  This should be drawn, when possible, from ISO 80000.  
+               </xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         
+         <xs:element name="dataCollectionMethod" type="imr:DataCollectionMethod"
+                     minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+               <xs:documentation>
+                  the name of a property measured or calculated
+               </xs:documentation>
+               <xs:documentation>
+                  This should be drawn, when possible, from ISO
+                  80000.  
+               </xs:documentation>
+            </xs:annotation>
+         </xs:element>
+
+         <xs:element name="materialType" type="imr:MaterialType"
+                     minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+               <xs:documentation>
+                  the category of material sampled.
+               </xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         
+         <xs:element name="materialName" type="imr:MaterialName"
+                     minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+               <xs:documentation>
+                  the name of material measured.
+               </xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         
+         <xs:element name="supplier" type="xs:token"
+                     minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+               <xs:documentation>
+                  the name of the commercial, academic, or governmental body
+                  that provided the material measured.  
+               </xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         
+         <xs:element name="chemicalConstituent" type="xs:token"
+                     minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+               <xs:documentation>
+                 A key chemical constituent of the material measured.
                </xs:documentation>
             </xs:annotation>
          </xs:element>
          
       </xs:sequence>
    </xs:complexType>
+
+   <xs:simpleType name="AppArea">
+     <xs:annotation>
+       <xs:documentation>
+         allowed values representing categories of material physical properties
+       </xs:documentation>
+     </xs:annotation>
+     <xs:restriction base="xs:token">
+       <xs:enumeration value="manufacturing/engineering">
+         <xs:annotation>
+           <xs:documentation>
+             related to design and manufacturing of (non-pharmaceutical) 
+             products
+           </xs:documentation>
+         </xs:annotation>
+       </xs:enumeration>
+
+       <xs:enumeration value="medical">
+         <xs:annotation>
+           <xs:documentation>
+             related to medical and health research and treatments
+           </xs:documentation>
+         </xs:annotation>
+       </xs:enumeration>
+
+       <xs:enumeration value="pharmaceutical">
+         <xs:annotation>
+           <xs:documentation>
+             related specifically to the design or manufacturing of drugs.
+           </xs:documentation>
+         </xs:annotation>
+       </xs:enumeration>
+
+       <xs:enumeration value="forensics">
+         <xs:annotation>
+           <xs:documentation>
+             related to tests or techniques used to detect evidence of crime
+           </xs:documentation>
+         </xs:annotation>
+       </xs:enumeration>
+
+       <xs:enumeration value="fundemental physics">
+         <xs:annotation>
+           <xs:documentation>
+             related to quantities characterizing fundemental physics 
+           </xs:documentation>
+         </xs:annotation>
+       </xs:enumeration>
+
+       <xs:enumeration value="research">
+         <xs:annotation>
+           <xs:documentation>
+             related to pure research applications outside the context
+             of manufacturing.
+           </xs:documentation>
+         </xs:annotation>
+       </xs:enumeration>
+
+       <xs:enumeration value="metrology standards">
+         <xs:annotation>
+           <xs:documentation>
+             related to quanities, concepts, or processes important
+             for establishing metrology standards.
+           </xs:documentation>
+         </xs:annotation>
+       </xs:enumeration>
+
+       <xs:enumeration value="other">
+         <xs:annotation>
+           <xs:documentation>
+             related to an application area that is not sufficiently
+             covered by the other defined areas.  
+           </xs:documentation>
+         </xs:annotation>
+       </xs:enumeration>
+
+     </xs:restriction>
+   </xs:simpleType>
 
    <xs:simpleType name="PropertyClass">
      <xs:annotation>
@@ -1324,6 +1460,159 @@
        </xs:enumeration>
      </xs:restriction>
    </xs:simpleType>
+
+   <xs:simpleType name="DataCollectionMethod">
+     <xs:annotation>
+       <xs:documentation>
+         allowed values representing categories of material physical properties
+       </xs:documentation>
+     </xs:annotation>
+     <xs:restriction base="xs:token">
+       <xs:enumeration value="experimental">
+         <xs:annotation>
+           <xs:documentation>
+             data acquired by a measurement process where the device under 
+             test and the measurement variables and (ambient) parameters are 
+             under the control/supervision of investigators and all conditions 
+             are reproducible.
+           </xs:documentation>
+         </xs:annotation>
+       </xs:enumeration>
+
+       <xs:enumeration value="observational">
+         <xs:annotation>
+           <xs:documentation>
+             data acquired by a measurement process where the subject under 
+             measurement is not under control of the investigator and thus
+             its properties are measured under the subject's natural 
+             conditions. 
+           </xs:documentation>
+           <xs:documentation>
+             Examples include climate, geophysical, and astronomical data. 
+           </xs:documentation>
+         </xs:annotation>
+       </xs:enumeration>
+
+       <xs:enumeration value="simulated">
+         <xs:annotation>
+           <xs:documentation>
+             data acquired through computational methods.
+           </xs:documentation>
+         </xs:annotation>
+       </xs:enumeration>
+     </xs:restriction>
+   </xs:simpleType>
+
+   <xs:simpleType name="dataStatus">
+     <xs:annotation>
+       <xs:documentation>
+         allowed values representing categories of material physical properties
+       </xs:documentation>
+     </xs:annotation>
+     <xs:restriction base="xs:token">
+       <xs:enumeration value="standard reference">
+         <xs:annotation>
+           <xs:documentation>
+             The data presented should considered standard reference data 
+             according to the definition given by the VIM3; i.e. it has been
+             critically evaluated and issued by a recognized authority.
+           </xs:documentation>
+         </xs:annotation>
+       </xs:enumeration>
+
+       <xs:enumeration value="prenormative">
+         <xs:annotation>
+           <xs:documentation>
+             The data presented is preliminary data provided as part of the 
+             development of a standard but which does not meet the definition
+             of reference data.  
+           </xs:documentation>
+         </xs:annotation>
+       </xs:enumeration>
+
+     </xs:restriction>
+   </xs:simpleType>
+
+   <xs:simpleType name="MaterialType">
+     <xs:annotation>
+       <xs:documentation>
+         allowed values representing categories of material physical properties
+       </xs:documentation>
+     </xs:annotation>
+     <xs:restriction base="xs:token">
+       <xs:pattern value="organic">
+         <xs:annotation>
+           <xs:documentation>
+             indicating an organic (carbon-based) material
+           </xs:documentation>
+         </xs:annotation>
+       </xs:pattern>
+       <xs:pattern value="organic: .*">
+         <xs:annotation>
+           <xs:documentation>
+             indicating a specific subtype of an organic (i.e. carbon-based) 
+             material.
+           </xs:documentation>
+         </xs:annotation>
+       </xs:pattern>
+
+       <xs:pattern value="inorganic">
+         <xs:annotation>
+           <xs:documentation>
+             indicating an inorganic (i.e. carbon-less) material
+           </xs:documentation>
+         </xs:annotation>
+       </xs:pattern>
+       <xs:pattern value="inorganic: +.*">
+         <xs:annotation>
+           <xs:documentation>
+             indicating a specific subtype of an organic (carbon-based) 
+             material.
+           </xs:documentation>
+         </xs:annotation>
+       </xs:pattern>
+
+       <xs:pattern value="biological">
+         <xs:annotation>
+           <xs:documentation>
+             indicating material extrated or derived from plants or animals.
+           </xs:documentation>
+         </xs:annotation>
+       </xs:pattern>
+       <xs:pattern value="biological: .*">
+         <xs:annotation>
+           <xs:documentation>
+             indicating a specific subtype of an organic (carbon-based) 
+             material.
+           </xs:documentation>
+         </xs:annotation>
+       </xs:pattern>
+
+     </xs:restriction>
+   </xs:simpleType>
+
+   <xs:complexType name="MaterialName">
+      <xs:annotation>
+         <xs:documentation>
+           A name or title by which the material is known.
+         </xs:documentation>
+      </xs:annotation>
+
+      <xs:simpleContent>
+         <xs:extension base="imr:nonemptycontentStringType">
+ 	    <xs:attribute name="type" type="imr:MaterialNameType" use="required">
+               <xs:annotation>
+                  <xs:documentation>
+                    The type of material name; either "technical" (indicating
+                    a technical, e.g. chemical, name for the material) or 
+                    "trade" (indicating a product name given by a supplier).
+                  </xs:documentation>
+               </xs:annotation>
+ 	    </xs:attribute>      
+         </xs:extension>
+      </xs:simpleContent>
+
+   </xs:complexType>
 
    <xs:complexType name="AccessTerms">
       <xs:annotation>
