@@ -78,8 +78,15 @@
    <publicationYear> 2014 </publicationYear>
 
    <measures>
+     <dataStatus>standard reference</dataStatus>
+     <applicationArea>fundemental physics</applicationArea>
      <propertyClass>optical</propertyClass>
      <propertyClass>chemical</propertyClass>
+     <propertyName>transition wavelength</propertyName>
+     <propertyName>ionization energy</propertyName>
+     <dataCollectionMethod>experimental</dataCollectionMethod>
+     <qualityMetric>characterized uncertainties</qualityMetric>
+     <qualityMetric>critical literature review</qualityMetric>
    </measures>
    
    <access>

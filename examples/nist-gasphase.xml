@@ -70,10 +70,14 @@
    <publicationYear> 2014 </publicationYear>
 
    <measures>
+     <dataStatus>standard reference</dataStatus>
+     <applicationArea>fundemental physics</applicationArea>
      <propertyClass>optical</propertyClass>
-     <substance>C</substance>
-     <substance>H</substance>
-     <substance>O</substance>
+     <dataCollectionMethod>experimental</dataCollectionMethod>
+     <chemicalConstituent>C</chemicalConstituent>
+     <chemicalConstituent>H</chemicalConstituent>
+     <chemicalConstituent>O</chemicalConstituent>
+     <qualityMetric>characterized uncertainties</qualityMetric>
    </measures>
    
    <access>
