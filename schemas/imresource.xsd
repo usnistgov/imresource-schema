@@ -1215,7 +1215,7 @@
 
       <xs:sequence>
 
-         <xs:element name="dataStatus" type="xs:token">
+         <xs:element name="dataStatus" type="imr:DataStatus">
             <xs:annotation>
                <xs:documentation>
                  an indication of whether this data is provided as standard
@@ -1234,7 +1234,7 @@
             </xs:annotation>
          </xs:element>
 
-         <xs:element name="propertyClass" type="imr:PropertyClass"
+         <xs:element name="propertyType" type="imr:PropertyType"
                     minOccurs="0" maxOccurs="unbounded">
             <xs:annotation>
                <xs:appinfo>
@@ -1399,7 +1399,7 @@
      </xs:restriction>
    </xs:simpleType>
 
-   <xs:simpleType name="PropertyClass">
+   <xs:simpleType name="PropertyType">
      <xs:annotation>
        <xs:documentation>
          allowed values representing categories of material physical properties
@@ -1440,15 +1440,6 @@
            <xs:documentation>
              properties describing the relative locations of a material's 
              constituent atoms or molecules. 
-           </xs:documentation>
-         </xs:annotation>
-       </xs:enumeration>
-
-       <xs:enumeration value="simulated">
-         <xs:annotation>
-           <xs:documentation>
-             a property or parameter describing a material's state as calculated
-             in a computational simulation.
            </xs:documentation>
          </xs:annotation>
        </xs:enumeration>
