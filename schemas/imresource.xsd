@@ -1308,7 +1308,7 @@
             </xs:annotation>
          </xs:element>
          
-         <xs:element name="qualityMetric" type="xs:token"
+         <xs:element name="qualityMetric" type="imr:QualityMetric"
                      minOccurs="0" maxOccurs="7">
             <xs:annotation>
                <xs:documentation>
