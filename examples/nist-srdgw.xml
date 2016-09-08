@@ -42,15 +42,6 @@
 
    <publisher>US National Institute of Standards and Technology (NIST)</publisher>
    <publicationYear>2001</publicationYear>
-   <measures>
-     <propertyClass>optical</propertyClass>
-     <propertyClass>mechanical</propertyClass>
-     <propertyClass>structural</propertyClass>
-     <propertyClass>thermal</propertyClass>
-     <propertyClass>structural</propertyClass>
-     <propertyClass>simulated</propertyClass>
-     <propertyClass>chemical</propertyClass>
-   </measures>
    
    <access>
      <rights>public</rights>

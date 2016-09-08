@@ -7,7 +7,7 @@
    <resourceType>Dataset: Database</resourceType>
 
    <title>NIST Thermophysical Properties of Hydrocarbon Mixtures Database</title>
-   <altTitle type="Subtitle">NIST Standard Reference Database #4</altTitle>
+   <altTitle type="Subtitle">NIST Standard Reference Data #4</altTitle>
    <altTitle type="Abbreviation">SRD#4</altTitle>
    <identifier type="DOI">10.18434/T4CC76</identifier>
    <homeURL>http://dx.doi.org/10.18434/T4CC76</homeURL>
@@ -62,9 +62,12 @@
    <publicationYear>1990</publicationYear>
 
    <measures>
-     <propertyClass>transport</propertyClass>
-     <propertyClass>thermal</propertyClass>
-     <propertyClass>mechanical</propertyClass>
+     <dataStatus>standard reference</dataStatus>
+     <applicationArea>manufacturing/engineering</applicationArea>
+     <propertyType>transport</propertyType>
+     <propertyType>thermal</propertyType>
+     <propertyType>mechanical</propertyType>
+     <dataCollectionMethod>experimental</dataCollectionMethod>
    </measures>
 
    <access>

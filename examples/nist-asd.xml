@@ -80,8 +80,8 @@
    <measures>
      <dataStatus>standard reference</dataStatus>
      <applicationArea>fundemental physics</applicationArea>
-     <propertyClass>optical</propertyClass>
-     <propertyClass>chemical</propertyClass>
+     <propertyType>optical</propertyType>
+     <propertyType>chemical</propertyType>
      <propertyName>transition wavelength</propertyName>
      <propertyName>ionization energy</propertyName>
      <dataCollectionMethod>experimental</dataCollectionMethod>

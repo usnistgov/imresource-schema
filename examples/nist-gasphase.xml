@@ -72,7 +72,7 @@
    <measures>
      <dataStatus>standard reference</dataStatus>
      <applicationArea>fundemental physics</applicationArea>
-     <propertyClass>optical</propertyClass>
+     <propertyType>optical</propertyType>
      <dataCollectionMethod>experimental</dataCollectionMethod>
      <chemicalConstituent>C</chemicalConstituent>
      <chemicalConstituent>H</chemicalConstituent>
