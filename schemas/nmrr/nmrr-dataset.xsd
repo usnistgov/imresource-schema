@@ -1535,7 +1535,7 @@
        </xs:documentation>
      </xs:annotation>
      <xs:sequence>
-       <xs:element name="calibratedEquipment">
+       <xs:element name="calibratedEquipment" type="imr:YesNo">
           <xs:annotation>
             <xs:appInfo>
               <label>Did the measurements make use of equpment set with standard calibrations, traceable to recognized primary standards and SI units? </label>
@@ -1543,7 +1543,7 @@
           </xs:annotation>
        </xs:element>
 
-       <xs:element name="standardMethods">
+       <xs:element name="standardMethods" type="imr:YesNo">
           <xs:annotation>
             <xs:appInfo>
               <label>Was a recognized standard method used to obtain the measurements? </label>
@@ -1551,7 +1551,7 @@
           </xs:annotation>
        </xs:element>
 
-       <xs:element name="characterizedUncertainties">
+       <xs:element name="characterizedUncertainties" type="imr:YesNo">
          <xs:annotation>
             <xs:appInfo>
               <label>Do the reported values include a full GUM-based characterization of uncertainties? </label>
@@ -1559,7 +1559,7 @@
          </xs:annotation>
        </xs:element>
 
-       <xs:element name="multisiteMeasurements">
+       <xs:element name="multisiteMeasurements" type="imr:YesNo">
          <xs:annotation>
             <xs:appInfo>
               <label>Are the reported values based on multi-site (e.g. round-robin) measurements? </label>
@@ -1567,57 +1567,56 @@
          </xs:annotation>
        </xs:element>
 
-       <xs:element name="sampleStability">
+       <xs:element name="sampleStability" type="imr:YesNo">
          <xs:annotation>
             <xs:appInfo>
               <label>Are the reported values accompanied by a description of the stability and/or maturity of the the samples measured? </label>
             </xs:appInfo>
          </xs:annotation>
        </xs:element>
+
+       <xs:element name="referenceMaterials" type="imr:YesNo">
+         <xs:annotation>
+            <xs:appInfo>
+              <label>Were the measurements conducted on certified reference materials (as defined by VIM3)? </label>
+            </xs:appInfo>
+         </xs:annotation>
+       </xs:element>
+
+       <xs:element name="reviewAndCertification" type="imr:YesNo">
+         <xs:annotation>
+            <xs:appInfo>
+              <label>Are the reported values accompanied by documentation of certification, a review report, or a reference to a peer-reviewed open-access paper describing the quality of the data? </label>
+            </xs:appInfo>
+         </xs:annotation>
+       </xs:element>
+
+       <xs:element name="criticalLiteratureReview" type="imr:YesNo">
+         <xs:annotation>
+            <xs:appInfo>
+              <label>Are the reported values compiled through a critical review of values reported in the peer-reviewed literature? </label>
+            </xs:appInfo>
+         </xs:annotation>
+       </xs:element>
      </xs:sequence>
+
+   </xs:complexType>
+
+   <xs:simpleType name="YesNo">
+      <xs:annotation>
+         <xs:documentation>
+           a controlled value of Yes or No
+         </xs:documentation>
+      </xs:annotation>
 
      <xs:restriction base="xs:token">
 
-       <xs:enumeration value="">
-         <xs:annotation>
-           <xs:documentation>
-             
-           </xs:documentation>
-         </xs:annotation>
-       </xs:enumeration>
-
-       <xs:enumeration value="reference materials">
-         <xs:annotation>
-           <xs:documentation>
-             The measurements were conducted on certified reference materials
-             (as defined by VIM3).  
-           </xs:documentation>
-         </xs:annotation>
-       </xs:enumeration>
-
-       <xs:enumeration value="review and certification">
-         <xs:annotation>
-           <xs:documentation>
-             The reported values are accompanied by documentation of
-             certification, a review report, or a reference to a peer-reviewed
-             open-access paper describing the quality of the data.  
-           </xs:documentation>
-         </xs:annotation>
-       </xs:enumeration>
-
-       <xs:enumeration value="critical literature review">
-         <xs:annotation>
-           <xs:documentation>
-             The reported values are compiled through a critical review of
-             values reported in the peer-reviewed literature; values are
-             accompanied by citations to sources from which the values are
-             drawn.
-           </xs:documentation>
-         </xs:annotation>
-       </xs:enumeration>
+       <xs:enumeration value="No (or Don't Know)"/>
+       <xs:enumeration value="Yes"/>
 
      </xs:restriction>
-   </xs:complexType>
+      
+   </xs:simpleType>
 
    <xs:complexType name="Access">
       <xs:annotation>
