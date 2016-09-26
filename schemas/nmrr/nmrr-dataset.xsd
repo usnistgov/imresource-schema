@@ -1101,19 +1101,6 @@
 
       <xs:sequence>
 
-         <xs:element name="dataStatus" type="imr:DataStatus">
-            <xs:annotation>
-               <xs:appinfo>
-                 <label>Status of the data: </label>
-                 <tooltip>Should this data be considered standard reference data?</tooltip>
-               </xs:appinfo>
-               <xs:documentation>
-                 an indication of whether this data is provided as standard
-                 reference data or as some preliminary stage data.  
-               </xs:documentation>
-            </xs:annotation>
-         </xs:element>
-        
          <xs:element name="applicationArea" type="imr:AppArea" 
                      minOccurs="0" maxOccurs="unbounded">
             <xs:annotation>
@@ -1186,8 +1173,13 @@
          </xs:element>
          
          <xs:element name="materialName" type="imr:MaterialName"
-                     minOccurs="0" maxOccurs="unbounded">
+                     minOccurs="0" maxOccurs="1">
             <xs:annotation>
+               <xs:appinfo>
+                 <label>Material Name: </label>
+                 <tooltip>Provide a technical or trade name for the material.  Click + to add additional names</tooltip>
+                 <placeholder>Enter technical or trade name...</placeholder>
+               </xs:appinfo>
                <xs:documentation>
                   the name of material measured.
                </xs:documentation>
@@ -1197,6 +1189,10 @@
          <xs:element name="supplier" type="xs:string"
                      minOccurs="0" maxOccurs="unbounded">
             <xs:annotation>
+               <xs:appinfo>
+                 <label>Commercial or institutional suppplier of material studied: </label>
+                 <tooltip>Provide the name of the commercial, academic or govermental body that provided the material measured.</tooltip>
+               </xs:appinfo>
                <xs:documentation>
                   the name of the commercial, academic, or governmental body
                   that provided the material measured.  
@@ -1210,6 +1206,7 @@
                <xs:appinfo>
                  <label>Key chemical constituent sampled or addressed: </label>
                  <tooltip>Click green plus to add multiple constituents; click red minus if this resource addresses many different chemicals.</tooltip>
+                 <placeholder>Enter a chemical name (element or molecule)...</placeholder>
                </xs:appinfo>
                <xs:documentation>
                  A key chemical constituent of the material measured.
@@ -1217,9 +1214,25 @@
             </xs:annotation>
          </xs:element>
          
-         <xs:element name="qualityMetric" type="imr:QualityMetric"
-                     minOccurs="0" maxOccurs="8">
+         <xs:element name="dataStatus" type="imr:DataStatus">
             <xs:annotation>
+               <xs:appinfo>
+                 <label>Status of the data: </label>
+                 <tooltip>Should this data be considered standard reference data?</tooltip>
+               </xs:appinfo>
+               <xs:documentation>
+                 an indication of whether this data is provided as standard
+                 reference data or as some preliminary stage data.  
+               </xs:documentation>
+            </xs:annotation>
+         </xs:element>
+        
+         <xs:element name="qualityMetric" type="imr:QualityMetric"
+                     minOccurs="1" maxOccurs="1">
+            <xs:annotation>
+               <xs:appinfo>
+                 <label>Quality Metrics: Please answer the following questions: </label>
+               </xs:appinfo>
                <xs:documentation>
                  a metrology practice employed to help ensure that the resulting
                  data is of good quality.  
@@ -1494,95 +1507,81 @@
          </xs:documentation>
       </xs:annotation>
 
-      <xs:simpleContent>
-         <xs:extension base="imr:nonemptycontentStringType">
- 	    <xs:attribute name="type" use="required">
-               <xs:annotation>
-                  <xs:documentation>
-                    The type of material name; either "technical" (indicating
-                    a technical, e.g. chemical, name for the material) or 
-                    "trade" (indicating a product name given by a supplier).
-                  </xs:documentation>
-               </xs:annotation>
+      <xs:sequence>
+        <xs:element name="technical" type="xs:string">
+          <xs:annotation>
+            <xs:appInfo>
+              <label>Technical Name</label>
+              <tooltip>Click + to add additional names</tooltip>
+            </xs:appInfo>
+          </xs:annotation>
+        </xs:element>          
 
-               <xs:simpleType>
-                 <xs:restriction base="xs:string">
-                   <xs:enumeration value="technical">
-                     <xs:annotation>
-                       <xs:documentation>
-                         The given name is a technical name (as opposed to a
-                         product name).  
-                       </xs:documentation>
-                     </xs:annotation>
-                   </xs:enumeration>
-
-                   <xs:enumeration value="trade">
-                     <xs:annotation>
-                       <xs:documentation>
-                         The name is a product name as given by the supplier
-                         of the material.  
-                       </xs:documentation>
-                     </xs:annotation>
-                   </xs:enumeration>
-
-                 </xs:restriction>
-               </xs:simpleType>
-
-               
- 	    </xs:attribute>      
-         </xs:extension>
-      </xs:simpleContent>
-
+        <xs:element name="trade" type="xs:string">
+          <xs:annotation>
+            <xs:appInfo>
+              <label>Trade Name</label>
+              <tooltip>Click + to add additional names</tooltip>
+            </xs:appInfo>
+          </xs:annotation>
+        </xs:element>          
+      </xs:sequence>
    </xs:complexType>
 
-   <xs:simpleType name="QualityMetric">
+   <xs:complexType name="QualityMetric">
      <xs:annotation>
        <xs:documentation>
          labels for specific quality metrics
        </xs:documentation>
      </xs:annotation>
+     <xs:sequence>
+       <xs:element name="calibratedEquipment">
+          <xs:annotation>
+            <xs:appInfo>
+              <label>Did the measurements make use of equpment set with standard calibrations, traceable to recognized primary standards and SI units? </label>
+            </xs:appInfo>
+          </xs:annotation>
+       </xs:element>
+
+       <xs:element name="standardMethods">
+          <xs:annotation>
+            <xs:appInfo>
+              <label>Was a recognized standard method used to obtain the measurements? </label>
+            </xs:appInfo>
+          </xs:annotation>
+       </xs:element>
+
+       <xs:element name="characterizedUncertainties">
+         <xs:annotation>
+            <xs:appInfo>
+              <label>Do the reported values include a full GUM-based characterization of uncertainties? </label>
+            </xs:appInfo>
+         </xs:annotation>
+       </xs:element>
+
+       <xs:element name="multisiteMeasurements">
+         <xs:annotation>
+            <xs:appInfo>
+              <label>Are the reported values based on multi-site (e.g. round-robin) measurements? </label>
+            </xs:appInfo>
+         </xs:annotation>
+       </xs:element>
+
+       <xs:element name="sampleStability">
+         <xs:annotation>
+            <xs:appInfo>
+              <label>Are the reported values accompanied by a description of the stability and/or maturity of the the samples measured? </label>
+            </xs:appInfo>
+         </xs:annotation>
+       </xs:element>
+     </xs:sequence>
+
      <xs:restriction base="xs:token">
-       <xs:enumeration value="calibrated equipment">
-         <xs:annotation>
-           <xs:documentation>
-             the measurements made using equipment set with standard
-             calibrations, traceable to recognized primary standards and SI
-             units.
-           </xs:documentation>
-         </xs:annotation>
-       </xs:enumeration>
 
-       <xs:enumeration value="standard methods">
+       <xs:enumeration value="">
          <xs:annotation>
            <xs:documentation>
-             A recognized standard method was used to obtain the measurements.
-           </xs:documentation>
-         </xs:annotation>
-       </xs:enumeration>
-
-       <xs:enumeration value="characterized uncertainties">
-         <xs:annotation>
-           <xs:documentation>
-             The reported values include a full GUM-based characterization of
-             uncertainties.
-           </xs:documentation>
-         </xs:annotation>
-       </xs:enumeration>
-
-       <xs:enumeration value="multi-site measurements">
-         <xs:annotation>
-           <xs:documentation>
-             The reported values are based on multi-site (e.g. round-robin)
-             measurements.
-           </xs:documentation>
-         </xs:annotation>
-       </xs:enumeration>
-
-       <xs:enumeration value="sample stability">
-         <xs:annotation>
-           <xs:documentation>
-             The reported values are accompanied by a description of the
-             stability and/or maturity of the the samples measured.  
+             
            </xs:documentation>
          </xs:annotation>
        </xs:enumeration>
@@ -1618,7 +1617,7 @@
        </xs:enumeration>
 
      </xs:restriction>
-   </xs:simpleType>
+   </xs:complexType>
 
    <xs:complexType name="Access">
       <xs:annotation>
