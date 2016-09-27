@@ -242,7 +242,7 @@
             </xs:annotation>
          </xs:element>
 
-           <xs:element name="measures" type="imr:Measures" minOccurs="0">
+           <xs:element name="measures" type="imr:Measures" minOccurs="1">
               <xs:annotation>
                <xs:appinfo>
                  <label>Metrology Information</label>
@@ -1508,21 +1508,23 @@
       </xs:annotation>
 
       <xs:sequence>
-        <xs:element name="technical" type="xs:string">
+        <xs:element name="technical" type="xs:string"
+                    minOccurs="0" maxOccurs="unbounded">
           <xs:annotation>
-            <xs:appInfo>
+            <xs:appinfo>
               <label>Technical Name</label>
               <tooltip>Click + to add additional names</tooltip>
-            </xs:appInfo>
+            </xs:appinfo>
           </xs:annotation>
         </xs:element>          
 
-        <xs:element name="trade" type="xs:string">
+        <xs:element name="trade" type="xs:string"
+                    minOccurs="0" maxOccurs="unbounded">
           <xs:annotation>
-            <xs:appInfo>
+            <xs:appinfo>
               <label>Trade Name</label>
               <tooltip>Click + to add additional names</tooltip>
-            </xs:appInfo>
+            </xs:appinfo>
           </xs:annotation>
         </xs:element>          
       </xs:sequence>
@@ -1535,67 +1537,75 @@
        </xs:documentation>
      </xs:annotation>
      <xs:sequence>
-       <xs:element name="calibratedEquipment" type="imr:YesNo">
+       <xs:element name="calibratedEquipment" type="imr:YesNo"
+                   minOccurs="1" maxOccurs="1" default="No (or Don't Know)">
           <xs:annotation>
-            <xs:appInfo>
+            <xs:appinfo>
               <label>Did the measurements make use of equpment set with standard calibrations, traceable to recognized primary standards and SI units? </label>
-            </xs:appInfo>
+            </xs:appinfo>
           </xs:annotation>
        </xs:element>
 
-       <xs:element name="standardMethods" type="imr:YesNo">
+       <xs:element name="standardMethods" type="imr:YesNo"
+                   minOccurs="1" maxOccurs="1" default="No (or Don't Know)">
           <xs:annotation>
-            <xs:appInfo>
+            <xs:appinfo>
               <label>Was a recognized standard method used to obtain the measurements? </label>
-            </xs:appInfo>
+            </xs:appinfo>
           </xs:annotation>
        </xs:element>
 
-       <xs:element name="characterizedUncertainties" type="imr:YesNo">
+       <xs:element name="characterizedUncertainties" type="imr:YesNo"
+                   minOccurs="1" maxOccurs="1" default="No (or Don't Know)">
          <xs:annotation>
-            <xs:appInfo>
+            <xs:appinfo>
               <label>Do the reported values include a full GUM-based characterization of uncertainties? </label>
-            </xs:appInfo>
+            </xs:appinfo>
          </xs:annotation>
        </xs:element>
 
-       <xs:element name="multisiteMeasurements" type="imr:YesNo">
+       <xs:element name="multisiteMeasurements" type="imr:YesNo"
+                   minOccurs="1" maxOccurs="1" default="No (or Don't Know)">
          <xs:annotation>
-            <xs:appInfo>
+            <xs:appinfo>
               <label>Are the reported values based on multi-site (e.g. round-robin) measurements? </label>
-            </xs:appInfo>
+            </xs:appinfo>
          </xs:annotation>
        </xs:element>
 
-       <xs:element name="sampleStability" type="imr:YesNo">
+       <xs:element name="sampleStability" type="imr:YesNo"
+                   minOccurs="1" maxOccurs="1" default="No (or Don't Know)">
          <xs:annotation>
-            <xs:appInfo>
+            <xs:appinfo>
               <label>Are the reported values accompanied by a description of the stability and/or maturity of the the samples measured? </label>
-            </xs:appInfo>
+            </xs:appinfo>
          </xs:annotation>
        </xs:element>
 
-       <xs:element name="referenceMaterials" type="imr:YesNo">
+       <xs:element name="referenceMaterials" type="imr:YesNo"
+                   minOccurs="1" maxOccurs="1" default="No (or Don't Know)">
          <xs:annotation>
-            <xs:appInfo>
+            <xs:appinfo>
               <label>Were the measurements conducted on certified reference materials (as defined by VIM3)? </label>
-            </xs:appInfo>
+            </xs:appinfo>
          </xs:annotation>
        </xs:element>
 
-       <xs:element name="reviewAndCertification" type="imr:YesNo">
+       <xs:element name="reviewAndCertification" type="imr:YesNo"
+                   minOccurs="1" maxOccurs="1" default="No (or Don't Know)">
          <xs:annotation>
-            <xs:appInfo>
+            <xs:appinfo>
               <label>Are the reported values accompanied by documentation of certification, a review report, or a reference to a peer-reviewed open-access paper describing the quality of the data? </label>
-            </xs:appInfo>
+            </xs:appinfo>
          </xs:annotation>
        </xs:element>
 
-       <xs:element name="criticalLiteratureReview" type="imr:YesNo">
+       <xs:element name="criticalLiteratureReview" type="imr:YesNo"
+                   minOccurs="1" maxOccurs="1" default="No (or Don't Know)">
          <xs:annotation>
-            <xs:appInfo>
+            <xs:appinfo>
               <label>Are the reported values compiled through a critical review of values reported in the peer-reviewed literature? </label>
-            </xs:appInfo>
+            </xs:appinfo>
          </xs:annotation>
        </xs:element>
      </xs:sequence>
