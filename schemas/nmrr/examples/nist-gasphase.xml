@@ -38,8 +38,6 @@
     <name>Hussein Zohdi</name>
     <affiliation>NIST</affiliation>
   </creator>
-  <subject>infrared spectra</subject>
-  <subject>vapor phase</subject>
   <description>
      This data collection contains 5,228 infrared spectra of different
      compounds along with chemical structures for most of them. Spectra are
@@ -61,8 +59,10 @@
      collection) have mass spectra included in the NIST/EPA/NIH Mass Spectral
      Database. 
    </description>
-  <measures>
-     <applicationArea>fundemental physics</applicationArea>
+   <subject>infrared spectra</subject>
+   <subject>vapor phase</subject>
+   <applicationArea>fundemental physics</applicationArea>
+   <measures>
      <propertyType>optical</propertyType>
      <dataCollectionMethod>experimental</dataCollectionMethod>
      <chemicalConstituent>C</chemicalConstituent>
@@ -70,16 +70,23 @@
      <chemicalConstituent>O</chemicalConstituent>
      <dataStatus>standard reference</dataStatus>
      <qualityMetric>
+       <calibratedEquipment>No (or Don't Know)</calibratedEquipment>
+       <standardMethods>No (or Don't Know)</standardMethods>
        <characterizedUncertainties>Yes</characterizedUncertainties>
+       <multisiteMeasurements>No (or Don't Know)</multisiteMeasurements>
+       <sampleStability>No (or Don't Know)</sampleStability>
+       <referenceMaterials>No (or Don't Know)</referenceMaterials>
+       <reviewAndCertification>No (or Don't Know)</reviewAndCertification>
+       <criticalLiteratureReview>No (or Don't Know)</criticalLiteratureReview>
      </qualityMetric>
-  </measures>
-  <access>
-    <rights>fee-required</rights>
-    <termsURL>http://www.nist.gov/open/license.cfm</termsURL>
-    <via xsi:type="imds:Media">
-      <mediaType>CD/CDROM</mediaType>
-      <requestURL>http://dx.doi.org/10.18434/T45K5N</requestURL>
-      <description>CDROM contains 5228 spectra in JCAMP-DX format</description>
-    </via>
-  </access>
+   </measures>
+   <access>
+     <rights>fee-required</rights>
+     <termsURL>http://www.nist.gov/open/license.cfm</termsURL>
+     <via xsi:type="imds:Media">
+       <mediaType>CD/CDROM</mediaType>
+       <requestURL>http://dx.doi.org/10.18434/T45K5N</requestURL>
+       <description>CDROM contains 5228 spectra in JCAMP-DX format</description>
+     </via>
+   </access>
 </imds:Resource>

@@ -185,11 +185,15 @@
           <xsl:with-param name="sp" select="concat($sp,$step)"/>
           <xsl:with-param name="step" select="$step"/>
         </xsl:apply-templates>
+        <xsl:apply-templates select="." mode="description">
+          <xsl:with-param name="sp" select="concat($sp,$step)"/>
+          <xsl:with-param name="step" select="$step"/>
+        </xsl:apply-templates>
         <xsl:apply-templates select="subject">
           <xsl:with-param name="sp" select="concat($sp,$step)"/>
           <xsl:with-param name="step" select="$step"/>
         </xsl:apply-templates>
-        <xsl:apply-templates select="." mode="description">
+        <xsl:apply-templates select="measures/applicationArea">
           <xsl:with-param name="sp" select="concat($sp,$step)"/>
           <xsl:with-param name="step" select="$step"/>
         </xsl:apply-templates>
@@ -265,11 +269,15 @@
           <xsl:with-param name="sp" select="concat($sp,$step)"/>
           <xsl:with-param name="step" select="$step"/>
         </xsl:apply-templates>
+        <xsl:apply-templates select="." mode="description">
+          <xsl:with-param name="sp" select="concat($sp,$step)"/>
+          <xsl:with-param name="step" select="$step"/>
+        </xsl:apply-templates>
         <xsl:apply-templates select="subject">
           <xsl:with-param name="sp" select="concat($sp,$step)"/>
           <xsl:with-param name="step" select="$step"/>
         </xsl:apply-templates>
-        <xsl:apply-templates select="." mode="description">
+        <xsl:apply-templates select="measures/applicationArea">
           <xsl:with-param name="sp" select="concat($sp,$step)"/>
           <xsl:with-param name="step" select="$step"/>
         </xsl:apply-templates>
@@ -337,11 +345,15 @@
           <xsl:with-param name="sp" select="concat($sp,$step)"/>
           <xsl:with-param name="step" select="$step"/>
         </xsl:apply-templates>
+        <xsl:apply-templates select="." mode="description">
+          <xsl:with-param name="sp" select="concat($sp,$step)"/>
+          <xsl:with-param name="step" select="$step"/>
+        </xsl:apply-templates>
         <xsl:apply-templates select="subject">
           <xsl:with-param name="sp" select="concat($sp,$step)"/>
           <xsl:with-param name="step" select="$step"/>
         </xsl:apply-templates>
-        <xsl:apply-templates select="." mode="description">
+        <xsl:apply-templates select="measures/applicationArea">
           <xsl:with-param name="sp" select="concat($sp,$step)"/>
           <xsl:with-param name="step" select="$step"/>
         </xsl:apply-templates>
@@ -363,6 +375,151 @@
         <xsl:value-of select="$sp"/>
 
       </imsv:Resource>
+   </xsl:template>
+
+   <xsl:template match="measures">
+      <xsl:param name="sp"/>
+      <xsl:param name="step"/>
+      <xsl:variable name="subsp" select="concat($sp,$step)"/>
+
+      <xsl:value-of select="$sp"/>
+
+      <measures>
+        <xsl:apply-templates select="propertyName">
+          <xsl:with-param name="sp" select="$subsp"/>
+          <xsl:with-param name="step" select="$step"/>
+        </xsl:apply-templates>
+
+        <xsl:apply-templates select="propertyType">
+          <xsl:with-param name="sp" select="$subsp"/>
+          <xsl:with-param name="step" select="$step"/>
+        </xsl:apply-templates>
+
+        <xsl:apply-templates select="dataCollectionMethod">
+          <xsl:with-param name="sp" select="$subsp"/>
+          <xsl:with-param name="step" select="$step"/>
+        </xsl:apply-templates>
+
+        <xsl:apply-templates select="materialType">
+          <xsl:with-param name="sp" select="$subsp"/>
+          <xsl:with-param name="step" select="$step"/>
+        </xsl:apply-templates>
+
+        <xsl:apply-templates select="materialName">
+          <xsl:with-param name="sp" select="$subsp"/>
+          <xsl:with-param name="step" select="$step"/>
+        </xsl:apply-templates>
+
+        <xsl:apply-templates select="supplier">
+          <xsl:with-param name="sp" select="$subsp"/>
+          <xsl:with-param name="step" select="$step"/>
+        </xsl:apply-templates>
+
+        <xsl:apply-templates select="chemicalConstituent">
+          <xsl:with-param name="sp" select="$subsp"/>
+          <xsl:with-param name="step" select="$step"/>
+        </xsl:apply-templates>
+
+        <xsl:apply-templates select="dataStatus">
+          <xsl:with-param name="sp" select="$subsp"/>
+          <xsl:with-param name="step" select="$step"/>
+        </xsl:apply-templates>
+
+        <xsl:if test="qualityMetric">
+          <xsl:apply-templates select="." mode="qualityMetric">
+            <xsl:with-param name="sp" select="$subsp"/>
+            <xsl:with-param name="step" select="$step"/>
+          </xsl:apply-templates>
+        </xsl:if>
+        
+        <xsl:value-of select="$sp"/>
+      </measures>
+      
+   </xsl:template>
+
+   <xsl:template match="measures" mode="qualityMetric">
+      <xsl:param name="sp"/>
+      <xsl:param name="step"/>
+
+      <xsl:variable name="subsp" select="concat($sp,$step)"/>
+
+      <xsl:if test="qualityMetric">
+        <xsl:value-of select="$sp"/>
+
+        <qualityMetric>
+          <xsl:value-of select="$subsp"/>
+          <calibratedEquipment>
+            <xsl:call-template name="qYesNo">
+               <xsl:with-param name="isyes" select="qualityMetric[.='calibrated equipment']"/>
+            </xsl:call-template>
+          </calibratedEquipment>
+          <xsl:value-of select="$subsp"/>
+          <standardMethods>
+            <xsl:call-template name="qYesNo">
+               <xsl:with-param name="isyes" select="qualityMetric[.='standard methods']"/>
+            </xsl:call-template>
+          </standardMethods>
+          <xsl:value-of select="$subsp"/>
+          <characterizedUncertainties>
+            <xsl:call-template name="qYesNo">
+               <xsl:with-param name="isyes" select="qualityMetric[.='characterized uncertainties']"/>
+            </xsl:call-template>
+          </characterizedUncertainties>
+          <xsl:value-of select="$subsp"/>
+          <multisiteMeasurements>
+            <xsl:call-template name="qYesNo">
+               <xsl:with-param name="isyes" select="qualityMetric[.='multi-site measurements']"/>
+            </xsl:call-template>
+          </multisiteMeasurements>
+          <xsl:value-of select="$subsp"/>
+          <sampleStability>
+            <xsl:call-template name="qYesNo">
+               <xsl:with-param name="isyes" select="qualityMetric[.='sample stability']"/>
+            </xsl:call-template>
+          </sampleStability>
+          <xsl:value-of select="$subsp"/>
+          <referenceMaterials>
+            <xsl:call-template name="qYesNo">
+               <xsl:with-param name="isyes" select="qualityMetric[.='reference materials']"/>
+            </xsl:call-template>
+          </referenceMaterials>
+          <xsl:value-of select="$subsp"/>
+          <reviewAndCertification>
+            <xsl:call-template name="qYesNo">
+               <xsl:with-param name="isyes" select="qualityMetric[.='review and certification']"/>
+            </xsl:call-template>
+          </reviewAndCertification>
+          <xsl:value-of select="$subsp"/>
+          <criticalLiteratureReview>
+            <xsl:call-template name="qYesNo">
+               <xsl:with-param name="isyes" select="qualityMetric[.='critical literature review']"/>
+            </xsl:call-template>
+          </criticalLiteratureReview>
+
+          <xsl:value-of select="$sp"/>
+        </qualityMetric>
+      </xsl:if>
+   </xsl:template>
+
+   <xsl:template name="qYesNo">
+     <xsl:param name="isyes"/>
+
+     <xsl:choose>
+        <xsl:when test="$isyes">Yes</xsl:when>
+        <xsl:otherwise>No (or Don't Know)</xsl:otherwise>
+     </xsl:choose>
+   </xsl:template>
+
+   <xsl:template match="sourceAvailable">
+      <xsl:param name="sp"/>
+      <xsl:param name="step"/>
+
+      <sourceAvailable>
+        <xsl:choose>
+          <xsl:when test=".='true'">Yes</xsl:when>
+          <xsl:otherwise>No</xsl:otherwise>
+        </xsl:choose>
+      </sourceAvailable>
    </xsl:template>
 
    <xsl:template match="access" mode="service">
@@ -451,11 +608,15 @@
           <xsl:with-param name="sp" select="concat($sp,$step)"/>
           <xsl:with-param name="step" select="$step"/>
         </xsl:apply-templates>
+        <xsl:apply-templates select="." mode="description">
+          <xsl:with-param name="sp" select="concat($sp,$step)"/>
+          <xsl:with-param name="step" select="$step"/>
+        </xsl:apply-templates>
         <xsl:apply-templates select="subject">
           <xsl:with-param name="sp" select="concat($sp,$step)"/>
           <xsl:with-param name="step" select="$step"/>
         </xsl:apply-templates>
-        <xsl:apply-templates select="." mode="description">
+        <xsl:apply-templates select="measures/applicationArea">
           <xsl:with-param name="sp" select="concat($sp,$step)"/>
           <xsl:with-param name="step" select="$step"/>
         </xsl:apply-templates>
@@ -556,11 +717,15 @@
           <xsl:with-param name="sp" select="concat($sp,$step)"/>
           <xsl:with-param name="step" select="$step"/>
         </xsl:apply-templates>
+        <xsl:apply-templates select="description">
+          <xsl:with-param name="sp" select="concat($sp,$step)"/>
+          <xsl:with-param name="step" select="$step"/>
+        </xsl:apply-templates>
         <xsl:apply-templates select="subject">
           <xsl:with-param name="sp" select="concat($sp,$step)"/>
           <xsl:with-param name="step" select="$step"/>
         </xsl:apply-templates>
-        <xsl:apply-templates select="description">
+        <xsl:apply-templates select="measures/applicationArea">
           <xsl:with-param name="sp" select="concat($sp,$step)"/>
           <xsl:with-param name="step" select="$step"/>
         </xsl:apply-templates>
