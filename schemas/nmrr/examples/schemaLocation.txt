@@ -4,5 +4,6 @@ http://schema.bipm.org/xml/imres/nmrr/dataset/1.0wd ../nmrr-dataset.xsd
 http://schema.bipm.org/xml/imres/nmrr/software/1.0wd ../nmrr-software.xsd
 http://schema.bipm.org/xml/imres/nmrr/portal/1.0wd ../nmrr-portal.xsd
 http://schema.bipm.org/xml/imres/nmrr/service/1.0wd ../nmrr-service.xsd
+http://schema.bipm.org/xml/imres/nmrr/document/1.0wd ../nmrr-document.xsd
 http://schema.bipm.org/xml/imres/nmrr/org/1.0wd ../imr-organization.xsd
 http://schema.bipm.org/xml/imres/nmrr/gen/1.0wd ../imr-generic.xsd
