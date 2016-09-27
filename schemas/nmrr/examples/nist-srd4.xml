@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<imdb:Resource xmlns:imdb="http://schema.bipm.org/xml/imres/nmrr/database/1.0wd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" status="active" localid="">
+  <resourceType>Dataset: Database</resourceType>
+  <title>NIST Thermophysical Properties of Hydrocarbon Mixtures Database</title>
+  <subtitle>NIST Standard Reference Data #4</subtitle>
+  <abbreviation>SRD#4</abbreviation>
+  <publisher>US National Institute of Standards and Technology (NIST)</publisher>
+  <sponsoringCountry>
+    <name>United States of America</name>
+    <abbrev>USA</abbrev>
+  </sponsoringCountry>
+  <publicationYear>1990</publicationYear>
+  <homePage xsi:type="imdb:DOI">
+    <doi>10.18434/T4CC76</doi>
+  </homePage>
+  <contact>
+    <name>Marcia Huber</name>
+    <emailAddress>marcia.huber@nist.gov</emailAddress>
+  </contact>
+  <description>
+     This database provides calculated predicted values for thermodynamic and 
+     transport properties of pure fluids and fluid mixtures containing up to 
+     20 components.  The components are selected from a database of 210 
+     components, mostly hydrocarbons.  It provides these values via an 
+     interactive software program called SUPERTRAPP.   SUPERTRAPP performs 
+     phase equilibria calculations and gives the thermophysical properties of 
+     all phases and the feed. These results include the equilibrium properties
+     of density, compressibility factor, enthalpy, entropy, Cp, Cp/Cv, sound 
+     speed, and Joule-Thomson coefficient as well the transport properties of 
+     viscosity and thermal conductivity.  Note that many of the fluids contained 
+     in NIST4 are also available in the REFPROP database (SRD#23).  The REFPROP 
+     database is recommended over NIST4 when REFPROP contains the fluids of 
+     interest.
+   </description>
+  <subject>Chemical engineering</subject>
+  <subject>chemical manufacturing</subject>
+  <subject>chemical property</subject>
+  <subject>chemistry</subject>
+  <subject>dielectric constants</subject>
+  <subject>equation of state</subject>
+  <subject>fluids</subject>
+  <subject>heat capacity</subject>
+  <subject>hydrocarbons</subject>
+  <subject>LNG</subject>
+  <subject>mixtures</subject>
+  <subject>natural gas</subject>
+  <subject>petrochemical</subject>
+  <subject>phase equilibria</subject>
+  <subject>thermal conductivity</subject>
+  <subject>thermodynamics</subject>
+  <subject>thermophysics</subject>
+  <subject>transport property</subject>
+  <subject>viscosity</subject>
+  <applicationArea>manufacturing/engineering</applicationArea>
+  <measures>
+    <propertyType>transport</propertyType>
+    <propertyType>thermal</propertyType>
+    <propertyType>mechanical</propertyType>
+    <dataCollectionMethod>experimental</dataCollectionMethod>
+    <dataStatus>standard reference</dataStatus>
+     <qualityMetric>
+       <calibratedEquipment>No (or Don't Know)</calibratedEquipment>
+       <standardMethods>No (or Don't Know)</standardMethods>
+       <characterizedUncertainties>No (or Don't Know)</characterizedUncertainties>
+       <multisiteMeasurements>No (or Don't Know)</multisiteMeasurements>
+       <sampleStability>No (or Don't Know)</sampleStability>
+       <referenceMaterials>No (or Don't Know)</referenceMaterials>
+       <reviewAndCertification>No (or Don't Know)</reviewAndCertification>
+       <criticalLiteratureReview>No (or Don't Know)</criticalLiteratureReview>
+     </qualityMetric>
+  </measures>
+  <access>
+    <rights>fee-required</rights>
+    <termsURL>http://www.nist.gov/open/license.cfm</termsURL>
+    <via xsi:type="imdb:Media">
+      <mediaType>CD/CDROM</mediaType>
+    </via>
+  </access>
+</imdb:Resource>

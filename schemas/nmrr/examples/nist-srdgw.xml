@@ -15,15 +15,6 @@
     <name>Robert Hanisch</name>
     <emailAddress>robert.hanisch@nist.gov</emailAddress>
   </contact>
-  <subject>standards</subject>
-  <subject>standard reference data</subject>
-  <subject>metrology</subject>
-  <subject>materials</subject>
-  <subject>physics</subject>
-  <subject>computing</subject>
-  <subject>cybersecurity</subject>
-  <subject>law enforcement</subject>
-  <subject>forensics</subject>
   <description>
      The NIST Data Gateway is an online system designed to provide users with
      easy access to NIST scientific and technical data. The Gateway provides
@@ -38,14 +29,27 @@
      tool identifies relevant datasets based on over 1000 keywords and 140,000
      substance names and synonyms.  
    </description>
+  <subject>standards</subject>
+  <subject>standard reference data</subject>
+  <subject>metrology</subject>
+  <subject>materials</subject>
+  <subject>physics</subject>
+  <subject>computing</subject>
+  <subject>cybersecurity</subject>
+  <subject>law enforcement</subject>
+  <applicationArea>forensics</applicationArea>
+  <applicationArea>research</applicationArea>
+  <applicationArea>fundemental physics</applicationArea>
+  <applicationArea>manufacturing/engineering</applicationArea>
   <measures>
-    <propertyClass>optical</propertyClass>
-    <propertyClass>mechanical</propertyClass>
-    <propertyClass>structural</propertyClass>
-    <propertyClass>thermal</propertyClass>
-    <propertyClass>structural</propertyClass>
-    <propertyClass>simulated</propertyClass>
-    <propertyClass>chemical</propertyClass>
+    <propertyType>optical</propertyType>
+    <propertyType>mechanical</propertyType>
+    <propertyType>structural</propertyType>
+    <propertyType>thermal</propertyType>
+    <propertyType>structural</propertyType>
+    <propertyType>chemical</propertyType>
+    <dataCollectionMethod>experimental</dataCollectionMethod>
+    <dataCollectionMethod>computational</dataCollectionMethod>
   </measures>
   <access>
     <rights>public</rights>

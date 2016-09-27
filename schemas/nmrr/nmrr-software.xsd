@@ -1235,7 +1235,7 @@
             </xs:annotation>
          </xs:element>
          
-         <xs:element name="dataStatus" type="imr:DataStatus">
+         <xs:element name="dataStatus" type="imr:DataStatus" minOccurs="0">
             <xs:annotation>
                <xs:appinfo>
                  <label>Status of the data: </label>
