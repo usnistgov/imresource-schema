@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema targetNamespace="http://schema.bipm.org/xml/imres/nmrr/service/1.0wd" 
+<xs:schema targetNamespace="http://schema.bipm.org/xml/imres/nmrr/document/1.0wd" 
            xmlns:xs="http://www.w3.org/2001/XMLSchema" 
-           xmlns:imr="http://schema.bipm.org/xml/imres/nmrr/service/1.0wd" 
+           xmlns:imr="http://schema.bipm.org/xml/imres/nmrr/document/1.0wd" 
            xmlns:am="http://schema.nist.gov/xml/nmrr.schema.annot" 
            elementFormDefault="unqualified" 
            attributeFormDefault="unqualified" version="0.1">
@@ -17,10 +17,10 @@
       </xs:documentation>
    </xs:annotation>
 
-   <xs:element name="Resource" type="imr:DataService">
+   <xs:element name="Resource" type="imr:Document">
       <xs:annotation>
          <xs:appinfo>
-           <label>Resource: a Data Service</label>
+           <label>Resource: a Standard Document</label>
          </xs:appinfo>
          <xs:documentation>
            a root element for describing a registered resource 
@@ -28,20 +28,20 @@
       </xs:annotation>
    </xs:element>
 
-   <xs:complexType name="DataService">
+   <xs:complexType name="Document">
       <xs:annotation>
          <xs:documentation>
-           a Resource description with resourceType fixed to Service
+           a Resource description with resourceType fixed to Text: Document
          </xs:documentation>
       </xs:annotation>
 
       <xs:sequence>
          <xs:element name="resourceType" type="xs:string"
-                     default="Service">
+                     default="Text: Document">
             <xs:annotation>
                <xs:appinfo>
            <label>Resource Type (do not edit): </label>
-           <tooltip>This identifies this record as a Service resource</tooltip>
+           <tooltip>This identifies this record as a Dataset resource</tooltip>
                  <am:dcterm>Type</am:dcterm>
                  <am:dataciteproperty>resourceType</am:dataciteproperty>
                </xs:appinfo>           
@@ -54,8 +54,8 @@
          <xs:element name="title" type="xs:string">
             <xs:annotation>
                <xs:appinfo>
-                 <label>Service's Full Name: </label>
-                 <tooltip>The full name given to the service</tooltip>
+                 <label>Dataset's Full Name: </label>
+                 <tooltip>The full name given to the dataset</tooltip>
                  <am:dcterm>Title</am:dcterm>
                  <am:dataciteproperty>Title</am:dataciteproperty>
                </xs:appinfo>           
@@ -70,7 +70,7 @@
             <xs:annotation>
                <xs:appinfo>
                  <label>Subtitle: </label>
-                 <tooltip>A secondary title for the service (e.g. Standard Reference Data #27)</tooltip>
+                 <tooltip>A secondary title for the dataset (e.g. Standard Reference Data #27)</tooltip>
                  <am:dcterm>Title</am:dcterm>
                  <am:dataciteproperty>Title</am:dataciteproperty>
                </xs:appinfo>           
@@ -84,8 +84,8 @@
                      minOccurs="0" maxOccurs="unbounded">
             <xs:annotation>
                <xs:appinfo>
-                 <label>Service's Abbreviation: </label>
-                 <tooltip>The initials, acronym, or other abbreviation that the service is commonly known as</tooltip>
+                 <label>Dataset's Abbreviation: </label>
+                 <tooltip>The initials, acronym, or other abbreviation that the dataset is commonly known as</tooltip>
                  <placeholder>e.g. initials, acronym, etc.</placeholder>
                  <am:dcterm>Title</am:dcterm>
                  <am:dataciteproperty>Title</am:dataciteproperty>
@@ -100,7 +100,7 @@
             <xs:annotation>
               <xs:appinfo>
                 <label>Publishing Institution: </label>
-                <tooltip>Enter the name of the metrology institute that provides this service</tooltip>
+                <tooltip>Enter the name of the metrology institute that provides this dataset</tooltip>
                 <placholder>Metrology institute name</placholder>
                  <am:dcterm>Publisher</am:dcterm>
                  <am:dataciteproperty>publisher</am:dataciteproperty>
@@ -133,7 +133,7 @@
             <xs:annotation>
                <xs:appinfo>
                  <label>Publication Year: </label>
-                 <tooltip>The year the service was first released.</tooltip>
+                 <tooltip>The year the dataset was first released.</tooltip>
                  <placeholder>Format: YYYY</placeholder>
                  <am:dataciteproperty>publicationYear</am:dataciteproperty>
                </xs:appinfo>           
@@ -207,7 +207,7 @@
                      ns0:_mod_mdcs_="/registry/description">
             <xs:annotation>
                <xs:appinfo>
-                 <label>Give a summary of the purpose of this service and how users may access it: </label>
+                 <label>Give a summary of the contents of the dataset and how users may access it: </label>
                  <am:dcterm>Description</am:dcterm>
                  <am:datacite>description</am:datacite>
                </xs:appinfo>           
@@ -232,7 +232,7 @@
                <xs:appinfo>
                  <label>Subject keyword: </label>
                  <placeholder>Enter a descriptive term; click the + to add additional keywords</placeholder>
-                 <tooltip>a descriptive term that this service relates to.  Choose terms that describe what kind of  this service provides.</tooltip>
+                 <tooltip>a descriptive term that this dataset relates to.  Choose terms that describe what measurements this dataset includes.</tooltip>
                  <am:dcterm>Subject</am:dcterm>
                </xs:appinfo>           
                <xs:documentation>
@@ -459,7 +459,7 @@
             <xs:annotation>
                <xs:appinfo>
                  <label>Institutional affiliation: </label>
-                 <tooltip>Add if different from the service's publisher</tooltip>
+                 <tooltip>Add if different from the dataset's publisher</tooltip>
                </xs:appinfo>
                <xs:documentation>
                   The person or entity's institutional affiliation at
@@ -473,7 +473,7 @@
                <xs:appinfo>
                  <label>ORCID identifier: http://orcid.org/</label>
                  <placeholder>Format: xxxx-xxxx-xxxx-xxxx</placeholder>
-                 <tooltip>Add if different from the service's publisher</tooltip>
+                 <tooltip>Add if different from the dataset's publisher</tooltip>
                </xs:appinfo>
                <xs:documentation>
                   The person or entity's identifier
@@ -549,13 +549,13 @@
                </xs:documentation>
             </xs:annotation>
          </xs:element>
-
+         
          <xs:element name="identifier" type="xs:string" minOccurs="0">
             <xs:annotation>
                <xs:appinfo>
                  <label>ORCID identifier: http://orcid.org/</label>
                  <placeholder>Format: xxxx-xxxx-xxxx-xxxx</placeholder>
-                 <tooltip>Add if different from the service's publisher</tooltip>
+                 <tooltip>Add if different from the dataset's publisher</tooltip>
                </xs:appinfo>
                <xs:documentation>
                   The person or entity's identifier
@@ -1210,11 +1210,10 @@
             </xs:annotation>
          </xs:element>
          
-         <xs:element name="dataStatus" type="imr:DataStatus" minOccurs="0">
+         <xs:element name="documentStatus" type="imr:DocStatus">
             <xs:annotation>
                <xs:appinfo>
-                 <label>Status of the data: </label>
-                 <tooltip>Should this data be considered standard reference data?</tooltip>
+                 <label>Status of the document: </label>
                </xs:appinfo>
                <xs:documentation>
                  an indication of whether this data is provided as standard
@@ -1227,7 +1226,7 @@
                      minOccurs="0" maxOccurs="1">
             <xs:annotation>
                <xs:appinfo>
-                 <label>Quality Metrics: Please answer the following questions: </label>
+                 <label>Quality Metrics: Please answer the following questions as they apply to measurements described in this document: </label>
                </xs:appinfo>
                <xs:documentation>
                  a metrology practice employed to help ensure that the resulting
@@ -1239,30 +1238,37 @@
       </xs:sequence>
    </xs:complexType>
 
-   <xs:simpleType name="DataStatus">
+   <xs:simpleType name="DocStatus">
      <xs:annotation>
        <xs:documentation>
-         allowed values representing the status of the data towards becoming 
-         reference data.
+         allowed values representing the status of the document towards becoming 
+         a standard.
        </xs:documentation>
      </xs:annotation>
      <xs:restriction base="xs:token">
-       <xs:enumeration value="standard reference">
+       <xs:enumeration value="standard">
          <xs:annotation>
            <xs:documentation>
-             The data presented should considered standard reference data 
-             according to the definition given by the VIM3; i.e. it has been
-             critically evaluated and issued by a recognized authority.
+             The document is a specification of a reviewed and endorsed
+             standard by recognized standards body.
            </xs:documentation>
          </xs:annotation>
        </xs:enumeration>
 
-       <xs:enumeration value="prenormative">
+       <xs:enumeration value="proposed">
          <xs:annotation>
            <xs:documentation>
-             The data presented is preliminary data provided as part of the 
-             development of a standard but which does not meet the definition
-             of reference data.  
+             The document has been proposed as a standard via the process of
+             a recognized standards body and is now under review.
+           </xs:documentation>
+         </xs:annotation>
+       </xs:enumeration>
+
+       <xs:enumeration value="informative">
+         <xs:annotation>
+           <xs:documentation>
+             The document is informative (though non-normative) but related to
+             metrology and metrology standards.  
            </xs:documentation>
          </xs:annotation>
        </xs:enumeration>
@@ -1537,7 +1543,7 @@
                    minOccurs="1" maxOccurs="1" default="No (or Don't Know)">
           <xs:annotation>
             <xs:appinfo>
-              <label>Did the measurements make use of equpment set with standard calibrations, traceable to recognized primary standards and SI units? </label>
+              <label>Did the measurements make use of equipment set with standard calibrations, traceable to recognized primary standards and SI units? </label>
             </xs:appinfo>
           </xs:annotation>
        </xs:element>
@@ -1683,7 +1689,7 @@
                     minOccurs="0" maxOccurs="3">
           <xs:annotation>
             <xs:appinfo>
-              <label>How to access the service... </label>
+              <label>Available data access method: </label>
               <am:dcterm>Rights</am:dcterm>
             </xs:appinfo>           
             <xs:documentation>
@@ -1712,12 +1718,59 @@
        </xs:sequence>
    </xs:complexType>
    
+   <xs:complexType name="Download">
+     <xs:annotation>
+       <xs:documentation>
+         details on how data can be downloaded
+       </xs:documentation>
+     </xs:annotation>
+
+     <xs:complexContent>
+       <xs:extension base="imr:AccessVia">
+         <xs:sequence>
+
+            <xs:element name="format" type="xs:string"
+                        minOccurs="0">
+              <xs:annotation>
+                <xs:appinfo>
+                  <label>Supported download format: </label>
+                  <tooltip>Name of file format available for download</tooltip>
+                </xs:appinfo>
+                  <xs:documentation>
+                    a file format that is supported for download products.
+                  </xs:documentation>
+               </xs:annotation>
+            </xs:element>
+
+            <xs:element name="accessURL" type="xs:anyURI" minOccurs="0">
+               <xs:annotation>
+             <xs:appinfo>
+               <label>Download URL: </label>
+             </xs:appinfo>           
+                  <xs:documentation>
+                     The URL that, when accessed (via HTTP GET), will deliver the 
+                     data or file associated with this resource.  
+                  </xs:documentation>
+               </xs:annotation>
+            </xs:element>       
+         
+            <xs:element name="description" type="xs:string" minOccurs="0">
+              <xs:annotation>
+                <xs:appinfo>
+                  <label>Comments: </label>
+                  <tooltip>Add any useful comments about what is available for download.</tooltip>
+                </xs:appinfo>
+              </xs:annotation>
+            </xs:element>
+            
+         </xs:sequence>
+       </xs:extension>
+     </xs:complexContent>
+
+   </xs:complexType>
+   
    <xs:complexType name="ServiceAPI">
       <xs:annotation>
-            <xs:appinfo>
-              <label>Service API: </label>
-              <am:dcterm>Rights</am:dcterm>
-            </xs:appinfo>           
          <xs:documentation>
            a container for information on accessing the data via a service API
          </xs:documentation>
@@ -1727,6 +1780,15 @@
        <xs:extension base="imr:AccessVia">
          <xs:sequence>
 
+            <xs:element name="description" type="xs:string" minOccurs="0">
+              <xs:annotation>
+                <xs:appinfo>
+                  <label>Summary: </label>
+                  <tooltip>Enter a brief summary of what the API provides.</tooltip>
+                </xs:appinfo>
+              </xs:annotation>
+            </xs:element>
+            
            <xs:element name="documentationURL" type="xs:anyURI" minOccurs="0">
               <xs:annotation>
                 <xs:appinfo>
@@ -1739,22 +1801,83 @@
                  </xs:documentation>
              </xs:annotation>
            </xs:element>
-
-           <xs:element name="format" type="xs:string" minOccurs="0">
-              <xs:annotation>
-                 <xs:appinfo>
-                   <label>Supported Data Format: </label>
-                   <tooltip>Data format that is supported by the service as input or output.</tooltip>
-                 </xs:appinfo>
-                 <xs:documentation>
-                   a file format that is supported for by the service
-                 </xs:documentation>
-              </xs:annotation>
-           </xs:element>
-
          </xs:sequence>
        </xs:extension>
      </xs:complexContent>
+
+   </xs:complexType>
+
+   <xs:complexType name="Media">
+      <xs:annotation>
+         <xs:documentation>
+           a container for information on accessing the data via a service API
+         </xs:documentation>
+      </xs:annotation>
+
+     <xs:complexContent>
+       <xs:extension base="imr:AccessVia">
+         <xs:sequence>
+
+           <xs:element name="mediaType" type="imr:MediaTypeNames"
+                       minOccurs="1" maxOccurs="unbounded">
+              <xs:annotation>
+                <xs:appinfo>
+                  <label>Type of media available: </label>
+                </xs:appinfo>
+                 <xs:documentation>
+                   The type of media provided
+                 </xs:documentation>
+             </xs:annotation>
+           </xs:element>
+            
+           <xs:element name="requestURL" type="xs:anyURI" minOccurs="0">
+              <xs:annotation>
+                <xs:appinfo>
+                  <label>Media request URL: </label>
+                  <placeholder>http://...</placeholder>
+                  <tooltip>URL where media containing data can be requested or ordered.</tooltip>
+                </xs:appinfo>
+                 <xs:documentation>
+                   The URL to a web page that describes how to request the data on various media.
+                 </xs:documentation>
+             </xs:annotation>
+           </xs:element>
+            
+            <xs:element name="description" type="xs:string"
+                         minOccurs="0">
+              <xs:annotation>
+                <xs:appinfo>
+                  <label>Comments: </label>
+                  <tooltip>Add any useful comments about how to order media or what is available.</tooltip>
+                </xs:appinfo>
+              </xs:annotation>
+            </xs:element>
+         
+         </xs:sequence>
+       </xs:extension>
+     </xs:complexContent>
+   </xs:complexType>
+
+   <xs:complexType name="AccessURL">
+     <xs:sequence>
+        <xs:element name="URL" type="xs:anyURI"
+                    minOccurs="1" maxOccurs="unbounded">
+           <xs:annotation>
+             <xs:appinfo>
+               <label>Download URL: </label>
+             </xs:appinfo>           
+           </xs:annotation>
+        </xs:element>
+
+        <xs:element name="use" type="xs:string">
+           <xs:annotation>
+             <xs:appinfo>
+               <label>which points to a... </label>
+             </xs:appinfo>           
+           </xs:annotation>
+        </xs:element>
+        
+     </xs:sequence>
 
    </xs:complexType>
 
@@ -1780,8 +1903,8 @@
             <xs:annotation>
                <xs:documentation>
                   requires authentication and users only have access 
-                  to service functions they have been given rights to.  
-                  Generally, there is no charge to use this service.
+                  to datasets they have been given rights to.  Generally,
+                  there is no charge to use this resource.
                </xs:documentation>
             </xs:annotation>
          </xs:enumeration>
@@ -1789,7 +1912,7 @@
             <xs:annotation>
                <xs:documentation>
                   requires user to pay a one-time or subscription fee in 
-                  order to access the service.  On-line resources typically
+                  order to access the resource.  On-line resources typically
                   will require authentication.
                </xs:documentation>
             </xs:annotation>
@@ -1875,9 +1998,9 @@
            <xs:element name="url" type="xs:string">
              <xs:annotation>
                 <xs:appinfo>
-                  <label>Service home page URL: </label>
+                  <label>Dataset home page URL: </label>
                   <placeholder>http://...</placeholder>
-                  <tooltip>the primary URL where the service is described.</tooltip>
+                  <tooltip>the primary URL where the dataset can be accessed.</tooltip>
                 </xs:appinfo>
              </xs:annotation>
            </xs:element>

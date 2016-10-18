@@ -469,6 +469,132 @@
 
    </xsl:template>
 
+   <xsl:template match="measures">
+      <xsl:param name="sp"/>
+      <xsl:param name="step"/>
+      <xsl:variable name="subsp" select="concat($sp,$step)"/>
+
+      <xsl:value-of select="$sp"/>
+      <measures>
+
+        <xsl:apply-templates select="dataStatus">
+          <xsl:with-param name="sp" select="$subsp"/>
+          <xsl:with-param name="step" select="$step"/>
+        </xsl:apply-templates>
+
+        <xsl:apply-templates select="../applicationArea">
+          <xsl:with-param name="sp" select="$subsp"/>
+          <xsl:with-param name="step" select="$step"/>
+        </xsl:apply-templates>
+
+        <xsl:apply-templates select="propertyType">
+          <xsl:with-param name="sp" select="$subsp"/>
+          <xsl:with-param name="step" select="$step"/>
+        </xsl:apply-templates>
+
+        <xsl:apply-templates select="propertyName">
+          <xsl:with-param name="sp" select="$subsp"/>
+          <xsl:with-param name="step" select="$step"/>
+        </xsl:apply-templates>
+
+        <xsl:apply-templates select="dataCollectionMethod">
+          <xsl:with-param name="sp" select="$subsp"/>
+          <xsl:with-param name="step" select="$step"/>
+        </xsl:apply-templates>
+
+        <xsl:apply-templates select="materialType">
+          <xsl:with-param name="sp" select="$subsp"/>
+          <xsl:with-param name="step" select="$step"/>
+        </xsl:apply-templates>
+
+        <xsl:apply-templates select="materialName">
+          <xsl:with-param name="sp" select="$subsp"/>
+          <xsl:with-param name="step" select="$step"/>
+        </xsl:apply-templates>
+
+        <xsl:apply-templates select="supplier">
+          <xsl:with-param name="sp" select="$subsp"/>
+          <xsl:with-param name="step" select="$step"/>
+        </xsl:apply-templates>
+
+        <xsl:apply-templates select="chemicalConstituent">
+          <xsl:with-param name="sp" select="$subsp"/>
+          <xsl:with-param name="step" select="$step"/>
+        </xsl:apply-templates>
+
+        <xsl:apply-templates select="qualityMetric">
+          <xsl:with-param name="sp" select="$subsp"/>
+          <xsl:with-param name="step" select="$step"/>
+        </xsl:apply-templates>
+        
+        <xsl:value-of select="$sp"/>
+      </measures>
+   </xsl:template>
+   
+   <xsl:template match="sourceAvailable">
+      <xsl:param name="sp"/>
+      <xsl:param name="step"/>
+
+      <sourceAvailable>
+        <xsl:choose>
+          <xsl:when test=".='Yes'">true</xsl:when>
+          <xsl:otherwise>false</xsl:otherwise>
+        </xsl:choose>
+      </sourceAvailable>
+   </xsl:template>
+
+   <xsl:template match="qualityMetric[*='Yes']">
+      <xsl:param name="sp"/>
+      <xsl:param name="step"/>
+
+      <xsl:apply-templates select="*[.='Yes']">
+         <xsl:with-param name="sp" select="$sp"/>
+      </xsl:apply-templates>
+   </xsl:template>
+
+   <xsl:template match="qualityMetric"/>
+
+   <xsl:template match="calibratedEquipment">
+      <xsl:param name="sp"/>
+      <xsl:value-of select="$sp"/>
+      <qualityMetric>calibrated equipment</qualityMetric>
+   </xsl:template>
+   <xsl:template match="standardMethods">
+      <xsl:param name="sp"/>
+      <xsl:value-of select="$sp"/>
+      <qualityMetric>standard methods</qualityMetric>
+   </xsl:template>
+   <xsl:template match="characterizedUncertainties">
+      <xsl:param name="sp"/>
+      <xsl:value-of select="$sp"/>
+      <qualityMetric>characterized uncertainties</qualityMetric>
+   </xsl:template>
+   <xsl:template match="multisiteMeasurements">
+      <xsl:param name="sp"/>
+      <xsl:value-of select="$sp"/>
+      <qualityMetric>multi-site measurements</qualityMetric>
+   </xsl:template>
+   <xsl:template match="sampleStability">
+      <xsl:param name="sp"/>
+      <xsl:value-of select="$sp"/>
+      <qualityMetric>sample stability</qualityMetric>
+   </xsl:template>
+   <xsl:template match="referenceMaterials">
+      <xsl:param name="sp"/>
+      <xsl:value-of select="$sp"/>
+      <qualityMetric>reference materials</qualityMetric>
+   </xsl:template>
+   <xsl:template match="reviewAndCertification">
+      <xsl:param name="sp"/>
+      <xsl:value-of select="$sp"/>
+      <qualityMetric>review and certification</qualityMetric>
+   </xsl:template>
+   <xsl:template match="criticalLiteratureReview">
+      <xsl:param name="sp"/>
+      <xsl:value-of select="$sp"/>
+      <qualityMetric>critical literature review</qualityMetric>
+   </xsl:template>
+
    <xsl:template match="via[contains(@xsi:type,':ServiceAPI')]">
       <xsl:param name="sp"/>
       <xsl:param name="step"/>

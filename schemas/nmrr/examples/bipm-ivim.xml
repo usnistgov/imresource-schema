@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<imr:Resource xmlns:imr="http://schema.bipm.org/xml/imres/nmrr/document/1.0wd"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns=""
+              localid="9QKJA796V4ZGOL7RJIB8" status="active">
+  <resourceType>Text: Document</resourceType>
+  <title>International Vocabulary of Metrology: VIM Definitions with Informative Annotations</title>
+  <abbreviation>VIM</abbreviation>
+  <publisher>JCGM</publisher>
+  <homePage xsi:type="imr:HomePageURL">
+    <url>http://jcgm.bipm.org/vim/en/index.html</url>
+  </homePage>
+  <contact>
+    <name>Janet Miles</name>
+    <emailAddress>jmiles@bipm.org</emailAddress>
+  </contact>
+  <description>The International Vocabulary of Metrology (VIM) is intended as a common reference for all those working in metrology, the science of measurement and its application. It is a guidance document published by the Joint Committee of Guides in Metrology (JCGM), which comprises eight member organizations: BIPM, IEC, IFCC, ILAC, ISO, IUPAC, IUPAP, and OIML. The official document is now in its 3rd edition, often referred to "VIM3".
+
+This web version of the VIM also contains a number of informative annotations added by JCGM Working Group 2.</description>
+  <subject>Vocabulary</subject>
+  <access>
+    <rights>public</rights>
+  </access>
+</imr:Resource>

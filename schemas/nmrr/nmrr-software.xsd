@@ -202,21 +202,6 @@
             </xs:annotation>
          </xs:element>
 
-         <xs:element name="subject" type="xs:string" maxOccurs="unbounded">
-            <xs:annotation>
-               <xs:appinfo>
-                 <label>Subject keyword: </label>
-                 <placeholder>Enter a descriptive term; click the + to add additional keywords</placeholder>
-                 <tooltip>a descriptive term that this software relates to.  Choose terms that describe what calculations this software produces.</tooltip>
-                 <am:dcterm>Subject</am:dcterm>
-               </xs:appinfo>           
-               <xs:documentation>
-                 a topic, object type, or other descriptive keywords 
-                 about the resource.  
-               </xs:documentation>
-            </xs:annotation>
-         </xs:element>
-
          <xs:element name="description" type="xs:token" maxOccurs="1" 
                      xmlns:ns0="http://mdcs.ns" 
                      ns0:_mod_mdcs_="/registry/description">
@@ -242,54 +227,82 @@
             </xs:annotation>
          </xs:element>
 
-           <xs:element name="measures" type="imr:Measures" minOccurs="0">
-              <xs:annotation>
+         <xs:element name="subject" type="xs:string" maxOccurs="unbounded">
+            <xs:annotation>
                <xs:appinfo>
-                 <label>Metrology Information</label>
-               </xs:appinfo>
-                 <xs:documentation>
-                   Information describing the variety of measurements 
-                   available in this data
-                 </xs:documentation>
-              </xs:annotation>
-           </xs:element>
+                 <label>Subject keyword: </label>
+                 <placeholder>Enter a descriptive term; click the + to add additional keywords</placeholder>
+                 <tooltip>a descriptive term that this software relates to.  Choose terms that describe what calculations this software produces.</tooltip>
+                 <am:dcterm>Subject</am:dcterm>
+               </xs:appinfo>           
+               <xs:documentation>
+                 a topic, object type, or other descriptive keywords 
+                 about the resource.  
+               </xs:documentation>
+            </xs:annotation>
+         </xs:element>
 
-           <xs:element name="access" type="imr:Access">
-             <xs:annotation>
+         <xs:element name="applicationArea" type="imr:AppArea" 
+                     minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
                <xs:appinfo>
-                 <label>Access Information</label>
+                 <label>Application Area: </label>
                </xs:appinfo>
                <xs:documentation>
-                 Information describing how to access the resource and its 
-                 features and capabilities.  
+                 primary field or discipline that these measurements
+                 are intended to support.
                </xs:documentation>
-             </xs:annotation>
-           </xs:element>
+            </xs:annotation>
+         </xs:element>
 
-           <xs:element name="supportedOS" type="imr:OSNames"
-                       minOccurs="0" maxOccurs="unbounded">
-              <xs:annotation>
-                 <xs:appinfo>
-                   <label>Supported Operating Systems</label>
-                 </xs:appinfo>
-                 <xs:documentation>
-                   The operating system or platform that software is capable
-                   of running on.  
-                 </xs:documentation>
-              </xs:annotation>
-           </xs:element>
+         <xs:element name="measures" type="imr:Measures" minOccurs="0">
+            <xs:annotation>
+             <xs:appinfo>
+               <label>Metrology Information</label>
+             </xs:appinfo>
+               <xs:documentation>
+                 Information describing the variety of measurements 
+                 available in this data
+               </xs:documentation>
+            </xs:annotation>
+         </xs:element>
 
-           <xs:element name="sourceAvailable" type="imr:Boolean" minOccurs="0">
-              <xs:annotation>
-                 <xs:appinfo>
-                   <label>Is the source code available? </label>
-                   <tooltip>Select "true" if the software's source code is available</tooltip>
-                 </xs:appinfo>
-                 <xs:documentation>
-                   A flag indicating whether the source code is available.
-                 </xs:documentation>
-              </xs:annotation>
-           </xs:element>
+         <xs:element name="access" type="imr:Access">
+            <xs:annotation>
+              <xs:appinfo>
+                <label>Access Information</label>
+              </xs:appinfo>
+              <xs:documentation>
+                Information describing how to access the resource and its 
+                features and capabilities.  
+              </xs:documentation>
+            </xs:annotation>
+         </xs:element>
+
+         <xs:element name="supportedOS" type="imr:OSNames"
+                     minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+               <xs:appinfo>
+                 <label>Supported Operating Systems</label>
+               </xs:appinfo>
+               <xs:documentation>
+                 The operating system or platform that software is capable
+                 of running on.  
+               </xs:documentation>
+            </xs:annotation>
+         </xs:element>
+
+         <xs:element name="sourceAvailable" type="imr:Boolean" minOccurs="0">
+            <xs:annotation>
+               <xs:appinfo>
+                 <label>Is the source code available? </label>
+                 <tooltip>Select "true" if the software's source code is available</tooltip>
+               </xs:appinfo>
+               <xs:documentation>
+                 A flag indicating whether the source code is available.
+               </xs:documentation>
+            </xs:annotation>
+         </xs:element>
 
       </xs:sequence>
 
@@ -552,7 +565,7 @@
                </xs:documentation>
             </xs:annotation>
          </xs:element>
-         
+
          <xs:element name="affiliation" minOccurs="0" maxOccurs="unbounded">
             <xs:annotation>
                <xs:documentation>
@@ -1122,11 +1135,28 @@
 
       <xs:sequence>
 
-        <xs:element name="propertyClass" type="imr:PropertyClass"
+         <xs:element name="propertyName" type="xs:string"
+                     minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+               <xs:appinfo>
+                 <label>Name of property measured: </label>
+                 <tooltip>Click the green plus to add more property names</tooltip>
+               </xs:appinfo>
+               <xs:documentation>
+                  the name of a property measured or calculated
+               </xs:documentation>
+               <xs:documentation>
+                  This should be drawn, when possible, from ISO 80000.  
+               </xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         
+         <xs:element name="propertyType" type="imr:PropertyType"
                     minOccurs="0" maxOccurs="unbounded">
             <xs:annotation>
                <xs:appinfo>
-                 <label>Class of properties measured: </label>
+                 <label>Type of properties measured: </label>
+                 <tooltip>Click the green plus to select multiple types</tooltip>
                </xs:appinfo>
                <xs:documentation>
                   a category of property that is sampled by the contained data
@@ -1134,16 +1164,99 @@
             </xs:annotation>
          </xs:element>
          
-         <xs:element name="substance" type="xs:string"
+         <xs:element name="dataCollectionMethod" type="imr:DataCollectionMethod"
                      minOccurs="0" maxOccurs="unbounded">
             <xs:annotation>
                <xs:appinfo>
-                 <label>Substance (or constituent) sampled or addressed: </label>
-                 <tooltip>Provide </tooltip>
+                 <label>General Data Collection Method: </label>
+                 <tooltip>Click the green plus to select multiple method types</tooltip>
                </xs:appinfo>
                <xs:documentation>
-                 a substance or substance constituent that was sampled,
-                 measured, or addressed in this data.
+                  the name of a property measured or calculated
+               </xs:documentation>
+               <xs:documentation>
+                  This should be drawn, when possible, from ISO
+                  80000.  
+               </xs:documentation>
+            </xs:annotation>
+         </xs:element>
+
+         <xs:element name="materialType" type="imr:MaterialType"
+                     minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+               <xs:appinfo>
+                 <label>Type of material studied: </label>
+               </xs:appinfo>
+               <xs:documentation>
+                  the category of material sampled.
+               </xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         
+         <xs:element name="materialName" type="imr:MaterialName"
+                     minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+               <xs:appinfo>
+                 <label>Material Name: </label>
+                 <tooltip>Provide a technical or trade name for the material.  Click + to add additional names</tooltip>
+                 <placeholder>Enter technical or trade name...</placeholder>
+               </xs:appinfo>
+               <xs:documentation>
+                  the name of material measured.
+               </xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         
+         <xs:element name="supplier" type="xs:string"
+                     minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+               <xs:appinfo>
+                 <label>Commercial or institutional suppplier of material studied: </label>
+                 <tooltip>Provide the name of the commercial, academic or govermental body that provided the material measured.</tooltip>
+               </xs:appinfo>
+               <xs:documentation>
+                  the name of the commercial, academic, or governmental body
+                  that provided the material measured.  
+               </xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         
+         <xs:element name="chemicalConstituent" type="xs:string"
+                     minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+               <xs:appinfo>
+                 <label>Key chemical constituent sampled or addressed: </label>
+                 <tooltip>Click green plus to add multiple constituents; click red minus if this resource addresses many different chemicals.</tooltip>
+                 <placeholder>Enter a chemical name (element or molecule)...</placeholder>
+               </xs:appinfo>
+               <xs:documentation>
+                 A key chemical constituent of the material measured.
+               </xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         
+         <xs:element name="dataStatus" type="imr:DataStatus" minOccurs="0">
+            <xs:annotation>
+               <xs:appinfo>
+                 <label>Status of the data: </label>
+                 <tooltip>Should this data be considered standard reference data?</tooltip>
+               </xs:appinfo>
+               <xs:documentation>
+                 an indication of whether this data is provided as standard
+                 reference data or as some preliminary stage data.  
+               </xs:documentation>
+            </xs:annotation>
+         </xs:element>
+        
+         <xs:element name="qualityMetric" type="imr:QualityMetric"
+                     minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+               <xs:appinfo>
+                 <label>Quality Metrics: Please answer the following questions: </label>
+               </xs:appinfo>
+               <xs:documentation>
+                 a metrology practice employed to help ensure that the resulting
+                 data is of good quality.  
                </xs:documentation>
             </xs:annotation>
          </xs:element>
@@ -1151,7 +1264,116 @@
       </xs:sequence>
    </xs:complexType>
 
-   <xs:simpleType name="PropertyClass">
+   <xs:simpleType name="DataStatus">
+     <xs:annotation>
+       <xs:documentation>
+         allowed values representing the status of the data towards becoming 
+         reference data.
+       </xs:documentation>
+     </xs:annotation>
+     <xs:restriction base="xs:token">
+       <xs:enumeration value="standard reference">
+         <xs:annotation>
+           <xs:documentation>
+             The data presented should considered standard reference data 
+             according to the definition given by the VIM3; i.e. it has been
+             critically evaluated and issued by a recognized authority.
+           </xs:documentation>
+         </xs:annotation>
+       </xs:enumeration>
+
+       <xs:enumeration value="prenormative">
+         <xs:annotation>
+           <xs:documentation>
+             The data presented is preliminary data provided as part of the 
+             development of a standard but which does not meet the definition
+             of reference data.  
+           </xs:documentation>
+         </xs:annotation>
+       </xs:enumeration>
+
+     </xs:restriction>
+   </xs:simpleType>
+
+   <xs:simpleType name="AppArea">
+     <xs:annotation>
+       <xs:documentation>
+         allowed values representing categories of material physical properties
+       </xs:documentation>
+     </xs:annotation>
+     <xs:restriction base="xs:token">
+       <xs:enumeration value="manufacturing/engineering">
+         <xs:annotation>
+           <xs:documentation>
+             related to design and manufacturing of (non-pharmaceutical) 
+             products
+           </xs:documentation>
+         </xs:annotation>
+       </xs:enumeration>
+
+       <xs:enumeration value="medical">
+         <xs:annotation>
+           <xs:documentation>
+             related to medical and health research and treatments
+           </xs:documentation>
+         </xs:annotation>
+       </xs:enumeration>
+
+       <xs:enumeration value="pharmaceutical">
+         <xs:annotation>
+           <xs:documentation>
+             related specifically to the design or manufacturing of drugs.
+           </xs:documentation>
+         </xs:annotation>
+       </xs:enumeration>
+
+       <xs:enumeration value="forensics">
+         <xs:annotation>
+           <xs:documentation>
+             related to tests or techniques used to detect evidence of crime
+           </xs:documentation>
+         </xs:annotation>
+       </xs:enumeration>
+
+       <xs:enumeration value="fundemental physics">
+         <xs:annotation>
+           <xs:documentation>
+             related to quantities characterizing fundemental physics 
+           </xs:documentation>
+         </xs:annotation>
+       </xs:enumeration>
+
+       <xs:enumeration value="research">
+         <xs:annotation>
+           <xs:documentation>
+             related to pure research applications outside the context
+             of manufacturing.
+           </xs:documentation>
+         </xs:annotation>
+       </xs:enumeration>
+
+       <xs:enumeration value="metrology standards">
+         <xs:annotation>
+           <xs:documentation>
+             related to quanities, concepts, or processes important
+             for establishing metrology standards.
+           </xs:documentation>
+         </xs:annotation>
+       </xs:enumeration>
+
+       <xs:enumeration value="other">
+         <xs:annotation>
+           <xs:documentation>
+             related to an application area that is not sufficiently
+             covered by the other defined areas.  
+           </xs:documentation>
+         </xs:annotation>
+       </xs:enumeration>
+
+     </xs:restriction>
+   </xs:simpleType>
+
+   <xs:simpleType name="PropertyType">
      <xs:annotation>
        <xs:documentation>
          allowed values representing categories of material physical properties
@@ -1196,15 +1418,6 @@
          </xs:annotation>
        </xs:enumeration>
 
-       <xs:enumeration value="simulated">
-         <xs:annotation>
-           <xs:documentation>
-             a property or parameter describing a material's state as calculated
-             in a computational simulation.
-           </xs:documentation>
-         </xs:annotation>
-       </xs:enumeration>
-
        <xs:enumeration value="transport">
          <xs:annotation>
            <xs:documentation>
@@ -1230,6 +1443,210 @@
          </xs:annotation>
        </xs:enumeration>
      </xs:restriction>
+   </xs:simpleType>
+
+   <xs:simpleType name="DataCollectionMethod">
+     <xs:annotation>
+       <xs:documentation>
+         allowed values identifying categories of data collection methods.
+       </xs:documentation>
+     </xs:annotation>
+     <xs:restriction base="xs:token">
+       <xs:enumeration value="experimental">
+         <xs:annotation>
+           <xs:documentation>
+             data acquired by a measurement process where the device under 
+             test and the measurement variables and (ambient) parameters are 
+             under the control/supervision of investigators and all conditions 
+             are reproducible.
+           </xs:documentation>
+         </xs:annotation>
+       </xs:enumeration>
+
+       <xs:enumeration value="observational">
+         <xs:annotation>
+           <xs:documentation>
+             data acquired by a measurement process where the subject under 
+             measurement is not under control of the investigator and thus
+             its properties are measured under the subject's natural 
+             conditions. 
+           </xs:documentation>
+           <xs:documentation>
+             Examples include climate, geophysical, and astronomical data. 
+           </xs:documentation>
+         </xs:annotation>
+       </xs:enumeration>
+
+       <xs:enumeration value="computational">
+         <xs:annotation>
+           <xs:documentation>
+             data acquired through computational methods (e.g. simulation).
+           </xs:documentation>
+         </xs:annotation>
+       </xs:enumeration>
+     </xs:restriction>
+   </xs:simpleType>
+
+   <xs:simpleType name="MaterialType">
+     <xs:annotation>
+       <xs:documentation>
+         allowed values representing categories of material types
+       </xs:documentation>
+     </xs:annotation>
+     <xs:restriction base="xs:token">
+       <xs:enumeration value="organic">
+         <xs:annotation>
+           <xs:documentation>
+             indicating an organic (carbon-based) material
+           </xs:documentation>
+         </xs:annotation>
+       </xs:enumeration>
+
+       <xs:enumeration value="inorganic">
+         <xs:annotation>
+           <xs:documentation>
+             indicating an inorganic (i.e. carbon-less) material
+           </xs:documentation>
+         </xs:annotation>
+       </xs:enumeration>
+
+       <xs:enumeration value="biological">
+         <xs:annotation>
+           <xs:documentation>
+             indicating material extrated or derived from plants or animals.
+           </xs:documentation>
+         </xs:annotation>
+       </xs:enumeration>
+
+     </xs:restriction>
+   </xs:simpleType>
+
+   <xs:complexType name="MaterialName">
+      <xs:annotation>
+         <xs:documentation>
+           A name or title by which the material is known.
+         </xs:documentation>
+      </xs:annotation>
+
+      <xs:sequence>
+        <xs:element name="technical" type="xs:string"
+                    minOccurs="0" maxOccurs="unbounded">
+          <xs:annotation>
+            <xs:appinfo>
+              <label>Technical Name</label>
+              <tooltip>Click + to add additional names</tooltip>
+            </xs:appinfo>
+          </xs:annotation>
+        </xs:element>          
+
+        <xs:element name="trade" type="xs:string"
+                    minOccurs="0" maxOccurs="unbounded">
+          <xs:annotation>
+            <xs:appinfo>
+              <label>Trade Name</label>
+              <tooltip>Click + to add additional names</tooltip>
+            </xs:appinfo>
+          </xs:annotation>
+        </xs:element>          
+      </xs:sequence>
+   </xs:complexType>
+
+   <xs:complexType name="QualityMetric">
+     <xs:annotation>
+       <xs:documentation>
+         labels for specific quality metrics
+       </xs:documentation>
+     </xs:annotation>
+     <xs:sequence>
+       <xs:element name="calibratedEquipment" type="imr:YesNo"
+                   minOccurs="1" maxOccurs="1" default="No (or Don't Know)">
+          <xs:annotation>
+            <xs:appinfo>
+              <label>Did the measurements make use of equpment set with standard calibrations, traceable to recognized primary standards and SI units? </label>
+            </xs:appinfo>
+          </xs:annotation>
+       </xs:element>
+
+       <xs:element name="standardMethods" type="imr:YesNo"
+                   minOccurs="1" maxOccurs="1" default="No (or Don't Know)">
+          <xs:annotation>
+            <xs:appinfo>
+              <label>Was a recognized standard method used to obtain the measurements? </label>
+            </xs:appinfo>
+          </xs:annotation>
+       </xs:element>
+
+       <xs:element name="characterizedUncertainties" type="imr:YesNo"
+                   minOccurs="1" maxOccurs="1" default="No (or Don't Know)">
+         <xs:annotation>
+            <xs:appinfo>
+              <label>Do the reported values include a full GUM-based characterization of uncertainties? </label>
+            </xs:appinfo>
+         </xs:annotation>
+       </xs:element>
+
+       <xs:element name="multisiteMeasurements" type="imr:YesNo"
+                   minOccurs="1" maxOccurs="1" default="No (or Don't Know)">
+         <xs:annotation>
+            <xs:appinfo>
+              <label>Are the reported values based on multi-site (e.g. round-robin) measurements? </label>
+            </xs:appinfo>
+         </xs:annotation>
+       </xs:element>
+
+       <xs:element name="sampleStability" type="imr:YesNo"
+                   minOccurs="1" maxOccurs="1" default="No (or Don't Know)">
+         <xs:annotation>
+            <xs:appinfo>
+              <label>Are the reported values accompanied by a description of the stability and/or maturity of the the samples measured? </label>
+            </xs:appinfo>
+         </xs:annotation>
+       </xs:element>
+
+       <xs:element name="referenceMaterials" type="imr:YesNo"
+                   minOccurs="1" maxOccurs="1" default="No (or Don't Know)">
+         <xs:annotation>
+            <xs:appinfo>
+              <label>Were the measurements conducted on certified reference materials (as defined by VIM3)? </label>
+            </xs:appinfo>
+         </xs:annotation>
+       </xs:element>
+
+       <xs:element name="reviewAndCertification" type="imr:YesNo"
+                   minOccurs="1" maxOccurs="1" default="No (or Don't Know)">
+         <xs:annotation>
+            <xs:appinfo>
+              <label>Are the reported values accompanied by documentation of certification, a review report, or a reference to a peer-reviewed open-access paper describing the quality of the data? </label>
+            </xs:appinfo>
+         </xs:annotation>
+       </xs:element>
+
+       <xs:element name="criticalLiteratureReview" type="imr:YesNo"
+                   minOccurs="1" maxOccurs="1" default="No (or Don't Know)">
+         <xs:annotation>
+            <xs:appinfo>
+              <label>Are the reported values compiled through a critical review of values reported in the peer-reviewed literature? </label>
+            </xs:appinfo>
+         </xs:annotation>
+       </xs:element>
+     </xs:sequence>
+
+   </xs:complexType>
+
+   <xs:simpleType name="YesNo">
+      <xs:annotation>
+         <xs:documentation>
+           a controlled value of Yes or No
+         </xs:documentation>
+      </xs:annotation>
+
+     <xs:restriction base="xs:token">
+
+       <xs:enumeration value="No (or Don't Know)"/>
+       <xs:enumeration value="Yes"/>
+
+     </xs:restriction>
+      
    </xs:simpleType>
 
    <xs:complexType name="Access">
@@ -1422,29 +1839,6 @@
      </xs:complexContent>
    </xs:complexType>
 
-   <xs:complexType name="AccessURL">
-     <xs:sequence>
-        <xs:element name="URL" type="xs:anyURI"
-                    minOccurs="1" maxOccurs="unbounded">
-           <xs:annotation>
-             <xs:appinfo>
-               <label>Download URL: </label>
-             </xs:appinfo>           
-           </xs:annotation>
-        </xs:element>
-
-        <xs:element name="use" type="xs:string">
-           <xs:annotation>
-             <xs:appinfo>
-               <label>which points to a... </label>
-             </xs:appinfo>           
-           </xs:annotation>
-        </xs:element>
-        
-     </xs:sequence>
-
-   </xs:complexType>
-
    <xs:simpleType name="Rights">
       <xs:restriction base="xs:token">
          <xs:enumeration value="public">
@@ -1598,19 +1992,13 @@
 
    <xs:simpleType name="Boolean">
       <xs:restriction base="xs:string">
-         <xs:enumeration value="true">
+         <xs:enumeration value="Yes">
             <xs:annotation>
                <xs:documentation>
                </xs:documentation>
             </xs:annotation>
          </xs:enumeration>
-         <xs:enumeration value="false">
-            <xs:annotation>
-               <xs:documentation>
-               </xs:documentation>
-            </xs:annotation>
-         </xs:enumeration>
-         <xs:enumeration value="MacOS">
+         <xs:enumeration value="No">
             <xs:annotation>
                <xs:documentation>
                </xs:documentation>

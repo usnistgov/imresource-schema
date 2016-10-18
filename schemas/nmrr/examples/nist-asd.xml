@@ -57,12 +57,6 @@
      <affiliation>NIST</affiliation>
    </contributor>
 
-   <subject>atomic spectra</subject>
-   <subject>spectral lines</subject>
-   <subject>energy levels</subject>
-   <subject>ground state energy</subject>
-   <subject>ionization energy</subject>
-
    <description>
      This database provides access and search capability for NIST
      critically evaluated data on atomic energy levels, wavelengths,
@@ -79,9 +73,31 @@
      atoms and atomic ions. 
    </description>
 
+   <subject>atomic spectra</subject>
+   <subject>spectral lines</subject>
+   <subject>energy levels</subject>
+   <subject>ground state energy</subject>
+   <subject>ionization energy</subject>
+
+   <applicationArea>fundemental physics</applicationArea>
+
    <measures>
-     <propertyClass>optical</propertyClass>
-     <propertyClass>chemical</propertyClass>
+     <propertyName>transition wavelength</propertyName>
+     <propertyName>ionization energy</propertyName>
+     <propertyType>optical</propertyType>
+     <propertyType>chemical</propertyType>
+     <dataCollectionMethod>experimental</dataCollectionMethod>
+     <dataStatus>standard reference</dataStatus>
+     <qualityMetric>
+       <calibratedEquipment>No (or Don't Know)</calibratedEquipment>
+       <standardMethods>No (or Don't Know)</standardMethods>
+       <characterizedUncertainties>Yes</characterizedUncertainties>
+       <multisiteMeasurements>No (or Don't Know)</multisiteMeasurements>
+       <sampleStability>No (or Don't Know)</sampleStability>
+       <referenceMaterials>No (or Don't Know)</referenceMaterials>
+       <reviewAndCertification>No (or Don't Know)</reviewAndCertification>
+       <criticalLiteratureReview>Yes</criticalLiteratureReview>
+     </qualityMetric>
    </measures>
    
    <access>
